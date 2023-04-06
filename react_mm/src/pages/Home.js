@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
+import { useNavigate } from "react-router-dom";
+import { musicRecommend } from '../services/appServices';
 
-const RadarChart = () => {
+export default function Home() {
+  const navigate = useNavigate();
   const [data, setData] = useState([50, 50, 50, 50, 50, 50]);
 
   const onClick = (evt) => {
@@ -89,6 +92,3 @@ const RadarChart = () => {
     </div>
   );
 };
-
-export default RadarChart;
-
