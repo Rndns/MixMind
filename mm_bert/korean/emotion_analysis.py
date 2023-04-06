@@ -8,7 +8,7 @@ from konlpy.tag import Komoran
 
 
 kmoran = Komoran()
-MAX_LEN = 17
+MAX_LEN = 158
 
 tokenizer = BertTokenizer.from_pretrained("bert-base-multilingual-cased", cache_dir='bert_ckpt', do_lower_case=False)
 
