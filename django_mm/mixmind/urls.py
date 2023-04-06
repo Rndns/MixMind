@@ -1,8 +1,10 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+
 from . import views
 
-app_name = "mixmind"
+router = DefaultRouter()
+router.register(r'predict', views.musicRecom, basename='musicRecom')
 
 urlpatterns = [
-    path('', views.index, name="home"),
-]
+] + router.urls

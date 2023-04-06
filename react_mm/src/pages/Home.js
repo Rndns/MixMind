@@ -5,14 +5,14 @@ import { musicRecommend } from '../services/appServices';
 
 export default function Home() {
   const navigate = useNavigate();
-  const [data, setData] = useState([50, 50, 50, 50, 50, 50]);
+  const [emotionValues, setData] = useState([50, 50, 50, 50, 50, 50]);
 
   const onClick = (evt) => {
     console.log(evt.points[0].y);
   };
 
   const onDataChanged = (index, value) => {
-    const newData = [...data];
+    const newData = [...emotionValues];
     newData[index] = value;
     setData(newData);
   };
@@ -25,7 +25,7 @@ export default function Home() {
         data={[
           {
             type: 'scatterpolar',
-            r: data,
+            r: emotionValues,
             theta: emotion,
             fill: 'toself',
             hoverinfo: 'none',
@@ -63,7 +63,7 @@ export default function Home() {
         onClick={onClick}
       />
       <div>
-        {data.map((value, index) => (
+        {emotionValues.map((value, index) => (
           <div key={index}>
             <span>{emotion[index]}: </span>
             <input
@@ -81,7 +81,7 @@ export default function Home() {
         <button
           type="button"
           onClick={e => {
-            musicRecommend(data).then(data => {
+            musicRecommend(emotionValues).then(data => {
               console.log(data);
               navigate("/MusicRecom", { replace: true });
             });

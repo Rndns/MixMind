@@ -1,9 +1,12 @@
-const API_BASE_URL = "http://localhost/API";
+const API_BASE_URL = "http://localhost/mixmind";
 
-export async function musicRecommend(searchWord) {
-	const boardApiUrl = `${API_BASE_URL}/search/${searchWord}`;
+export async function musicRecommend(emotionValues) {
+	const MixMindApiUrl = `${API_BASE_URL}/predict`;
 
-	return fetch(boardApiUrl, {
-		method: "get",
+	return fetch(MixMindApiUrl, {
+		method: "post",
+        body: JSON.stringify({
+			emotionValues,
+		}),
 	}).then(resp => resp.json());
 }
