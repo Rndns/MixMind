@@ -79,7 +79,6 @@ def load_model(checkpoint_path):
 
 # 문장 -> 버트 input 값으로 변환
 def sentence_convert_data(data):
-    global bert_tokenizer, MAX_LEN
     tokens , masks , segment = [],[],[]
     input_id , attention_mask , token_type_id = bert_tokenizer(data)
     
@@ -97,8 +96,7 @@ def sentence_convert_data(data):
 def sentence_evaluation_predict(sentence, model):
     data_x = sentence_convert_data(sentence)
     predict = model.predict(data_x)
-    predict_value = np.ravel(predict[0])
-    predict_answer = np.round(predict_value,0).item()
+    predict_answer = np.round(predict, 0)
     
 #     if predict_answer == 0:
 #         print("(부정 확률 : %.2f) 부정적인 가사입니다." % (1-predict_value))
@@ -151,18 +149,7 @@ def hybrid_emotion_analysis(sentence,model,vocab):
     for sentence in corpus:
         emotion_score = emotion_score + Counter(hybrid_emotion_clf(sentence,model,vocab))
     
-    #딕셔너리 value로 정렬
-    res = dict(sorted(emotion_score.items() , key=(lambda x : x[1]),reverse = True))
-    
-    if len(res) == 0:
-        return [None , None , None]
-    elif len(res) == 1:
-        return [list(res.keys())[0] , None , None ]
-    elif len(res) == 2:
-        return [list(res.keys())[0] ,list(res.keys())[1] , None]
-    else:
-        #상위 3개 key값만 가져옴
-        return list(res.keys())[:3]
+    return emotion_score
     
 def hybrid_emotion_export_persent(sentence,model,vocab):
     # 가사데이터 문장 분할 및 전처리
@@ -176,29 +163,9 @@ def hybrid_emotion_export_persent(sentence,model,vocab):
     for emotion in list(emotion_score.keys()):
         emotion_score[emotion] = round((emotion_score[emotion] / total),5)
         
-    top_dict = {}
-    # 값의 크기의 따른 감정 순서 정렬( 상위 3개의 감정만 따로 뽑아주기 위함.)
-    sort_dict = dict(sorted(emotion_score.items() , key=(lambda x : x[1]),reverse = True))
-    sort_keys = list(sort_dict.keys())
-    
-    # 감정의 결과가 0 개 일경우 -> 0 값으로 대체함.
-    if len(sort_dict) == 0:
-        top_dict = {'emotion1' : 0 , 'emotion2' : 0 , 'emotion3' : 0}
-    # 감정의 결과가 1개 일경우 -> 1개를 제외한 나머지를 0값으로 대체함.
-    elif len(sort_dict) == 1:
-        top_dict = {'emotion1' : sort_keys[0],'emotion2' : 0 , 'emotion3' : 0}
-    # 감정의 결과가 2개 일경우 -> 2개를 제외한 나머지를 0값으로 대체함.
-    elif len(sort_dict) == 2:
-        top_dict = {'emotion1' : sort_keys[0], 'emotion2' : sort_keys[1], 'emotion3' : 0}
-    # 감정의 결과가 3개 이상일 경우
-    else :
-        top_dict = {'emotion1' : sort_keys[0], 'emotion2' : sort_keys[1], 'emotion3' : sort_keys[2]}
-        
     emotion_score = dict(emotion_score) # 감정별 비율이 들어있는 dict
     
     # 한국어에는 없는 감정 : 놀람
     emotion_score['5369'] = 0 # 놀람
     
-    # 감정별 비율이 들어있는 dict 와 상위3개의 감정라벨값이 들어있는 dict 합치기
-    emotion_score.update(top_dict)
     return emotion_score
