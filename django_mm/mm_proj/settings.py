@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mixmind.apps.MixmindConfig'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE'    : 'django.db.backends.mysql',
         'NAME'      : 'mixmind_webservice',
-        'USER'      : 'jin',
+        'USER'      : 'TeamMixMind',
         'PASSWORD'  : '730402',
         'HOST'      : '34.64.62.157',
     }
