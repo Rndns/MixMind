@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div style={{ maxWidth: 1280, margin: "auto", padding: 10 }}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<MusicRecom />} />
           <Route path="/MusicRecom" element={<MusicRecom />}></Route>
         </Routes>
       </div>
