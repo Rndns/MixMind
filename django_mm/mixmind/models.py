@@ -2,14 +2,42 @@ from django.db import models
 
 class MusicInfo(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    # 음악 정보 추가
+    title = models.CharField(max_length=255, null=True)
+    artist = models.CharField(max_length=255, null=True)
+    album = models.CharField(max_length=255, null=True)
+    releasedDate = models.DateField(null=True)
+    genre = models.CharField(max_length=255, null=True)
+    lyricist = models.CharField(max_length=255, null=True)
+    composer = models.CharField(max_length=255, null=True)
+    arranger = models.CharField(max_length=255, null=True)
+    likes = models.IntegerField(null=True)
+    lyrics = models.TextField(null=True)
+    albumImg = models.CharField(max_length=255, null=True)
+    youtudeId = models.CharField(max_length=255, null=True)
 
 class MusicEmotion(models.Model):
     id = models.AutoField(primary_key=True)
     musicId = models.ForeignKey("MusicInfo", on_delete=models.CASCADE, related_name='SongEmotion')
-    # 감정 종류 추가
+    love = models.FloatField()
+    joy = models.FloatField()
+    passion = models.FloatField()
+    happiness = models.FloatField()
+    sadness = models.FloatField()
+    anger = models.FloatField()
+    loneliness = models.FloatField()
+    longing = models.FloatField()
+    fear =models.FloatField()
+    surprise = models.FloatField()
 
 class UserEmotion(models.Model):
     id = models.AutoField(primary_key=True)
-    # 감정 종류 추가
+    love = models.FloatField()
+    joy = models.FloatField()
+    passion = models.FloatField()
+    happiness = models.FloatField()
+    sadness = models.FloatField()
+    anger = models.FloatField()
+    loneliness = models.FloatField()
+    longing = models.FloatField()
+    fear =models.FloatField()
+    surprise = models.FloatField()
