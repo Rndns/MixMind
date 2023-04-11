@@ -37,14 +37,14 @@ const ImageSlider = (props) => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />
   }
-  
+
   return (
     <div>
       <h1>Single Item</h1>
       <Slider {...settings}>
         {imagesData.map((img, i) => (
           <div key={i}>
-            <img src={img} alt='load fail'/>
+            <img src={img} alt='load fail' height='256' />
           </div>
         ))}
       </Slider>
