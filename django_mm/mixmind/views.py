@@ -16,6 +16,7 @@ import numpy as np
 
 class MusicRecommendViewSet(viewsets.ViewSet):
     def create(self, request):
+        print(1)
         serializer = MusicRecommendSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         

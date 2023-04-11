@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-@7gmd854+jl&+rg_upfdr1c0c9%go^qwv7806*!h_7+6qm_5wt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,17 +37,20 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mixmind.apps.MixmindConfig'
+    'rest_framework',
+    'mixmind.apps.MixmindConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = 'mm_proj.urls'
@@ -81,9 +84,20 @@ DATABASES = {
         'USER'      : 'TeamMixMind',
         'PASSWORD'  : '730402',
         'HOST'      : '34.64.62.157',
+        'PORT'      : '3306',
     }
 }
 
+# settings.py
+
+# 모든 도메인에서 CORS 요청을 허용하는 경우:
+CORS_ALLOW_CREDENTIALS = True
+
+# 혹은 특정 도메인에서 CORS 요청을 허용하는 경우:
+CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3004', #For React Project 
+                            'http://localhost:3004',
+                            'http://127.0.0.1:8000',  #For Django Project 
+                        ]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
