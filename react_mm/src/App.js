@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 
-import Home from "./pages/Home";
 import MusicRecom from "./pages/MusicRecom";
 
 
