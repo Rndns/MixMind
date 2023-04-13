@@ -94,8 +94,8 @@ DATABASES = {
 CORS_ALLOW_CREDENTIALS = True
 
 # 혹은 특정 도메인에서 CORS 요청을 허용하는 경우:
-CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3004', #For React Project 
-                            'http://localhost:3004',
+CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3000', #For React Project 
+                            'http://localhost:3000',
                             'http://127.0.0.1:8000',  #For Django Project 
                         ]
 
