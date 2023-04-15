@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from . import views
@@ -6,4 +6,7 @@ from . import views
 router = DefaultRouter()
 router.register(r'musicRecom', views.MusicRecommendViewSet, basename='musicRecom')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+]
+# urlpatterns = router.urls

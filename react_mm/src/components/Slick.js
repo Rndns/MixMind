@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
+import Carousel from 'react-bootstrap/Carousel';
 
 function NextArrow(props) {
   const { className, style, onClick } = props;
@@ -26,13 +27,13 @@ function PrevArrow(props) {
   );
 }
 
-
-
-
-const ImageSlider = (props) => {
+export default function Slick(props) {
+  const { musicImages } = props
+  console.log(musicImages)
+  // const {images} = musicImages
+  // console.log({images})
   const navigate = useNavigate();
-  const { imagesData } = props.imagesData
-  console.log(imagesData)
+
   const settings = {
     arrows: true,
     dots: false,
@@ -47,9 +48,9 @@ const ImageSlider = (props) => {
     <div>
       <h1>Single Item</h1>
       <Slider {...settings}>
-        {imagesData.map((img, i) => (
-          <div key={i}>
-            <img src={img} alt='load fail' height='256'
+        {musicImages.map((music) => (
+          <div key={music.id}>
+            <img src={music.image} alt={`music-${music.id}`} height='256'
               onClick={() => {
                 navigate(`/musicplaypage`)
               }} />
@@ -57,7 +58,19 @@ const ImageSlider = (props) => {
         ))}
       </Slider>
     </div>
+    // <Carousel>
+    //   {musicImages.map((item) => (
+    //     <Carousel.Item key={item.id}>
+    //       <img
+    //         className="d-block w-100"
+    //         src={item.image}
+    //         alt={`music-${item.id}`}
+    //         onClick={() => {
+    //           navigate(`/musicplaypage`)
+    //         }}
+    //       />
+    //     </Carousel.Item>
+    //   ))}
+    // </Carousel>
   )
 };
-
-export default ImageSlider;

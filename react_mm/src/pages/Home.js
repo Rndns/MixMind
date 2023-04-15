@@ -72,21 +72,22 @@ export default function Home() {
               max={100}
               step={5}
               value={value}
-              onChange={(evt) => onDataChanged(index, evt.target.value)} //parseFloat
+              onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
             />
           </div>
         ))}
       </div>
       <div>
         <button
-          type="button"
-          onClick={e => {
-            musicRecommend(emotionValues).then(data => {
-              console.log(data);
-              navigate("/MusicRecom", { replace: true });
+          onClick={() => {
+            navigate(`/musicRecom`, {
+              state: {
+                emotions: emotionValues
+              }, 
+              replace: false 
             });
           }}>
-          추천음악이동
+          음악 추천 받기
         </button>
       </div>
     </div>

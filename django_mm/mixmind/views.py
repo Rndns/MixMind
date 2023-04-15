@@ -17,9 +17,10 @@ import numpy as np
 class MusicRecommendViewSet(viewsets.ViewSet):
     def create(self, request):
         serializer = MusicRecommendSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        # serializer.is_valid() # raise_exception=True
+        emotion_values = request.data.get('emotions')
+        print(emotion_values)
         
-        emotion_values = request.data.get('emotionValues', [])
         user_emotion = UserEmotion.objects.create(
             love=emotion_values[0],
             joy=emotion_values[1],
@@ -72,6 +73,10 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             music_info = MusicInfo.objects.filter(id=music_emotion.musicId_id).first()
             if music_info:
                 music_info_list.append(music_info)
-
+        print(music_info_list)
         serializer = MusicRecommendSerializer(music_info_list, many=True)
         return Response(serializer.data)
+
+class MusicPalyViewSet(viewsets.ViewSet):
+    # 
+    pass

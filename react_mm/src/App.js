@@ -12,8 +12,8 @@ function App() {
       <div style={{ maxWidth: 1280, margin: "auto", padding: 10 }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/MusicRecom" element={<MusicRecom />}></Route>
-          <Route path="/musicplaypage" element={<MusicPlay />}></Route>
+          <Route path="/musicRecom" element={<MusicRecom />}></Route>
+          <Route path="/musicplayer" element={<MusicPlay />}></Route>
         </Routes>
       </div>
     </Router>
