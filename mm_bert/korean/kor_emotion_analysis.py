@@ -1,4 +1,4 @@
-from preprocessing import sentence_to_corpus , sentence_preprocessing , lexicon_tokenizer_komoran
+from kor_preprocessing import sentence_to_corpus , sentence_preprocessing , lexicon_tokenizer_komoran
 from transformers import *
 import tensorflow as tf
 import pandas as pd
