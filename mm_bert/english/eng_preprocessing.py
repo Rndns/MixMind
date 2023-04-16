@@ -33,10 +33,10 @@ def join_sentence(index_list , corpus):
             result.append(corpus[index_list[-1] -1])
     return result
 
-# 가사 문장별 분리
-def lyrics_to_corpus(lyrics):
-    lyrics = re.split('\r\n|\n',lyrics)
-    corpus = join_sentence(get_upper_idx(lyrics),lyrics)
+# 문장별 분리
+def sentence_to_corpus(sentence):
+    sentence = re.split('\r\n|\n',sentence)
+    corpus = join_sentence(get_upper_idx(sentence),sentence)
     #중복제거
     corpus = list(set(corpus))
     return corpus
