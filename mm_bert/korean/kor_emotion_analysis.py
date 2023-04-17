@@ -47,7 +47,7 @@ class TFBertClassifier_KOR(tf.keras.Model):
     def __init__(self, model_name, dir_path):
         super(TFBertClassifier_KOR, self).__init__()
 
-        self.bert = TFBertModel.from_pretrained(model_name, cache_dir=dir_path)
+        self.bert = TFBertModel.from_pretrained(model_name, dir_path)
         self.dropout = tf.keras.layers.Dropout(self.bert.config.hidden_dropout_prob)
         self.classifier = tf.keras.layers.Dense(1,
                                                 activation='sigmoid',
@@ -71,9 +71,9 @@ class TFBertClassifier_KOR(tf.keras.Model):
         logits = self.classifier(pooled_output)
         return logits
     
-def load_model(checkpoint_path):
+def load_model_kor(checkpoint_path):
     # 모델 객체 생성
-    model = TFBertClassifier_KOR(model_name='bert-base-multilingual-cased',dir_path='bert_ckpt')
+    model = TFBertClassifier_KOR(model_name='bert-base-multilingual-cased', dir_path='bert_ckpt')
     model.load_weights(checkpoint_path)
     return model
 
@@ -167,5 +167,7 @@ def hybrid_emotion_export_persent(sentence,model,vocab):
     
     # 한국어에는 없는 감정 : 놀람
     emotion_score['5369'] = 0 # 놀람
+
+    emo_list = ['love', 'fun', 'enthusiasm', 'happiness', 'sadness', 'anger', 'loneliness', 'longing', 'fear', 'surprise']
     
-    return emotion_score
+    return {k:v for k,v in zip(emo_list, emotion_score.values())}

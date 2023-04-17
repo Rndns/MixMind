@@ -45,7 +45,7 @@ class TFBertClassifier_ENG(tf.keras.Model):
         logits = self.classifier(pooled_output)
         return logits
 
-def load_model(checkpoint_path):
+def load_model_eng(checkpoint_path):
     # 모델 객체 생성
     model = TFBertClassifier_ENG(model_name='bert-base-cased')
     model.load_weights(checkpoint_path)
@@ -63,6 +63,6 @@ def eng_emotion_predict(sentence, model):
         return_token_type_ids = False,
         return_attention_mask = True,
         verbose = True)
-    emo_dic =  ['surprise', 'love', 'happy', 'sadness', 'anger', 'fear']
+    emo_list =  ['surprise', 'love', 'happy', 'sadness', 'anger', 'fear']
     validation = model.predict({'input_ids':x_val['input_ids'],'attention_mask':x_val['attention_mask']})[0].tolist()
-    return {k:v for k,v in zip(emo_dic, validation)}
+    return {k:v for k,v in zip(emo_list, validation)}
