@@ -210,4 +210,12 @@ psd
 thumb
 sketch
 
+# model
+mm_bert/english/__pycache__/
+mm_bert/english/bert-model/
+mm_bert/english/bert-tokenizer/
+mm_bert/english/binary_model_checkpoint/
+mm_bert/english/Emo_data/
+mm_bert/english/multi_model_checkpoint/
+
 # End of https://www.toptal.com/developers/gitignore/api/django,react

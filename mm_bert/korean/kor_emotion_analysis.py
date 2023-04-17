@@ -1,4 +1,4 @@
-from preprocessing import sentence_to_corpus , sentence_preprocessing , lexicon_tokenizer_komoran
+from kor_preprocessing import sentence_to_corpus , sentence_preprocessing , lexicon_tokenizer_komoran
 from transformers import *
 import tensorflow as tf
 import pandas as pd
@@ -43,9 +43,9 @@ def bert_tokenizer(sent):
     
     return input_id, attention_mask, token_type_id
 
-class TFBertClassifier(tf.keras.Model):
+class TFBertClassifier_KOR(tf.keras.Model):
     def __init__(self, model_name, dir_path):
-        super(TFBertClassifier, self).__init__()
+        super(TFBertClassifier_KOR, self).__init__()
 
         self.bert = TFBertModel.from_pretrained(model_name, cache_dir=dir_path)
         self.dropout = tf.keras.layers.Dropout(self.bert.config.hidden_dropout_prob)
@@ -73,7 +73,7 @@ class TFBertClassifier(tf.keras.Model):
     
 def load_model(checkpoint_path):
     # 모델 객체 생성
-    model = TFBertClassifier(model_name='bert-base-multilingual-cased',dir_path='bert_ckpt')
+    model = TFBertClassifier_KOR(model_name='bert-base-multilingual-cased',dir_path='bert_ckpt')
     model.load_weights(checkpoint_path)
     return model
 
