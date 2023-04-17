@@ -5,7 +5,7 @@ import { musicRecommend } from '../services/appServices';
 
 export default function Home() {
   const navigate = useNavigate();
-  const [emotionValues, setData] = useState([50, 50, 50, 50, 50, 50]);
+  const [emotionValues, setData] = useState([50, 50, 50, 50, 50, 50, 50, 50, 50, 50]);
 
   const onClick = (evt) => {
     console.log(evt.points[0].y);
@@ -17,8 +17,9 @@ export default function Home() {
     setData(newData);
   };
 
-  const markerColors = ['#FF4136', '#FF851B', '#FFDC00', '#2ECC40', '#0074D9', '#B10DC9'];
-  const emotion = ['슬픔', '외로움', '분노', '사랑', '즐거움', '행복']
+  const markerColors = ['#FF4136', '#FF851B', '#FFDC00', '#2ECC40', '#0074D9', '#B10DC9', '#01FF70', '#7FDBFF', '#85144b', '#FFD700'];
+  const emotion = ['슬픔', '외로움', '분노', '사랑', '즐거움', '행복', '놀라움', '공허', '떨림', '열정'];
+  
   return (
     <div>
       <Plot

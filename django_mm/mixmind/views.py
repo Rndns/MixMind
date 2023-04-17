@@ -9,17 +9,16 @@
 # )
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .serializers import MusicRecommendSerializer
+from .serializers import MusicInfoSerializer
 from .models import UserEmotion, MusicInfo, MusicEmotion
 import numpy as np
 
 
 class MusicRecommendViewSet(viewsets.ViewSet):
     def create(self, request):
-        serializer = MusicRecommendSerializer(data=request.data)
+        # serializer = MusicRecommendSerializer(data=request.data)
         # serializer.is_valid() # raise_exception=True
         emotion_values = request.data.get('emotions')
-        print(emotion_values)
         
         user_emotion = UserEmotion.objects.create(
             love=emotion_values[0],
@@ -35,7 +34,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         )
 
         music_emotions = MusicEmotion.objects.all()
-
+        print(music_emotions, 37)
         music_emotions_similarity = []
         user_emotion_values = np.array([
             user_emotion.love,
@@ -49,6 +48,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             user_emotion.fear,
             user_emotion.surprise
         ])
+        print(user_emotion_values, 52)
         for music_emotion in music_emotions:
             music_emotion_values = np.array([
                 music_emotion.love,
@@ -65,7 +65,6 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             cosine_similarity = np.dot(user_emotion_values, music_emotion_values) / (
                     np.linalg.norm(user_emotion_values) * np.linalg.norm(music_emotion_values))
             music_emotions_similarity.append((music_emotion, cosine_similarity))
-
         music_emotions_similarity.sort(key=lambda x: x[1], reverse=True)
         music_info_list = []
         for i in range(min(len(music_emotions_similarity), 10)):
@@ -73,8 +72,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             music_info = MusicInfo.objects.filter(id=music_emotion.musicId_id).first()
             if music_info:
                 music_info_list.append(music_info)
-        print(music_info_list)
-        serializer = MusicRecommendSerializer(music_info_list, many=True)
+        serializer = MusicInfoSerializer(music_info_list, many=True)
         return Response(serializer.data)
 
 class MusicPalyViewSet(viewsets.ViewSet):

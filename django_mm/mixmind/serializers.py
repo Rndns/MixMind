@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import MusicInfo, MusicEmotion
 
-class MusicRecommendSerializer(serializers.Serializer):
-    emotions = serializers.ListField(child=serializers.FloatField())
+# class MusicRecommendSerializer(serializers.Serializer):
+#     emotions = serializers.ListField(child=serializers.FloatField())
     
 
 class MusicInfoSerializer(serializers.ModelSerializer):

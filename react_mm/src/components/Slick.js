@@ -28,10 +28,7 @@ function PrevArrow(props) {
 }
 
 export default function Slick(props) {
-  const { musicImages } = props
-  console.log(musicImages)
-  // const {images} = musicImages
-  // console.log({images})
+  const { musicInfos } = props
   const navigate = useNavigate();
 
   const settings = {
@@ -48,18 +45,23 @@ export default function Slick(props) {
     <div>
       <h1>Single Item</h1>
       <Slider {...settings}>
-        {musicImages.map((music) => (
-          <div key={music.id}>
-            <img src={music.image} alt={`music-${music.id}`} height='256'
+        {musicInfos.map((musicInfo) => (
+          <div key={musicInfo.id}>
+            <img src={musicInfo.albumImg} alt={`musicInfo-${musicInfo.id}`} height='256'
               onClick={() => {
-                navigate(`/musicplaypage`)
+                navigate(`/musicPlayer`,{
+                  state: {
+                    musicInfo: musicInfo
+                  },
+                  replace: false
+                })
               }} />
           </div>
         ))}
       </Slider>
     </div>
     // <Carousel>
-    //   {musicImages.map((item) => (
+    //   {musicInfo.map((item) => (
     //     <Carousel.Item key={item.id}>
     //       <img
     //         className="d-block w-100"
