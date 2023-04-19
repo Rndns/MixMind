@@ -99,7 +99,7 @@ CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3000', #For React Project
                             'http://10.140.0.3:3001', #For React Project 
                             'http://localhost:3001',
                             'http://127.0.0.1:8000',
-                            'http://127.0.0.1:8001',  #For Django Project 
+                            'http://127.0.0.1:8080',  #For Django Project 
                         ]
 
 # Password validation
