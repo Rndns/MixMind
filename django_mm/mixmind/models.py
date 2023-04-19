@@ -13,7 +13,7 @@ class MusicInfo(models.Model):
     likes = models.IntegerField(null=True)
     lyrics = models.TextField(null=True)
     albumImg = models.CharField(max_length=255, null=True)
-    youtudeId = models.CharField(max_length=255, null=True)
+    youtubeId = models.CharField(max_length=255, null=True)
 
 class MusicEmotion(models.Model):
     id = models.AutoField(primary_key=True)
