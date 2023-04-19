@@ -4,6 +4,7 @@ import React from "react";
 import Home from "./pages/Home";
 import MusicRecom from "./pages/MusicRecom";
 import MusicPlay from "./pages/MusicPlay";
+import MusicList from "./pages/MusicList";
 import Test from "./pages/Test";
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/musicRecom" element={<MusicRecom />}></Route>
           <Route path="/musicPlayer" element={<MusicPlay />}></Route>
+          <Route path="/musicList" element={<MusicList />}></Route>
+
         </Routes>
       </div>
     </Router>

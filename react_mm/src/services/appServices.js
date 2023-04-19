@@ -13,3 +13,14 @@ export async function musicRecommend(emotions) {
 		}
 	}).then(resp => resp.json());
 }
+
+export async function musicInfoList() {
+	const MixMindListApiUrl = `${API_BASE_URL}/musicList/`;
+	
+	return fetch(MixMindListApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json());
+} 

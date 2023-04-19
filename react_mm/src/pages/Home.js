@@ -91,6 +91,16 @@ export default function Home() {
           음악 추천 받기
         </button>
       </div>
+      <div>
+        <button
+          onClick={() => {
+            navigate(`/musicList`, {
+              replace: false 
+            });
+          }}>
+          음악 리스트
+        </button>
+      </div>
     </div>
   );
 };
