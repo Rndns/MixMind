@@ -43,7 +43,7 @@ export default function Slick(props) {
 
   return (
     <div>
-      <h1>Single Item</h1>
+      {/* <h1>Single Item</h1> */}
       <Slider {...settings}>
         {musicInfos.map((musicInfo) => (
           <div key={musicInfo.id}>

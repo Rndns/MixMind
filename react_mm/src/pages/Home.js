@@ -17,8 +17,8 @@ export default function Home() {
     setData(newData);
   };
 
-  const markerColors = ['#FF4136', '#FF851B', '#FFDC00', '#2ECC40', '#0074D9', '#B10DC9', '#01FF70', '#7FDBFF', '#85144b', '#FFD700'];
-  const emotion = ['슬픔', '외로움', '분노', '사랑', '즐거움', '행복', '놀라움', '공허', '떨림', '열정'];
+  const markerColors = ['#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9','#FF4136'];
+  const emotion = ['사랑', '슬픔', '즐거움', '분노', '열정', '외로움', '행복', '그리움', '놀라움', '두려움'];
   
   return (
     <div>

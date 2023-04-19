@@ -22,15 +22,15 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         
         user_emotion = UserEmotion.objects.create(
             love=emotion_values[0],
-            joy=emotion_values[1],
-            passion=emotion_values[2],
-            happiness=emotion_values[3],
-            sadness=emotion_values[4],
-            anger=emotion_values[5],
-            loneliness=emotion_values[6],
+            joy=emotion_values[2],
+            passion=emotion_values[4],
+            happiness=emotion_values[6],
+            sadness=emotion_values[1],
+            anger=emotion_values[3],
+            loneliness=emotion_values[5],
             longing=emotion_values[7],
-            fear=emotion_values[8],
-            surprise=emotion_values[9]
+            fear=emotion_values[9],
+            surprise=emotion_values[8]
         )
 
         music_emotions = MusicEmotion.objects.all()
