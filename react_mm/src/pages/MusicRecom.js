@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
 import Slick from "../components/Slick";
 import { musicRecommend } from "../services/appServices";
+import SearchBar from "../components/Search";
 
 export default function MusicRecom() {
     const location = useLocation();
@@ -52,6 +53,8 @@ export default function MusicRecom() {
         },
     ]);
 
+    
+
     useEffect(() => {
         musicRecommend(location.state.emotions).then(data => {
             setImagesData(data);
@@ -60,6 +63,7 @@ export default function MusicRecom() {
 
     return (
         <div className="musicrecompage">
+            <SearchBar/>
             <h1>음악추천페이지</h1>
             {/* <button onClick={() => {navigate('/musicrecomlistpage')}}>추천음악이동</button> */}
             <div>
