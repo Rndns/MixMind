@@ -15,9 +15,9 @@ export async function musicRecommend(emotions) {
 }
 
 export async function musicInfoList() {
-	const MixMindListApiUrl = `${API_BASE_URL}/musicList/`;
+	const MixMindApiUrl = `${API_BASE_URL}/musicList/`;
 	
-	return fetch(MixMindListApiUrl, {
+	return fetch(MixMindApiUrl, {
 		method: "get",
 		headers:{
 			'Content-Type': "application/json"

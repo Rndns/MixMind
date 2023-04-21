@@ -96,8 +96,10 @@ CORS_ALLOW_CREDENTIALS = True
 # 혹은 특정 도메인에서 CORS 요청을 허용하는 경우:
 CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3000', #For React Project 
                             'http://localhost:3000',
-                            'http://10.140.0.3:3001', #For React Project 
+                            'http://10.140.0.3:3001',
                             'http://localhost:3001',
+                            'http://10.140.0.3:3002',
+                            'http://localhost:3002',
                             'http://127.0.0.1:8000',
                             'http://127.0.0.1:8080',  #For Django Project 
                         ]
@@ -120,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -132,9 +133,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 STATIC_URL = 'static/'
 
