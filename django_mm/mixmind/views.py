@@ -73,6 +73,13 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         serializer = MusicInfoSerializer(music_info_list, many=True)
         return Response(serializer.data)
 
+
 class MusicPalyViewSet(viewsets.ViewSet):
     # 
     pass
+
+class MusicListViewSet(viewsets.ViewSet):
+    def list(self, request):
+        musiclist_info = MusicInfo.objects.all()
+        serializer = MusicInfoSerializer(musiclist_info, many=True)
+        return Response(serializer.data)
