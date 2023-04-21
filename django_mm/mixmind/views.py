@@ -34,7 +34,6 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         )
 
         music_emotions = MusicEmotion.objects.all()
-        print(music_emotions, 37)
         music_emotions_similarity = []
         user_emotion_values = np.array([
             user_emotion.love,
@@ -48,7 +47,6 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             user_emotion.fear,
             user_emotion.surprise
         ])
-        print(user_emotion_values, 52)
         for music_emotion in music_emotions:
             music_emotion_values = np.array([
                 music_emotion.love,
