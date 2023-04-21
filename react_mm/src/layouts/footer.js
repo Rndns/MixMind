@@ -30,10 +30,6 @@ const Footer = () => {
             setSelectedAudio(audioList[nextAudioIndex]);
         }
     };
-    // const path = selectedAudio.src
-    // const audioFile = require(path)
-
-    // const audioFile = require('./music.mp3');
 
     return (
         <div className="footer-container">

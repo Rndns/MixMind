@@ -94,7 +94,7 @@ export default function Home() {
       <div>
         <button
           onClick={() => {
-            navigate(`/musicList`, {
+            navigate(`/musicPlayList`, {
               replace: false 
             });
           }}>

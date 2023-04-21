@@ -43,7 +43,6 @@ export default function Slick(props) {
 
   return (
     <div>
-      {/* <h1>Single Item</h1> */}
       <Slider {...settings}>
         {musicInfos.map((musicInfo) => (
           <div key={musicInfo.id}>
@@ -60,19 +59,5 @@ export default function Slick(props) {
         ))}
       </Slider>
     </div>
-    // <Carousel>
-    //   {musicInfo.map((item) => (
-    //     <Carousel.Item key={item.id}>
-    //       <img
-    //         className="d-block w-100"
-    //         src={item.image}
-    //         alt={`music-${item.id}`}
-    //         onClick={() => {
-    //           navigate(`/musicplaypage`)
-    //         }}
-    //       />
-    //     </Carousel.Item>
-    //   ))}
-    // </Carousel>
   )
 };

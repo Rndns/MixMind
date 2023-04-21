@@ -9,7 +9,6 @@ import { musicInfoList } from "../services/appServices";
 export default function MusicPlay() {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.state.musicInfo)
   // album "on the street (with J. Cole)"
   // albumImg "https://cdnimg.melon.co.kr/cm2/album/images/111/94/815/11194815_20230303100153_500.jpg?a15be10b9a5357904f33820c8311a0f9/melon/resize/282/quality/80/optimize"
   // arranger ""
@@ -26,28 +25,46 @@ export default function MusicPlay() {
 
   return (
     <div className="musicplaypage">
-      홈으로이동
       <button onClick={navigate('/')}>홈으로이동</button>
       <div>
         <Container>
           <Row>
             <Col>
-            <div>
-              <img src={musicInfoList.albumImg} />
-              </div>
+              제목 : {location.state.musicInfo.title}
             </Col>
-            <Col>가사 :
-            <div>
-              {musicInfoList.lylics}
-              </div>
-              </Col>
-            <Col>아티스트:
-            <div>
-              {musicInfoList.artist}
-              </div>
-              </Col>
-            <Col>재생</Col>
+            <Col>
+              앨범명 : {location.state.musicInfo.album}
+            </Col>
+            <Col>
+              <img src={location.state.musicInfo.albumImg} alt='albumImg'/>
+            </Col>
+            <Col>
+              좋아요 : {location.state.musicInfo.likes}
+            </Col>
+            <Col>
+              가사 : {location.state.musicInfo.lyrics}
+            </Col>
+            <Col>
+              아티스트: {location.state.musicInfo.artist}
+            </Col>
+            <Col>
+              작사가 : {location.state.musicInfo.lyricist}
+            </Col>
+            <Col>
+              작곡가 : {location.state.musicInfo.composer}
+            </Col>
+            {/* <Col>
+              편곡가 : {location.state.musicInfo.arranger}
+            </Col> */}
+            <Col>
+              장르 : {location.state.musicInfo.genre}
+            </Col>
+            <Col>
+              발매일 : {location.state.musicInfo.releasedDate}
+            </Col>
           </Row>
+          <button onClick={() => {navigate('/')}}>플레이리스트에 추가</button>
+          <button onClick={() => {navigate('/musicPlayList')}}>플레이리스트</button>
         </Container>
       </div>
     </div>

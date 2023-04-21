@@ -22,7 +22,7 @@ const AudioList = () => {
             ))}
             </ul>
             <div>
-            <h3>Selected Audio</h3>
+            <h2>Selected Audio</h2>
             {selectedAudio ? <div>{selectedAudio.title}</div> : <div>No audio selected</div>}
             </div>
         </div>
