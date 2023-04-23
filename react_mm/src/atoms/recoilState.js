@@ -32,7 +32,8 @@ export const audioListState = atom({
     
     export const selectedAudioState = atom({
     key: 'selectedAudioState',
-    default: { id: 3, title: 'Audio 3', src: './music.mp3' },
+    default: { id: 1, title: '안녕 - 해요', src: 'http://127.0.0.1:8000/static/audio/안녕 - 해요.mp3' },
+
     });
     
     export const playState = atom({
