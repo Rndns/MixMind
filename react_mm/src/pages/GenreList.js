@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { genreList } from "../services/appServices";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Genrelist(){
     const [genre, setgenre] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         genreList().then(data => (
@@ -19,7 +20,7 @@ export default function Genrelist(){
                 <div key = {gen.id}>
                     <img src ={gen.albumImg} alt = 'genre'
                         onClick={() => {
-                            Navigate('/genreListInfo', {
+                            navigate('/genreListInfo', {
                                 state : {
                                     gen : gen
                                 }
