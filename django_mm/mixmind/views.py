@@ -83,3 +83,9 @@ class MusicListViewSet(viewsets.ViewSet):
         musiclist_info = MusicInfo.objects.all()
         serializer = MusicInfoSerializer(musiclist_info, many=True)
         return Response(serializer.data)
+
+class GenreListViewSet(viewsets.ViewSet):
+    def list(self, request):
+        genreList = MusicInfo.objects.filter(genre = '발라드')
+        serializer = MusicInfoSerializer(genreList, many=True)
+        return Response(serializer.data)

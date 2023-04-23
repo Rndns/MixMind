@@ -101,6 +101,15 @@ export default function Home() {
           음악 리스트
         </button>
       </div>
+      <div>
+        <button
+         onClick={() => {
+          navigate(`/genreList`, 
+          );
+        }}>
+           장르리스트
+        </button>
+      </div>
     </div>
   );
 };

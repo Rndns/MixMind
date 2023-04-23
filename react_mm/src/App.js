@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import MusicRecom from "./pages/MusicRecom";
 import MusicPlay from "./pages/MusicPlay";
 import MusicList from "./pages/MusicList";
+import Genrelist from "./pages/GenreList";
 import Footer from "./layouts/footer";
 import AudioList from "./pages/AudioList";
 import { RecoilRoot } from "recoil";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/musicPlayer" element={<MusicPlay />}></Route>
             <Route path="/musicList" element={<MusicList />}></Route>
             <Route path="/musicPlayList" element={<AudioList />}></Route>
+            <Route path="/genreList" element={<Genrelist />}></Route>
           </Routes>
         </div>
         <Footer/>

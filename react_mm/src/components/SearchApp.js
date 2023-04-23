@@ -9,10 +9,10 @@ const SearchApp = () => {
     
 
     const posts = [
-        { id: '1', name: 'This first post is about React' },
-        { id: '2', name: 'This next post is about Preact' },
-        { id: '3', name: 'We have yet another React post!' },
-        { id: '4', name: 'This is the fourth and final post' },
+        { id: '1', name: '아이유' },
+        { id: '2', name: '수지' },
+        { id: '3', name: '르세라핌' },
+        { id: '4', name: '악동뮤지션' },
     ];
 
     const filterPosts = filterPosts(posts, query);
@@ -21,7 +21,7 @@ const SearchApp = () => {
         <div>
             <SearchBar
                 searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
+                setSearchQuery={setSearchQuery()}
             />
             <ul>
                 {filterPosts.map((post) => (

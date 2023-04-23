@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const SearchBar = ({searchQuery, setSearchQuery}) => (
+const SearchBar = ({searchQuery}, {setSearchQuery}) => (
     <form action="/" method="get">
         <label htmlFor="header-search">
             <span className="search-music">음악검색</span>

@@ -24,3 +24,14 @@ export async function musicInfoList() {
 		}
 	}).then(resp => resp.json());
 } 
+
+export async function genreList() {
+	const MixMindApiUrl = `${API_BASE_URL}/genreList/`;
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json())
+}
