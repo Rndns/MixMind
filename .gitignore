@@ -219,5 +219,16 @@ mm_bert/english/bert-tokenizer/
 mm_bert/english/binary_model_checkpoint/
 mm_bert/english/Emo_data/
 mm_bert/english/multi_model_checkpoint/
-
+mm_bert/english/new_multi_sentiment_weights/
+mm_bert/korean/korean_binary_sentiment_weights/
+mm_bert/hiphop_youtube.csv
+mm_bert/main/hiphop_predict_emotion.csv
 # End of https://www.toptal.com/developers/gitignore/api/django,react
+mm_bert/dance_youtube.csv
+mm_bert/main/dance_predict_emotion.csv
+mm_bert/RnB_youtube.csv
+mm_bert/main/RnB_predict_emotion.csv
+mm_bert/main/bert_ckpt/
+mm_bert/rock_youtube.csv
+mm_bert/main/rock_predict_emotion.csv
+mm_bert/main/Main_BERT_to_DB.ipynb
