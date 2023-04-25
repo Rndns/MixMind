@@ -1,9 +1,11 @@
 // components/AudioList.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { audioListState, selectedAudioState } from '../atoms/recoilState';
 
 const AudioList = () => {
+    const navigate = useNavigate()
     const [audioList, setAudioList] = useRecoilState(audioListState);
     const [selectedAudio, setSelectedAudio] = useRecoilState(selectedAudioState);
 
@@ -14,6 +16,16 @@ const AudioList = () => {
     return (
         <div>
             <h2>Audio List</h2>
+            <div>
+                <button
+                    onClick={() => {
+                        navigate(`/`, {
+                        replace: false 
+                    });
+                }}>
+                Home
+                </button>
+            </div>
             <ul>
             {audioList.map((audio) => (
                 <li key={audio.id} onClick={() => handleAudioClick(audio)}>
