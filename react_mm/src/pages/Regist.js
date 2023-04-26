@@ -1,0 +1,68 @@
+import React, { useState } from 'react';
+
+export default function Register() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [nickname, setNickname] = useState('');
+    const [age, setAge] = useState('');
+
+    const handleRegister = async () => {
+        try {
+            const response = await fetch('/api/register/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                    nickname,
+                    age,
+                }),
+            });
+
+            if (response.ok) {
+                alert('회원가입이 완료되었습니다.');
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+
+        } catch (error) {
+            console.error('회원가입 중 오류 발생:', error);
+        }
+    };
+
+    return (
+        <div>
+            <h2>회원가입</h2>
+            <input
+                type="text"
+                placeholder="아이디"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+                type="password"
+                placeholder="비밀번호"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+                type="text"
+                placeholder="닉네임"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+            />
+            <input
+                type="number"
+                placeholder="나이"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+            />
+            <button onClick={handleRegister}>회원가입</button>
+        </div>
+    );
+};
+
+

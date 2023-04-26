@@ -3,7 +3,7 @@ import { MdSkipPrevious, MdPause, MdPlayArrow, MdSkipNext } from 'react-icons/md
 import { useRecoilValue, useRecoilState } from 'recoil';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
-import { selectedAudioState, playState, audioListState } from '../atoms/recoilState';
+import { selectedAudioState, playState, audioListState } from '../recoil/atoms';
 import '../styles.css';
 
 const Footer = () => {

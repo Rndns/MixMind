@@ -30,12 +30,17 @@ export const audioListState = atom({
     ],
     });
     
-    export const selectedAudioState = atom({
-    key: 'selectedAudioState',
-    default: { id: 3, title: 'Audio 3', src: './music.mp3' },
-    });
-    
-    export const playState = atom({
-    key: 'playState',
-    default: false,
-    });
+export const selectedAudioState = atom({
+key: 'selectedAudioState',
+default: { id: 3, title: 'Audio 3', src: './music.mp3' },
+});
+
+export const playState = atom({
+key: 'playState',
+default: false,
+});
+
+export const loginState = atom({
+key: 'loginState',
+default: false
+});

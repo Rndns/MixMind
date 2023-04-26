@@ -8,13 +8,16 @@ import MusicList from "./pages/MusicList";
 import Genrelist from "./pages/GenreList";
 import GenreListInfo from "./pages/GenreInfo";
 import Footer from "./layouts/footer";
+import Header from "./layouts/header";
 import AudioList from "./pages/AudioList";
 import { RecoilRoot } from "recoil";
+import Register from "./pages/Regist";
 
 function App() {
   return (
     <RecoilRoot>
       <Router>
+        <Header/>
         <div style={{ maxWidth: 1280, margin: "auto", padding: 10 }}>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -24,6 +27,7 @@ function App() {
             <Route path="/musicPlayList" element={<AudioList />}></Route>
             <Route path="/genreList" element={<Genrelist />}></Route>
             <Route path="/genreListInfo" element={<GenreListInfo />}></Route>
+            <Route path="/regist" element={<Register />}></Route>
           </Routes>
         </div>
         <Footer/>

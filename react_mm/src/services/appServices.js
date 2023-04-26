@@ -5,12 +5,12 @@ export async function musicRecommend(emotions) {
 
 	return fetch(MixMindApiUrl, {
 		method: "post",
+		headers:{
+			'Content-Type': "application/json"
+		},
         body: JSON.stringify({
 			emotions,
 		}),
-		headers:{
-			'Content-Type': "application/json"
-		}
 	}).then(resp => resp.json());
 }
 
@@ -35,3 +35,27 @@ export async function genreList() {
 		}
 	}).then(resp => resp.json())
 }
+
+export async function login(username, password) {
+	const MixMindApiUrl = `${API_BASE_URL}/login/`;
+
+	return fetch(MixMindApiUrl, {
+		method: "post",
+		headers:{
+			'Content-Type': "application/json"
+		},
+		body:{
+			username,
+			password,
+		},
+	}).then(resp => {
+		try {
+			document.cookie = `token=${resp.data.token}`;
+			resp.json();
+		} catch (error) {
+			// alert
+		}
+	})
+}
+
+// export async function 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { audioListState, selectedAudioState } from '../atoms/recoilState';
+import { audioListState, selectedAudioState } from '../recoil/atoms';
 
 const AudioList = () => {
     const navigate = useNavigate()
