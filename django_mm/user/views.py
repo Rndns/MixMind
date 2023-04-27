@@ -1,12 +1,14 @@
-from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
-from django.contrib.auth import authenticate
 import jwt
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
 
 class LoginView(viewsets.ViewSet):
     def list(self, request):
+        User = get_user_model()
         username = request.data.get('username')
         password = request.data.get('password')
 
@@ -20,7 +22,8 @@ class LoginView(viewsets.ViewSet):
             return Response({'error': '로그인에 실패했습니다.'}, status=401)
         
 class RegistView(viewsets.ViewSet):
-    def list(request):
+    def create(self, request):
+        User = get_user_model()
         username = request.data.get('username')
         password = request.data.get('password')
         nickname = request.data.get('nickname')

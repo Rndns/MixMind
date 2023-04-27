@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [nickname, setNickname] = useState('');
+    const navigate = useNavigate();
     const [age, setAge] = useState('');
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('/api/register/', {
-                method: 'POST',
+            const response = await fetch('http://127.0.0.1:8000/user/regist/', {
+                method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -31,6 +33,8 @@ export default function Register() {
         } catch (error) {
             console.error('회원가입 중 오류 발생:', error);
         }
+
+        navigate('/')
     };
 
     return (
