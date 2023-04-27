@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Slick from "../components/Slick";
 import { musicRecommend } from "../services/appServices";
 import SearchBar from "../components/Search";
+import '../styles.css';
 
 export default function MusicRecom() {
     const location = useLocation();
@@ -63,17 +64,26 @@ export default function MusicRecom() {
 
     return (
         <div className="musicrecompage">
-            <SearchBar/>
-            <h1>음악추천페이지</h1>
+            {/* <SearchBar/> */}
             {/* <button onClick={() => {navigate('/musicrecomlistpage')}}>추천음악이동</button> */}
             <div>
                 <Container>
-                    <h2>~~때 듣고 싶은 음악</h2>
-                    <Slick musicInfos={musicInfos} />
-                    <h2>~~때 듣고 싶은 음악</h2>
-                    <Slick musicInfos={musicInfos} />
-                    <h2>~~때 듣고 싶은 음악</h2>
-                    <Slick musicInfos={musicInfos} />
+                    <div>
+                        <p class="fs-3 fw-bolder">당신에게 이 음악을 추천드립니다</p>
+                        <Slick musicInfos={musicInfos} />
+                    </div>
+                    <div>
+                        <p class="fs-3 fw-bolder">90%의 사용자는 슬플 때 이 음악을 듣습니다</p>
+                        <Slick musicInfos={musicInfos} />
+                    </div>
+                    <div>
+                        <p class="fs-3 fw-bolder">87%의 사용자는 행복할 때 이 음악을 듣습니다</p>
+                        <Slick musicInfos={musicInfos} />
+                    </div>
+                    <div>
+                        <p class="fs-3 fw-bolder">사랑스러운 분위기의 음악을 들어보세요</p>
+                        <Slick musicInfos={musicInfos} />
+                    </div>
                 </Container>
             </div>
         </div>

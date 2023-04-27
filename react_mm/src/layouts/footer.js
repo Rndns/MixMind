@@ -5,8 +5,18 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import { selectedAudioState, playState, audioListState } from '../atoms/recoilState';
 import '../styles.css';
+import Accordion from 'react-bootstrap/Accordion';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Collapse from 'react-bootstrap/Collapse';
 
 const Footer = () => {
+    const [isPlayerVisible, setIsPlayerVisible] = useState(false);
+
+    const handleTogglePlayer = () => {
+        setIsPlayerVisible(!isPlayerVisible);
+    }
+
     const [isPlaying, setIsPlaying] = useRecoilState(playState);
     const audioList = useRecoilValue(audioListState);
     const [selectedAudio, setSelectedAudio] = useRecoilState(selectedAudioState);
@@ -32,25 +42,58 @@ const Footer = () => {
     };
 
     return (
-        <div className="footer-container">
-            <div>
-                <MdSkipPrevious onClick={handleSkipPrevious} />
-                {isPlaying ? (
-                    <MdPause onClick={handlePlayPause} />
-                ) : (
-                    <MdPlayArrow onClick={handlePlayPause} />
-                )}
-                <MdSkipNext onClick={handleSkipNext} />
-            </div>
-            <AudioPlayer
-            autoPlay={isPlaying}
-            src={selectedAudio ? selectedAudio.src : null}
-            // src={audioFile}
-            onEnded={() => {
-                handleSkipNext();
-            }}
-            />
-        </div>
+        <>
+            <Button
+            onClick={handleTogglePlayer}
+            variant={isPlayerVisible ? "light" : "dark"}
+            >
+            <b> {isPlayerVisible ? '뮤직 플레이어 닫기' : '뮤직 플레이어 열기'} </b>
+            </Button>
+            <Collapse in={isPlayerVisible}>
+                <div id="collapse-component"
+                    className={`sticky-bottom ${isPlayerVisible ? 'visible' : 'hidden'}`}
+                >
+                    <div className="footer-container">
+                        <div className="music-player">
+                            <MdSkipPrevious onClick={handleSkipPrevious} />
+                            {isPlaying ? (
+                                <MdPause onClick={handlePlayPause} />
+                            ) : (
+                                <MdPlayArrow onClick={handlePlayPause} />
+                            )}
+                            <MdSkipNext onClick={handleSkipNext} />
+                        </div>
+                        <AudioPlayer
+                        autoPlay={isPlaying}
+                        src={selectedAudio ? selectedAudio.src : null}
+                        // src={audioFile}
+                        onEnded={() => {
+                            handleSkipNext();
+                        }}
+                        />
+                    </div>
+                </div>
+            </Collapse>
+        </>
+        // <div className="footer-container">
+        //     <div className="music-player">
+        //         <MdSkipPrevious onClick={handleSkipPrevious} />
+        //         {isPlaying ? (
+        //             <MdPause onClick={handlePlayPause} />
+        //         ) : (
+        //             <MdPlayArrow onClick={handlePlayPause} />
+        //         )}
+        //         <MdSkipNext onClick={handleSkipNext} />
+        //     </div>
+        //     <AudioPlayer
+        //     autoPlay={isPlaying}
+        //     src={selectedAudio ? selectedAudio.src : null}
+        //     // src={audioFile}
+        //     onEnded={() => {
+        //         handleSkipNext();
+        //     }}
+        //     />
+        // </div>
     );
 };
 

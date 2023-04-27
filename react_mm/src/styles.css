@@ -1,10 +1,184 @@
+.box{
+	max-Width: 1280px;
+  margin: auto;
+  padding: 15%;
+}
+@media all and(max-width: 1024px){
+	.box{
+		width: 1024px;
+    }
+}
+@media all and(max-width: 960px){
+	.box{
+		width: 960px;
+    }
+}
+
+@media all and(max-width: 480px){
+	.box{
+		width: 480px;
+    }
+}
 .footer-container {
     position: fixed;
-    bottom: 0;
+    bottom: 1%;
     left: 0;
     right: 0;
-    height: 100px; /* 필요한 높이 설정 */
-    background-color: #f8f8f8; /* 원하는 배경색 설정 */
-    /* 기타 원하는 스타일 지정 */
+    height: 105px; /* 필요한 높이 설정 */
+    background-color: #121212; /* 원하는 배경색 설정 */
+    margin: 0px;
+    border-style: solid;
+    border-color: #a5a5a5;
+    border-radius: 15px;
+    margin-left: 19%;
+    margin-right: 19%;
   }
-  
+.btn.btn-light {
+  border-radius: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  left: 91.7%;
+  bottom:2%;
+  }
+.btn.btn-light:hover {
+  transform: translateY(-2px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transition: 0.5s;
+  }
+.btn.btn-dark {
+  border-radius: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  z-index: 1;
+  left: 91.7%;
+  bottom:2%;
+  }
+.btn.btn-dark:hover {
+  transform: translateY(-2px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transition: 0.5s;
+  }
+.sticky-bottom {
+  /* 초기 상태 설정 */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease; /* 원하는 애니메이션 속성 및 시간 설정 */
+}
+
+.sticky-bottom.visible {
+  /* 활성화 상태 설정 */
+  transition: 1s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.sticky-bottom.hidden {
+  /* 비활성화 상태 설정 */
+  transition: 0.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+.music-player {
+  background-color: #121212; /* 뮤직 플레이어 배경색 설정 */
+  border-radius: 15px;
+  padding: 0px 100px
+  }
+.music-player svg{
+  color: #a5a5a5; /* 뮤직 플레이어 버튼색 설정 */
+  }
+.rhap_main.rhap_stacked svg:hover {
+  transform:scale(1.1); /* hover 시 버튼확대 애니메이션 */
+  transition: 0.3s;
+  }
+.rhap_container.rhap_loop--off.rhap_play-status--paused {
+  border-radius: 15px;
+  background-color: #121212; /* 뮤직 플레이어 배경색 설정 */
+  padding: 0px 100px;
+  }
+.rhap_container.rhap_loop--off.rhap_play-status--playing {
+  border-radius: 15px;
+  background-color: #121212; /* 뮤직 플레이어 배경색 설정 */
+  padding: 0px 100px;
+  }
+.rhap_container.rhap_loop--on.rhap_play-status--paused {
+  border-radius: 15px;
+  background-color: #121212; /* 뮤직 플레이어 배경색 설정 */
+  padding: 0px 100px;
+  }
+.rhap_container.rhap_loop--on.rhap_play-status--playing {
+  border-radius: 15px;
+  background-color: #121212; /* 뮤직 플레이어 배경색 설정 */
+  padding: 0px 100px;
+  }
+.rhap_main-controls {
+  color: #a5a5a5; /* 뮤직 플레이어 버튼색 설정 */
+  }
+.rhap_time.rhap_current-time {
+  color: #a5a5a5; /* 플레이시간 글자색 설정 */
+  font-weight: bold; /* 플레이시간 글자굵기 설정 */
+  }
+.rhap_time.rhap_total-time {
+  color: #a5a5a5; /* 플레이시간 글자색 설정 */
+  font-weight: bold; /* 플레이시간 글자굵기 설정 */
+  }
+.musicrecompage {
+    color: #dbdbdb; /* 추천 페이지 글자색 설정 */
+  }
+.fs-3.fw-bolder {
+  position: relative;
+  left: -66.5%;
+  margin: -18px 0px;
+  width: 120%;
+  top: 60px;
+}
+.slick-slide {
+  height: 263px;
+  padding: 17px 5px;
+}
+/* 이미지 사이의 간격 설정 */
+.slick-slide img {
+  border-radius: 8px; /* 이미지 슬라이드의 border각도 15픽셀 둥글게 */
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 100%;
+  max-height: 100%;
+}
+.slick-slide:hover {  /* 이미지 슬라이드의 마우스 오버시 호버링 */
+  transform: translateY(-2px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transition: 0.5s;
+}
+.slick-slide img:hover {  /* 이미지 슬라이드의 마우스 오버시 호버링 */
+  box-shadow: 5px 10px 10px -10px rgba(91, 91, 91, 0.911); /* hover 시 그림자 효과 추가 */
+  transition: 0.5s;
+}
+/* the parent */
+.slick-list {
+    margin: 10% -70%; /* 이미지 사이 간격의 크기 5%로 설정 */
+}
+.slick-arrow.slick-prev {
+  margin-left: -69.8%;
+}
+.slick-arrow.slick-next {
+  margin-right: -70%;
+}
+.slick-prev::before {
+  /* 원하는 스타일을 이곳에 추가 */
+  content: url('./images/prev_1.png');
+  /* PrevArrow의 위치를 오른쪽 상단으로 조절 */
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.slick-next::before {
+  /* 원하는 스타일을 이곳에 추가 */
+  content: url('./images/next_1.png');
+  /* PrevArrow의 위치를 왼쪽 상단으로 조절 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.details {
+  /* 원하는 스타일을 이곳에 추가 */
+  color: #dbdbdb;
+}

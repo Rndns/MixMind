@@ -10,12 +10,13 @@ import GenreListInfo from "./pages/GenreInfo";
 import Footer from "./layouts/footer";
 import AudioList from "./pages/AudioList";
 import { RecoilRoot } from "recoil";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <RecoilRoot>
       <Router>
-        <div style={{ maxWidth: 1280, margin: "auto", padding: 10 }}>
+        <div className="box">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/musicRecom" element={<MusicRecom />}></Route>

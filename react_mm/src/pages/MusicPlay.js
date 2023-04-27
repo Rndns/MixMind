@@ -4,6 +4,7 @@ import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
 import { useLocation, useNavigate } from "react-router-dom";
 import { musicInfoList } from "../services/appServices";
+import '../styles.css';
 
 
 export default function MusicPlay() {
@@ -26,7 +27,7 @@ export default function MusicPlay() {
   return (
     <div className="musicplaypage">
       <button onClick={navigate('/')}>홈으로이동</button>
-      <div>
+      <div className="details">
         <Container>
           <Row>
             <Col>

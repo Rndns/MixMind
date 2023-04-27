@@ -108,7 +108,7 @@ export default function Home() {
         }}>
            장르리스트
         </button>
-      </div>
+      </div>  
     </div>
   );
 };
