@@ -231,4 +231,6 @@ mm_bert/main/RnB_predict_emotion.csv
 mm_bert/main/bert_ckpt/
 mm_bert/rock_youtube.csv
 mm_bert/main/rock_predict_emotion.csv
+mm_bert/main/trot_predict_emotion.csv
+mm_bert/trot_youtube.csv
 mm_bert/main/Main_BERT_to_DB.ipynb
