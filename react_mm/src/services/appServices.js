@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8082/mixmind";
+const API_BASE_URL = "http://127.0.0.1:8081/mixmind";
 
 export async function musicRecommend(emotions) {
 	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
