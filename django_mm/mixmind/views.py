@@ -1,12 +1,3 @@
-# from django.db.models import F
-# from django.db.models.functions import (
-#     Power, 
-#     Sqrt, 
-#     Cast, 
-#     Sum, 
-#     Abs, 
-#     Coalesce
-# )
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .serializers import MusicInfoSerializer
@@ -118,3 +109,4 @@ class GenreSelectInfoViewSet(viewsets.ViewSet):
         genreSelectInfo = MusicInfo.objects.filter(genre = genre)
         serializer = MusicInfoSerializer(genreSelectInfo, many=True)
         return Response(serializer.data)
+
