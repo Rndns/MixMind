@@ -1,17 +1,12 @@
-# from django.db.models import F
-# from django.db.models.functions import (
-#     Power, 
-#     Sqrt, 
-#     Cast, 
-#     Sum, 
-#     Abs, 
-#     Coalesce
-# )
 from rest_framework import viewsets
 from rest_framework.response import Response
 from .serializers import MusicInfoSerializer
 from .models import UserEmotion, MusicInfo, MusicEmotion
 import numpy as np
+from rest_framework.decorators import action
+
+
+from .serializers import GenreSerializer
 
 
 class MusicRecommendViewSet(viewsets.ViewSet):
@@ -22,19 +17,18 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         
         user_emotion = UserEmotion.objects.create(
             love=emotion_values[0],
-            joy=emotion_values[1],
-            passion=emotion_values[2],
-            happiness=emotion_values[3],
-            sadness=emotion_values[4],
-            anger=emotion_values[5],
-            loneliness=emotion_values[6],
+            joy=emotion_values[2],
+            passion=emotion_values[4],
+            happiness=emotion_values[6],
+            sadness=emotion_values[1],
+            anger=emotion_values[3],
+            loneliness=emotion_values[5],
             longing=emotion_values[7],
-            fear=emotion_values[8],
-            surprise=emotion_values[9]
+            fear=emotion_values[9],
+            surprise=emotion_values[8]
         )
 
         music_emotions = MusicEmotion.objects.all()
-        print(music_emotions, 37)
         music_emotions_similarity = []
         user_emotion_values = np.array([
             user_emotion.love,
@@ -48,7 +42,6 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             user_emotion.fear,
             user_emotion.surprise
         ])
-        print(user_emotion_values, 52)
         for music_emotion in music_emotions:
             music_emotion_values = np.array([
                 music_emotion.love,
@@ -75,6 +68,45 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         serializer = MusicInfoSerializer(music_info_list, many=True)
         return Response(serializer.data)
 
+
 class MusicPalyViewSet(viewsets.ViewSet):
     # 
     pass
+
+class MusicListViewSet(viewsets.ViewSet):
+    def list(self, request):
+        musiclist_info = MusicInfo.objects.all()
+        serializer = MusicInfoSerializer(musiclist_info, many=True)
+        return Response(serializer.data)
+
+class GenreListViewSet(viewsets.ViewSet):
+    def list(self, request):
+        genreList = MusicInfo.objects.filter(genre = '발라드')
+        serializer = MusicInfoSerializer(genreList, many=True)
+        return Response(serializer.data)
+
+class GenreSelectViewSet(viewsets.ViewSet):
+    def list(self, request):
+        genreSelect = MusicInfo.objects.values('genre').distinct()
+        serializer = GenreSerializer(genreSelect, many=True)
+        return Response(serializer.data)
+
+
+# class GenreSelectInfoViewSet(viewsets.ViewSet): 
+#     @action(detail=True, methods=['get'])
+#     def genreSelectInfo(self, request, genre=None):
+#         # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
+#         genre = request.query_params.get('genre')
+#         genreSelectInfo = MusicInfo.objects.filter(genre = genre)
+#         serializer = MusicInfoSerializer(genreSelectInfo, many=True)
+#         return Response(serializer.data)
+
+class GenreSelectInfoViewSet(viewsets.ViewSet): 
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
+        genre = request.query_params.get('genre')
+        genreSelectInfo = MusicInfo.objects.filter(genre = genre)
+        serializer = MusicInfoSerializer(genreSelectInfo, many=True)
+        return Response(serializer.data)
+
