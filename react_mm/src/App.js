@@ -21,7 +21,7 @@ function App() {
     <RecoilRoot>
       <Router>
         <Header/>
-        <div className="box" style={{ maxWidth: 1280, margin: "auto", padding: 10 }}>
+        <div className="box">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/musicRecom" element={<MusicRecom />}></Route>
