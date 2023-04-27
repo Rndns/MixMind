@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^3.4.1",
     "react-bootstrap": "^2.7.4",
     "react-icons": "^4.8.0",
     "recoil": "^0.7.7",
