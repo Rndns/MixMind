@@ -6,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Slick from "../components/Slick";
 import { musicRecommend } from "../services/appServices";
 import SearchBar from "../components/Search";
+import SearchApp from '../components/SearchApp'
 
 export default function MusicRecom() {
     const location = useLocation();
@@ -63,7 +64,8 @@ export default function MusicRecom() {
 
     return (
         <div className="musicrecompage">
-            <SearchBar/>
+            {/* <SearchBar /> */}
+
             <h1>음악추천페이지</h1>
             {/* <button onClick={() => {navigate('/musicrecomlistpage')}}>추천음악이동</button> */}
             <div>

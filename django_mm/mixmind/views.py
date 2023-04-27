@@ -12,6 +12,10 @@ from rest_framework.response import Response
 from .serializers import MusicInfoSerializer
 from .models import UserEmotion, MusicInfo, MusicEmotion
 import numpy as np
+from rest_framework.decorators import action
+
+
+from .serializers import GenreSerializer
 
 
 class MusicRecommendViewSet(viewsets.ViewSet):
@@ -88,4 +92,29 @@ class GenreListViewSet(viewsets.ViewSet):
     def list(self, request):
         genreList = MusicInfo.objects.filter(genre = '발라드')
         serializer = MusicInfoSerializer(genreList, many=True)
+        return Response(serializer.data)
+
+class GenreSelectViewSet(viewsets.ViewSet):
+    def list(self, request):
+        genreSelect = MusicInfo.objects.values('genre').distinct()
+        serializer = GenreSerializer(genreSelect, many=True)
+        return Response(serializer.data)
+
+
+# class GenreSelectInfoViewSet(viewsets.ViewSet): 
+#     @action(detail=True, methods=['get'])
+#     def genreSelectInfo(self, request, genre=None):
+#         # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
+#         genre = request.query_params.get('genre')
+#         genreSelectInfo = MusicInfo.objects.filter(genre = genre)
+#         serializer = MusicInfoSerializer(genreSelectInfo, many=True)
+#         return Response(serializer.data)
+
+class GenreSelectInfoViewSet(viewsets.ViewSet): 
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
+        genre = request.query_params.get('genre')
+        genreSelectInfo = MusicInfo.objects.filter(genre = genre)
+        serializer = MusicInfoSerializer(genreSelectInfo, many=True)
         return Response(serializer.data)

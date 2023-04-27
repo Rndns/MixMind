@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://127.0.0.1:8000/mixmind";
+const API_BASE_URL = "http://127.0.0.1:8082/mixmind";
 
 export async function musicRecommend(emotions) {
 	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
@@ -34,4 +34,34 @@ export async function genreList() {
 			'Content-Type': "application/json"
 		}
 	}).then(resp => resp.json())
+}
+
+export async function genreSelect() {
+	const MixMindApiUrl = `${API_BASE_URL}/genreSelect/`;
+	
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json())
+}
+
+export async function genreSelectInfo({genre}) {
+	console.log(3);
+	console.log(genre);
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`;
+	const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/search/?genre=${genre}`;
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+        // body: JSON.stringify({
+		// 	genre,
+		// }),
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json());
 }

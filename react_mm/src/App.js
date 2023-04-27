@@ -10,6 +10,8 @@ import GenreListInfo from "./pages/GenreInfo";
 import Footer from "./layouts/footer";
 import AudioList from "./pages/AudioList";
 import { RecoilRoot } from "recoil";
+import GenreSelect from "./pages/GenreSelect";
+import GenreSelectInfo from "./pages/GenreSelectInfo";
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
             <Route path="/musicPlayList" element={<AudioList />}></Route>
             <Route path="/genreList" element={<Genrelist />}></Route>
             <Route path="/genreListInfo" element={<GenreListInfo />}></Route>
+            <Route path="/genreSelect" element={<GenreSelect />}></Route>
+            <Route path="/genreSelectInfo" element={<GenreSelectInfo />}></Route>
+
           </Routes>
         </div>
         <Footer/>

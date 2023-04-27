@@ -3,7 +3,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100px; /* 필요한 높이 설정 */
+    height: 10px; /* 필요한 높이 설정 */
     background-color: #f8f8f8; /* 원하는 배경색 설정 */
     /* 기타 원하는 스타일 지정 */
   }
