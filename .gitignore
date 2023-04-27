@@ -236,4 +236,4 @@ mm_bert/trot_youtube.csv
 mm_bert/main/Main_BERT_to_DB.ipynb
 
 # react config
-style/config.js
+**/src/config.js
