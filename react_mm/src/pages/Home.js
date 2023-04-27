@@ -108,7 +108,16 @@ export default function Home() {
         }}>
            장르리스트
         </button>
-      </div>  
+      </div>
+      <div>
+        <button
+         onClick={() => {
+          navigate(`/genreSelect`, 
+          );
+        }}>
+           장르select리스트
+        </button>
+      </div>
     </div>
   );
 };
