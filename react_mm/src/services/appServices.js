@@ -1,4 +1,4 @@
-import { API } from "../../style/config";
+import { API } from "../config";
 
 const API_BASE_URL = API.MAIN;
 
