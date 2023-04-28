@@ -38,7 +38,7 @@ const Header = () => {
         <Nav.Link href="#home">Home</Nav.Link>
       </Nav>
       <div className="headbutton">
-      <button onClick={loggedIn ? navigate('/logout') : navigate('/login')}>{loggedIn ? '로그아웃' : '로그인'}</button>
+      <button onClick={() => {loggedIn ? navigate('/logout') : navigate('/login')}}>{loggedIn ? '로그아웃' : '로그인'}</button>
 
         <Button className="login-button" variant="outline-info" onClick={handleLogin}>
           Login
