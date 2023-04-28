@@ -1,6 +1,7 @@
 import { API } from "../config";
 
 const API_BASE_URL = API.MAIN;
+const API_USER_URL = API.USER;
 
 export async function musicRecommend(emotions) {
 	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
@@ -68,8 +69,8 @@ export async function genreSelectInfo({genre}) {
 	}).then(resp => resp.json());
 }
 
-export async function login(username, password) {
-	const MixMindApiUrl = `${API_BASE_URL}/login/`;
+export async function login(email, password) {
+	const MixMindApiUrl = `${API_USER_URL}/login/`;
 
 	return fetch(MixMindApiUrl, {
 		method: "post",
@@ -77,7 +78,7 @@ export async function login(username, password) {
 			'Content-Type': "application/json"
 		},
 		body:{
-			username,
+			email,
 			password,
 		},
 	}).then(resp => {

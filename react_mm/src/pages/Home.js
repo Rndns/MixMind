@@ -102,20 +102,20 @@ export default function Home() {
       </div>
       <div>
         <button
-         onClick={() => {
+          onClick={() => {
           navigate(`/genreList`, 
           );
         }}>
-           장르리스트
+            장르리스트
         </button>
       </div>
       <div>
         <button
-         onClick={() => {
+          onClick={() => {
           navigate(`/genreSelect`, 
           );
         }}>
-           장르select리스트
+            장르select리스트
         </button>
       </div>
     </div>
