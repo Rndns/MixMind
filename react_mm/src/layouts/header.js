@@ -6,6 +6,7 @@ import { Navbar, Nav, Button } from 'react-bootstrap';
 import '../styles.css';
 
 const Header = () => {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +20,21 @@ const Header = () => {
         headers: { 'Content-Type': 'application/json' },
       });
       const data = await response.json();
+=======
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useRecoilState(loginState);
+
+    const handleLogin = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/user/login', {
+            method: 'POST',
+            body: JSON.stringify({ email, password }),
+            headers: { 'Content-Type': 'application/json' }
+            });
+            const data = await response.json();
+>>>>>>> jin
 
       if (response.ok) {
         localStorage.setItem('token', data.token);
@@ -31,6 +47,7 @@ const Header = () => {
     }
   };
 
+<<<<<<< HEAD
   return (
     <Navbar bg="#121212" variant="dark" sticky="top">
       <Navbar.Brand href="#home">MixMind</Navbar.Brand>
@@ -55,6 +72,25 @@ const Header = () => {
       </div>
     </Navbar>
   );
+=======
+    return (
+        <div>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <button onClick={handleLogin}>로그인</button>
+            <div>
+                <button
+                    onClick={() => {
+                        navigate(`/regist`, {
+                        replace: false 
+                    });
+                }}>
+                회원가입
+                </button>
+            </div>
+        </div>
+    );
+>>>>>>> jin
 };
 
 export default Header;
