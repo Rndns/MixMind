@@ -20,7 +20,7 @@ export default function Home() {
   const emotion = ['사랑', '슬픔', '즐거움', '분노', '열정', '외로움', '행복', '그리움', '놀라움', '두려움'];
   
   return (
-    <div>
+    <div className='home'>
       <Plot
         data={[
           {

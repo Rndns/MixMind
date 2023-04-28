@@ -72,19 +72,19 @@ export default function MusicRecom() {
             <div>
                 <Container>
                     <div>
-                        <p class="fs-3 fw-bolder">당신에게 이 음악을 추천드립니다</p>
+                        <h3 class="slick1"><b>당신에게 이 음악을 추천드립니다</b></h3>
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <p class="fs-3 fw-bolder">90%의 사용자는 슬플 때 이 음악을 듣습니다</p>
+                        <h3 class="slick2"><b>90%의 사용자는 슬플 때 이 음악을 듣습니다</b></h3>
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <p class="fs-3 fw-bolder">87%의 사용자는 행복할 때 이 음악을 듣습니다</p>
+                        <h3 class="slick3"><b>87%의 사용자는 행복할 때 이 음악을 듣습니다</b></h3>
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <p class="fs-3 fw-bolder">사랑스러운 분위기의 음악을 들어보세요</p>
+                        <h3 class="slick4"><b>사랑스러운 분위기의 음악을 들어보세요</b></h3>
                         <Slick musicInfos={musicInfos} />
                     </div>
                 </Container>
