@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil';
 import { loginState } from '../recoil/atoms';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import '../styles.css';
+import imgLogo from '/home/cshoon036/MixMind/react_mm/src/images/logo.png';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -33,28 +34,18 @@ const Header = () => {
 
   return (
     <Navbar variant="dark">
-      <Navbar.Brand href="#home">MixMind</Navbar.Brand>
-      <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
+      <Navbar.Brand href="#home">
+        <img
+            src={imgLogo}
+            width="220"
+            height="45"
+            className="d-inline-block align-top"
+            alt="MixMind Logo"
+        />
+      </Navbar.Brand>
+      <Nav>
+        <Button variant="light" onClick={() => {loggedIn ? navigate('/logout') : navigate('/login')}}>{loggedIn ? '로그아웃' : '로그인'}</Button>
       </Nav>
-      <div className="headbutton">
-      <button onClick={() => {loggedIn ? navigate('/logout') : navigate('/login')}}>{loggedIn ? '로그아웃' : '로그인'}</button>
-
-        <Button className="login-button" variant="outline-info" onClick={handleLogin}>
-          Login
-        </Button>
-        <Button
-            className="signup-button"
-            variant="outline-info"
-            onClick={() => {
-            navigate(`/regist`, {
-                replace: false,
-            });
-            }}
-        >
-            Sign up
-        </Button>
-      </div>
     </Navbar>
   );
 };

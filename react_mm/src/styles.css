@@ -272,11 +272,22 @@
 .navbar.navbar-expand{
   display: flex;
   background-color: #121212;
+  z-index: 1;
   position: sticky;
+  top: 0;
+  padding-right: 0;
+  margin-right: 0;
+  justify-content: space-between;
+  align-items: center;
 }
-.mr-auto.navbar-nav{
-  justify-content : flex-start;
+.navbar-nav{
+  background-color: #121212;
+  margin-right : 40px;
 }
 .navbar-brand {
-  margin-left : 20px;
+  margin-left : 30px;
+}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  margin-left: 10px;
 }
