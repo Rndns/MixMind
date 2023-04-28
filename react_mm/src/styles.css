@@ -271,6 +271,8 @@
 }
 .navbar.navbar-expand{
   display: flex;
+  background-color: #121212;
+  position: sticky;
 }
 .mr-auto.navbar-nav{
   justify-content : flex-start;

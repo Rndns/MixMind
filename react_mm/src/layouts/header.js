@@ -32,7 +32,7 @@ const Header = () => {
   };
 
   return (
-    <Navbar bg="#121212" variant="dark" sticky="top">
+    <Navbar variant="dark">
       <Navbar.Brand href="#home">MixMind</Navbar.Brand>
       <Nav className="mr-auto">
         <Nav.Link href="#home">Home</Nav.Link>
