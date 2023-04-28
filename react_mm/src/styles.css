@@ -269,3 +269,12 @@
     bottom:3%;
   }
 }
+.navbar.navbar-expand{
+  display: flex;
+}
+.mr-auto.navbar-nav{
+  justify-content : flex-start;
+}
+.navbar-brand {
+  margin-left : 20px;
+}
