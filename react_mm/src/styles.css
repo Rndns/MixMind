@@ -192,3 +192,12 @@
   /* 원하는 스타일을 이곳에 추가 */
   color: #dbdbdb;
 }
+.navbar.navbar-expand{
+  display: flex;
+}
+.mr-auto.navbar-nav{
+  justify-content : flex-start;
+}
+.navbar-brand {
+  margin-left : 20px;
+}
