@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { loginState } from '../recoil/atoms';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import '../styles.css';
-import imgLogo from '/home/cshoon036/MixMind/react_mm/src/images/logo.png';
+import imgLogo from '../images/logo.png';
 
 const Header = () => {
   const navigate = useNavigate();
