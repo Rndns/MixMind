@@ -11,7 +11,7 @@ class LoginView(viewsets.ViewSet):
         User = get_user_model()
         email = request.data.get('email')
         password = request.data.get('password')
-
+        print(1)
         user = authenticate(email=email, password=password)
         if user is not None:
             token = jwt.encode({'email': email}, 'MixMind_secret_key', algorithm='HS256')

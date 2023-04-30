@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { loginState } from '../recoil/atoms';
+import { loginState } from '../../recoil/atoms';
 
 const Login = () => {
     const navigate = useNavigate()
@@ -11,7 +11,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/user/login', {
+            const response = await fetch('http://127.0.0.1:8000/user/login/', {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' }
@@ -21,6 +21,7 @@ const Login = () => {
             if (response.ok) {
                 document.cookie = `token=${data.token}`;
                 setLoggedIn(true);
+                navigate('/')
             } else {
                 console.error(data.error);
             }
