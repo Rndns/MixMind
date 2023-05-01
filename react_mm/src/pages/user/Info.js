@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { API } from "../../config";
+
+const API_USER_URL = API.USER;
 
 export default function Info() {
     const navigate = useNavigate();
@@ -16,7 +19,7 @@ export default function Info() {
 
     const editInfo = async() => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/user/edit/${location.state.info.id}/`, {
+            const response = await fetch(`${API_USER_URL}/edit/${location.state.info.id}/`, {
                 method: 'put',
                 headers: {
                     'Content-Type': 'application/json',

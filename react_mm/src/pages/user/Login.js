@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { loginState } from '../../recoil/atoms';
+import { API } from "../../config";
+
+const API_USER_URL = API.USER;
 
 const Login = () => {
     const navigate = useNavigate()
@@ -11,7 +14,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/user/login/', {
+            const response = await fetch(`${API_USER_URL}/login/`, {
             method: 'POST',
             body: JSON.stringify({ email, password }),
             headers: { 'Content-Type': 'application/json' }

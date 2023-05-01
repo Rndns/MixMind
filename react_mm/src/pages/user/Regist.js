@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API } from "../../config";
+
+const API_USER_URL = API.USER;
 
 export default function Register() {
     const navigate = useNavigate();
@@ -10,7 +13,7 @@ export default function Register() {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/user/regist/', {
+            const response = await fetch(`${API_USER_URL}/user/regist/`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',
