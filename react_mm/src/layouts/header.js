@@ -5,6 +5,9 @@ import { loginState } from '../recoil/atoms';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import '../styles.css';
 import imgLogo from '../images/logo.png';
+import { API } from "../config";
+
+const API_USER_URL = API.USER;
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,7 +26,7 @@ const Header = () => {
     if (jwtToken) {
       const token = jwtToken.split('=')[1];
       console.log(token)
-      fetch('http://127.0.0.1:8000/user/info/', {
+      fetch(`${API_USER_URL}/info/`, {
         method: 'get',
         headers: {
           Authorization: `Bearer ${token}`

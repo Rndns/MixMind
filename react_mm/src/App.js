@@ -16,7 +16,12 @@ import GenreSelectInfo from "./pages/GenreSelectInfo";
 import Register from "./pages/user/Regist";
 import Login from "./pages/user/Login";
 import 'bootstrap/dist/css/bootstrap.min.css';
+<<<<<<< HEAD
 import Info from "./pages/user/Info";
+=======
+import AutoComplete from "./pages/AutoComplete";
+import MusicTitle from "./pages/MusicTitle";
+>>>>>>> soo
 
 function App() {
   return (
@@ -38,6 +43,9 @@ function App() {
             <Route path="/regist" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/info" element={<Info />}></Route>
+            <Route path="/autoComplete" element={<AutoComplete />}></Route>
+            <Route path="/musicTitle" element={<MusicTitle />}></Route>
+
           </Routes>
         </div>
         <Footer/>

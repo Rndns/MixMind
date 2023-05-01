@@ -118,6 +118,25 @@ export default function Home() {
             장르select리스트
         </button>
       </div>
+      <div>
+        <button
+         onClick={() => {
+          navigate(`/autoComplete`, 
+          );
+        }}>
+           자동완성
+        </button>
+      </div>
+      <div>
+        <button
+         onClick={() => {
+          navigate(`/musicTitle`, 
+          );
+        }}>
+           영화제목
+        </button>
+      </div>
     </div>
+    
   );
 };
