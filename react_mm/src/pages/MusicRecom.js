@@ -7,6 +7,7 @@ import Slick from "../components/Slick";
 import { musicRecommend } from "../services/appServices";
 import SearchBar from "../components/Search";
 import SearchApp from '../components/SearchApp'
+import Spinner from 'react-bootstrap/Spinner';
 import '../styles.css';
 
 export default function MusicRecom() {
@@ -66,8 +67,6 @@ export default function MusicRecom() {
     return (
         <div className="musicrecompage">
             {/* <SearchBar /> */}
-
-            <h1>음악추천페이지</h1>
             {/* <button onClick={() => {navigate('/musicrecomlistpage')}}>추천음악이동</button> */}
             <div>
                 <Container>

@@ -44,7 +44,9 @@ const Header = () => {
         />
       </Navbar.Brand>
       <Nav>
-        <Button variant="light" onClick={() => {loggedIn ? navigate('/logout') : navigate('/login')}}>{loggedIn ? '로그아웃' : '로그인'}</Button>
+        <Button variant="light" onClick={() => {loggedIn ? navigate('/logout') : navigate('/login')}}>
+          <span className="font-weight-bold">{loggedIn ? '로그아웃' : '로그인'}</span>
+        </Button>
       </Nav>
     </Navbar>
   );
