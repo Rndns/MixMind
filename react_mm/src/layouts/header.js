@@ -61,10 +61,8 @@ const Header = () => {
         />
       </Navbar.Brand>
       <Nav>
-        <Button variant="light" onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>{loggedIn ? '로그아웃' : '로그인'}</Button>
-      </Nav>
-      <Nav>
-        <Button variant="light" onClick={() => {takeUserInfo()}}>내정보</Button>
+        <Button variant="light" onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}><b>{loggedIn ? '로그아웃' : '로그인'}</b></Button>
+        <Button variant="light" onClick={() => {takeUserInfo()}}><b>내정보</b></Button>
       </Nav>
     </Navbar>
   );

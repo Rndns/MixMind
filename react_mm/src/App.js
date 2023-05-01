@@ -19,6 +19,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Info from "./pages/user/Info";
 import AutoComplete from "./pages/AutoComplete";
 import MusicTitle from './pages/MusicTitle';
+import MusicTitle from "./pages/MusicTitle";
 
 function App() {
   return (
