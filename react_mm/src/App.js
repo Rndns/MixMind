@@ -41,14 +41,11 @@ function App() {
             <Route path="/genreSelectInfo" element={<GenreSelectInfo />}></Route>
             {/* user */}
             <Route path="/regist" element={<Register />}></Route>
-<<<<<<< HEAD
             <Route path="/login" element={<Login />}></Route>
             <Route path="/info" element={<Info />}></Route>
-=======
             <Route path="/autoComplete" element={<AutoComplete />}></Route>
             <Route path="/musicTitle" element={<MusicTitle />}></Route>
 
->>>>>>> soo
           </Routes>
         </div>
         <Footer/>
