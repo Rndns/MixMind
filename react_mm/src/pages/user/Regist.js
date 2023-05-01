@@ -13,7 +13,7 @@ export default function Register() {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch(`${API_USER_URL}/user/regist/`, {
+            const response = await fetch(`${API_USER_URL}/regist/`, {
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json',

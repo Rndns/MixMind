@@ -109,6 +109,10 @@ CORS_ALLOWED_ORIGINS  = [  'http://10.140.0.3:3000', #For React Project
                             'http://localhost:3003',
                             'http://localhost:3005',
                             'http://localhost:3006',
+                            'http://10.140.0.3:3007',
+                            'http://localhost:3007',
+                            'http://10.140.0.3:3009',
+                            'http://localhost:3009',
                             'http://127.0.0.1:8000',
                             'http://127.0.0.1:8080',  #For Django Project 
                             'http://127.0.0.1:8081',  #For Django Project 
