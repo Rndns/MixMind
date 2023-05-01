@@ -44,6 +44,7 @@ const Footer = () => {
     return (
         <>
             <Button
+            id='footer-button'
             onClick={handleTogglePlayer}
             variant={isPlayerVisible ? "light" : "dark"}
             >

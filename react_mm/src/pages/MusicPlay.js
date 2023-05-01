@@ -6,21 +6,54 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { musicInfoList } from "../services/appServices";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import Modal from 'react-bootstrap/Modal';
 import playlistadd from '../images/playlist-add.png';
 import playlist from '../images/playlist.png';
 import heart from '../images/heart.png';
 import play from '../images/play.png';
+import more from '../images/more.png';
 import heartadd from '../images/heart-add.png';
 import '../styles.css';
 
-
+function MyVerticallyCenteredModal(props) {
+  const location = useLocation();
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      dialogClassName="custom-modal" 
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          <b>곡 상세정보</b>
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <div className="lyricist">
+        {/* 작사가 */}
+        <b>작사</b> {location.state.musicInfo.lyricist}
+      </div>
+      <div className="composer">
+        {/* 작곡가 */}
+        <b>작곡</b> {location.state.musicInfo.composer}
+      </div>
+      <div className="arranger">
+        {/* 편곡가 */}
+        <b>편곡</b> {location.state.musicInfo.arranger}
+      </div>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="dark" onClick={props.onHide}><b>닫기</b></Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 export default function MusicPlay() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isFilled, setIsFilled] = useState(false);
-  const handleClick = () => {
-    setIsFilled(!isFilled);
-  };
+  const [modalShow, setModalShow] = React.useState(false);
   // album "on the street (with J. Cole)"
   // albumImg "https://cdnimg.melon.co.kr/cm2/album/images/111/94/815/11194815_20230303100153_500.jpg?a15be10b9a5357904f33820c8311a0f9/melon/resize/282/quality/80/optimize"
   // arranger ""
@@ -37,7 +70,6 @@ export default function MusicPlay() {
 
   return (
     <div className="musicplaypage">
-      <button onClick={navigate('/')}>홈으로이동</button>
       <div className="details">
         <Container>
           <Row>
@@ -75,28 +107,22 @@ export default function MusicPlay() {
                 onClick={() => {navigate('/musicPlayList')}}/>
                 <img src={heart} class="heart" alt={"좋아요 누르기"} title={"좋아요 누르기"}
                 onClick={() => {navigate('/')}}/>
+                <img src={more} class="more" alt={"상세정보 보기"} title={"상세정보 보기"}
+                  onClick={() => setModalShow(true)}/> {/*  onClick={() => setShowModal(true)} */}
+                <MyVerticallyCenteredModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
               </div>
             </div>
               {/* 좋아요 */}
               {/* {location.state.musicInfo.likes} */}
           </Row>
-          <div className="lyricist">
-            {/* 작사가 */}
-            <b>작사</b> {location.state.musicInfo.lyricist}
-          </div>
-          <div className="composer">
-            {/* 작곡가 */}
-            <b>작곡</b> {location.state.musicInfo.composer}
-          </div>
-          <div className="arranger">
-            {/* 편곡가 */}
-            <b>편곡</b> {location.state.musicInfo.arranger}
-          </div>
-          <div>
-            {/* 가사 */}
-            {location.state.musicInfo.lyrics}
-          </div>
         </Container>
+        <div className="lyrics">
+          {/* 가사 */}
+          {location.state.musicInfo.lyrics}
+        </div>
       </div>
     </div>
   );
