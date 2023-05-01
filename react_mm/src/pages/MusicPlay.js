@@ -4,12 +4,23 @@ import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
 import { useLocation, useNavigate } from "react-router-dom";
 import { musicInfoList } from "../services/appServices";
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import playlistadd from '../images/playlist-add.png';
+import playlist from '../images/playlist.png';
+import heart from '../images/heart.png';
+import play from '../images/play.png';
+import heartadd from '../images/heart-add.png';
 import '../styles.css';
 
 
 export default function MusicPlay() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [isFilled, setIsFilled] = useState(false);
+  const handleClick = () => {
+    setIsFilled(!isFilled);
+  };
   // album "on the street (with J. Cole)"
   // albumImg "https://cdnimg.melon.co.kr/cm2/album/images/111/94/815/11194815_20230303100153_500.jpg?a15be10b9a5357904f33820c8311a0f9/melon/resize/282/quality/80/optimize"
   // arranger ""
@@ -30,42 +41,61 @@ export default function MusicPlay() {
       <div className="details">
         <Container>
           <Row>
-            <Col>
-              제목 : {location.state.musicInfo.title}
-            </Col>
-            <Col>
-              앨범명 : {location.state.musicInfo.album}
-            </Col>
-            <Col>
+            <div className="alb-img">
+              {/* 앨범 이미지 */}
               <img src={location.state.musicInfo.albumImg} alt='albumImg'/>
-            </Col>
-            <Col>
-              좋아요 : {location.state.musicInfo.likes}
-            </Col>
-            <Col>
-              가사 : {location.state.musicInfo.lyrics}
-            </Col>
-            <Col>
-              아티스트: {location.state.musicInfo.artist}
-            </Col>
-            <Col>
-              작사가 : {location.state.musicInfo.lyricist}
-            </Col>
-            <Col>
-              작곡가 : {location.state.musicInfo.composer}
-            </Col>
-            {/* <Col>
-              편곡가 : {location.state.musicInfo.arranger}
-            </Col> */}
-            <Col>
-              장르 : {location.state.musicInfo.genre}
-            </Col>
-            <Col>
-              발매일 : {location.state.musicInfo.releasedDate}
-            </Col>
+              <Row>
+                <div className="title">
+                  {/* 제목 */}
+                  <b>{location.state.musicInfo.title}</b>
+                </div>
+                <div className="artist">
+                  {/* 아티스트 */}
+                  <b>{location.state.musicInfo.artist}</b>
+                </div>
+                <div className="album">
+                  {/* 앨범명 */}
+                  <b>{location.state.musicInfo.album}</b>
+                </div>
+                <div className="date">
+                  {/* 발매일 */}
+                  <b>{location.state.musicInfo.releasedDate}</b>
+                </div>
+                <div className="genre">
+                  {/* 장르 */}
+                  <b>#{location.state.musicInfo.genre}</b>
+                </div>
+              </Row>
+              <div className="button-group">
+                <img src={play} class="play" alt={"재생하기"} title={"재생하기"}
+                onClick={() => {navigate('/')}}/>
+                <img src={playlistadd} class="playlist-add" alt={"플레이리스트에 추가"} title={"플레이리스트에 추가"}
+                onClick={() => {navigate('/')}}/>
+                <img src={playlist} class="playlist" alt={"플레이리스트 확인"} title={"플레이리스트 확인"}
+                onClick={() => {navigate('/musicPlayList')}}/>
+                <img src={heart} class="heart" alt={"좋아요 누르기"} title={"좋아요 누르기"}
+                onClick={() => {navigate('/')}}/>
+              </div>
+            </div>
+              {/* 좋아요 */}
+              {/* {location.state.musicInfo.likes} */}
           </Row>
-          <button onClick={() => {navigate('/')}}>플레이리스트에 추가</button>
-          <button onClick={() => {navigate('/musicPlayList')}}>플레이리스트</button>
+          <div className="lyricist">
+            {/* 작사가 */}
+            <b>작사</b> {location.state.musicInfo.lyricist}
+          </div>
+          <div className="composer">
+            {/* 작곡가 */}
+            <b>작곡</b> {location.state.musicInfo.composer}
+          </div>
+          <div className="arranger">
+            {/* 편곡가 */}
+            <b>편곡</b> {location.state.musicInfo.arranger}
+          </div>
+          <div>
+            {/* 가사 */}
+            {location.state.musicInfo.lyrics}
+          </div>
         </Container>
       </div>
     </div>

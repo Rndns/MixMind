@@ -48,7 +48,7 @@ export default function Slick(props) {
       <Slider {...settings}>
         {musicInfos.map((musicInfo) => (
           <div key={musicInfo.id} className="slick-slide">
-            <img src={musicInfo.albumImg} alt={`musicInfo-${musicInfo.id}`} height='256'
+            <img src={musicInfo.albumImg} alt={`musicInfo-${musicInfo.id}`} title={`musicInfo-${musicInfo.id}`} height='256'
               onClick={() => {
                 navigate(`/musicPlayer`,{
                   state: {
