@@ -167,6 +167,10 @@ JWT_AUTH = {
 
 AUTH_USER_MODEL = 'user.User'
 
+# from django.core.management.utils import get_random_secret_key
+# SECRET_KEY = get_random_secret_key()
+SECRET_KEY = 'MixMind_secret_key'
+
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': (
 #         'rest_framework_simplejwt.authentication.JWTAuthentication',

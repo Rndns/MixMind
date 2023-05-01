@@ -6,9 +6,8 @@ from . import views
 router = DefaultRouter()
 router.register(r'regist', views.RegistView, basename='regist')
 router.register(r'login', views.LoginView, basename='login')
-# 로그아웃
-# 내정보
-# 회원수정
+router.register(r'info', views.InfoView, basename='info')
+router.register(r'edit', views.InfoView, basename='edit')
 
 
 

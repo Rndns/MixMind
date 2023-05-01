@@ -1,20 +1,22 @@
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
+from django.http import HttpResponseBadRequest
 import jwt
-# from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate
+from django.conf import settings
+from .serializers import UserSerializer
+
+User = get_user_model()
 
 class LoginView(viewsets.ViewSet):
     def create(self, request):
-        User = get_user_model()
         email = request.data.get('email')
         password = request.data.get('password')
-        print(1)
         user = authenticate(email=email, password=password)
         if user is not None:
-            token = jwt.encode({'email': email}, 'MixMind_secret_key', algorithm='HS256')
+            token = jwt.encode({'email': email}, settings.SECRET_KEY, algorithm='HS256')
             response = Response({'token': token}, status=200)
             response.set_cookie('token', token)
             return response
@@ -23,7 +25,6 @@ class LoginView(viewsets.ViewSet):
         
 class RegistView(viewsets.ViewSet):
     def create(self, request):
-        User = get_user_model()
         email = request.data.get('email')
         password = request.data.get('password')
         nickname = request.data.get('nickname')
@@ -41,3 +42,24 @@ class RegistView(viewsets.ViewSet):
 
         return Response({'message': '회원가입이 완료되었습니다.'}, status=status.HTTP_201_CREATED)
 
+class InfoView(viewsets.ViewSet):
+    def list(self, request):
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return HttpResponseBadRequest('Authorization header not found')
+
+        try:
+            _, token = authorization_header.split(' ')
+            decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            email = decoded_token['email']
+            user = User.objects.get(email=email)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        
+        except:
+            return HttpResponseBadRequest('Invalid token')
+
+
+    def update(self, request, pk=None):
+
+        pass

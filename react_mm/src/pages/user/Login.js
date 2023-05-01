@@ -19,7 +19,7 @@ const Login = () => {
             const data = await response.json();
 
             if (response.ok) {
-                document.cookie = `token=${data.token}`;
+                document.cookie = `jwt=${data.token}`;
                 setLoggedIn(true);
                 navigate('/')
             } else {
@@ -30,15 +30,11 @@ const Login = () => {
         }
     };
 
-    const handleLogout = async () => {
-        setLoggedIn(false)
-    }
-
     return (
         <div>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={loggedIn ? handleLogout : handleLogin}>{loggedIn ? '로그아웃' : '로그인'}</button>
+            <button onClick={handleLogin}>로그인</button>
             <div>
                 <button
                     onClick={() => {

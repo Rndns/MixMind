@@ -1,11 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from .serializers import MusicInfoSerializer
+from rest_framework.decorators import action
 from .models import UserEmotion, MusicInfo, MusicEmotion
 import numpy as np
-from rest_framework.decorators import action
-
-
+from .serializers import MusicInfoSerializer
 from .serializers import GenreSerializer
 
 
