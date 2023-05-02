@@ -46,7 +46,7 @@ export default function Home() {
           polar: {
             gridshape: 'linear',
             radialaxis: {
-              visible: true,
+              visible: false,
               range: [0, 100]
             }
           },
@@ -58,26 +58,31 @@ export default function Home() {
           },
           width: 400,
           height: 400,
-          hovermode: 'closest'
+          hovermode: 'closest',
+          plot_bgcolor: '#121212',
+          paper_bgcolor: '#121212',
+          font: {
+            color: 'white'
+          }
         }}
         onClick={onClick}
       />
-      <div>
+      <div className='emotionrange'>
         {emotionValues.map((value, index) => (
-          <div key={index}>
-            <span>{emotion[index]}: </span>
+          <div key={index} className='erow'>
+            <span>{emotion[index]} : &emsp;</span>
             <input
-              type="number"
               min={0}
               max={100}
               step={5}
+              type='range'
               value={value}
               onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
             />
           </div>
         ))}
       </div>
-      <div>
+      <div className='homebutton'>
         <button
           onClick={() => {
             navigate(`/musicRecom`, {
@@ -89,8 +94,6 @@ export default function Home() {
           }}>
           음악 추천 받기
         </button>
-      </div>
-      <div>
         <button
           onClick={() => {
             navigate(`/musicPlayList`, {
@@ -99,8 +102,6 @@ export default function Home() {
           }}>
           음악 리스트
         </button>
-      </div>
-      <div>
         <button
           onClick={() => {
           navigate(`/genreList`, 
@@ -108,8 +109,6 @@ export default function Home() {
         }}>
             장르리스트
         </button>
-      </div>
-      <div>
         <button
           onClick={() => {
           navigate(`/genreSelect`, 
