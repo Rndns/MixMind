@@ -64,17 +64,12 @@ const Header = () => {
         />
       </Navbar.Brand>
       <Nav>
-<<<<<<< HEAD
-        <Button variant="light" onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}><b>{loggedIn ? '로그아웃' : '로그인'}</b></Button>
-        <Button variant="light" onClick={() => {takeUserInfo()}}><b>내정보</b></Button>
-=======
         <Button variant = 'dark' onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>
           {loggedIn ? <img src={imglogout} width = "30" height = "30" alt="로그아웃" /> : <img src={imglogin} width = "30" height = "30" alt="로그인" />}
         </Button>
         <Button variant = 'dark' onClick={() => {takeUserInfo()}}>
           <img src={account} width = "30" height = "30" alt="내정보" />
         </Button>
->>>>>>> hoon_bari
       </Nav>
     </Navbar>
   );
