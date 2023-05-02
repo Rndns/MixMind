@@ -16,10 +16,6 @@
   transform:scale(1); /* hover 시 버튼확대 애니메이션 */
   transition: 0.2s;
   }
-.navbar-brand:hover {
-  transform:scale(1.01); /* hover 시 버튼확대 애니메이션 */
-  transition: 1s;
-  }
 .btn.btn-light:hover {
   transform: translateY(-1px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
   transition: 0.5s;
@@ -185,7 +181,37 @@
   margin-bottom: 10px;
 }
 .modal-content {
-  margin: 0% 3%;
+  margin: 0% 7%;
+}
+.modal-content div {
+  padding: 1% 5%;
+}
+.label1 {
+  padding-bottom: 3%;
+}
+.label2 {
+  padding-bottom: 3%;
+}
+.hlabel1 {
+  padding-bottom: 3%;
+}
+.hlabel2 {
+  padding-bottom: 3%;
+}
+.hlabel3 {
+  padding-bottom: 3%;
+}
+.hlabel4 {
+  padding-bottom: 3%;
+}
+.mlabel1 {
+  padding-bottom: 3%;
+}
+.mlabel2 {
+  padding-bottom: 3%;
+}
+.mlabel3 {
+  padding-bottom: 3%;
 }
 
 /* 1440px ~1920px까지는 아래 설정을 따름 */
@@ -218,6 +244,24 @@
     margin: auto;
     padding: 12.37% 20%;
   }
+  .btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 212px;
+    top: 17px;
+    }
+  .hform-group4 button.btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 295px;
+    top: 17px;
+    }
+  .mform-group3 button.btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 330px;
+    top: 17px;
+    }
   .btn.btn-light {
     border-radius: 10px;
     position: -webkit-sticky;
@@ -306,6 +350,100 @@
   .arranger {
     margin-bottom: 10px;
   }
+  .login-form {
+    margin: 14.02% 37%;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: #343434;
+    border-width: 1px;
+  }
+  .form-group1 {
+    padding: 0% 10%;
+    padding-top: 7%;
+    padding-bottom: 5%;
+    background-color: #121212;
+    border-radius: 15px 15px 0px 0px;
+    color: #ffffff;
+  }
+  .form-group2 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    border-radius: 0px 0px 15px 15px;
+    color: #ffffff;
+  }
+  .form-group2 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    border-radius: 0px 0px 15px 15px;
+    color: #ffffff;
+  }
+  .join-form {
+    margin: 7.7% 37%;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: #343434;
+    border-width: 1px;
+  }
+  .hform-group1 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    padding-top: 9%;
+    background-color: #121212;
+    border-radius: 15px 15px 0px 0px;
+    color: #ffffff;
+  }
+  .hform-group2 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    color: #ffffff;
+  }
+  .hform-group3 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    color: #ffffff;
+  }
+  .hform-group4 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    border-radius: 0px 0px 15px 15px;
+    color: #ffffff;
+  }
+  .modify-form {
+    margin: 10.6% 37%;
+    border-style: solid;
+    border-radius: 15px;
+    border-color: #343434;
+    border-width: 1px;
+  }
+  .mform-group1 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    padding-top: 9%;
+    background-color: #121212;
+    border-radius: 15px 15px 0px 0px;
+    color: #ffffff;
+  }
+  .mform-group2 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    color: #ffffff;
+  }
+  .mform-group3 {
+    padding: 0% 10%;
+    padding-bottom: 7%;
+    background-color: #121212;
+    border-radius: 0px 0px 15px 15px;
+    color: #ffffff;
+  }
+  .form-control {
+    height: 40px;
+  }
 }
 
 /* 1080px ~1440px까지는 아래 설정을 따름 */
@@ -339,6 +477,24 @@
     padding: 10.2% 28.2%;
     padding-left: 15%;
   }
+  .btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 107px;
+    top: 15px;
+    }
+  .hform-group4 button.btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 190px;
+    top: 14px;
+    }
+  .mform-group3 button.btn.btn-outline-light {
+    border-radius: 10px;
+    position: relative;
+    left: 222px;
+    top: 14px;
+    }
   .btn.btn-light {
     border-radius: 10px;
     position: -webkit-sticky;
@@ -396,21 +552,21 @@
     left: 343px;
   }
   .title {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   .artist {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
   }
   .album {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #6c6c6c;
   }
   .date {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #6c6c6c;
   }
   .genre {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #6c6c6c;
   }
   .lyrics {
@@ -418,7 +574,7 @@
     left: 64px;
   }
   .row div {
-    margin-bottom: 13.5px;
+    margin-bottom: 15.5px;
   }
   .lyricist {
     margin-bottom: 10px;

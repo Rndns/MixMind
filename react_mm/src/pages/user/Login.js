@@ -34,18 +34,23 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-            <button onClick={handleLogin}>로그인</button>
-            <div>
-                <button
+        <div class="login-form">
+            <div class="form-group1">
+                <label class="label1" for="exampleInputEmail1"><b>Email</b></label>
+                <input type="email" class="form-control" value={email} onChange={(e) => setEmail(e.target.value)} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="이메일을 입력해주세요"/>
+            </div>
+            <div class="form-group2">
+                <label class="label2" for="exampleInputPassword1"><b>Password</b></label>
+                <input type="password" class="form-control" value={password} onChange={(e) => setPassword(e.target.value)} id="exampleInputPassword1" placeholder="비밀번호를 입력해주세요"/>
+                <button onClick={handleLogin} class="btn btn-outline-light"><b>로그인</b></button>
+                <button 
+                    class="btn btn-outline-light"
                     onClick={() => {
                         navigate(`/regist`, {
                         replace: false 
                     });
                 }}>
-                회원가입
+                <b>회원가입</b>
                 </button>
             </div>
         </div>
