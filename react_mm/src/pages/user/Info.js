@@ -45,6 +45,29 @@ export default function Info() {
         navigate('/')
     }
 
+    const deleteUser = async() => {
+        try {
+            const response = await fetch(`${API_USER_URL}/delete/${location.state.info.id}/`, {
+                method: 'delete',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                alert('탈퇴가 완료되었습니다.');
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+
+        } catch (error) {
+            console.error('탈퇴 중 오류 발생:', error);
+        }
+
+        navigate('/')
+    }
+
     return(
         <div>
             <input
@@ -66,6 +89,7 @@ export default function Info() {
                 onChange={(e) => setAge(e.target.value)}
             />
             <button onClick={editInfo}>수정</button>
+            <button onClick={deleteUser}>탈퇴</button>
         </div>
     )
 }

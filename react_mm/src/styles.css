@@ -21,11 +21,15 @@
   transition: 1s;
   }
 .btn.btn-light:hover {
-  transform: translateY(-2px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transform: translateY(-1px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
   transition: 0.5s;
   }
 .btn.btn-dark:hover {
-  transform: translateY(-2px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transform: translateY(-1px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
+  transition: 0.5s;
+  }
+#footer-button:hover {
+  transform: translateY(0px); /* hover 시 이미지를 위로 5px만큼 이동하여 뜨는 효과 */
   transition: 0.5s;
   }
 .sticky-bottom {
@@ -152,76 +156,36 @@
   padding-left: calc(var(--bs-gutter-x) * 0);
   margin-top: var(--bs-gutter-y);
 }
-.playlist-add {
-  width: 40px;
-}
 .playlist-add:hover {
   transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
   transition: 0.5s;
-}
-.playlist {
-  width: 40px;
 }
 .playlist:hover {
   transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
   transition: 0.5s;
 }
-.heart {
-  width: 45px;
-}
 .heart:hover {
   transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
   transition: 0.5s;
-}
-.play {
-  width: 45px;
 }
 .play:hover {
   transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
   transition: 0.5s;
 }
-.button-group {
-  position: relative;
-  top: -300px;
-  left: 294px;
+.more:hover {
+  transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
+  transition: 0.5s;
 }
-.button-group img {
-  margin-left: 43px;
+.fade.modal.show {
+  padding-right: 0px;
+  display: block;
+  margin: 0% 0%;
 }
-.alb-img div.row {
-  position: relative;
-  bottom: 295px;
-  left: 343px;
-}
-.title {
-  font-size: 2.3rem;
-}
-.artist {
-  font-size: 1.5rem;
-}
-.album {
-  font-size: 1.5rem;
-  color: #6c6c6c;
-}
-.date {
-  font-size: 1.5rem;
-  color: #6c6c6c;
-}
-.genre {
-  font-size: 1.5rem;
-  color: #6c6c6c;
-}
-.row div {
+.modal-footer button {
   margin-bottom: 10px;
 }
-.lyricist {
-  margin-bottom: 10px;
-}
-.composer {
-  margin-bottom: 10px;
-}
-.arranger {
-  margin-bottom: 10px;
+.modal-content {
+  margin: 0% 3%;
 }
 
 /* 1440px ~1920px까지는 아래 설정을 따름 */
@@ -252,7 +216,7 @@
   .details {
     color: #dbdbdb; /* 추천 페이지 글자색 설정 */
     margin: auto;
-    padding: 8.9% 20%;
+    padding: 12.37% 20%;
   }
   .btn.btn-light {
     border-radius: 10px;
@@ -267,7 +231,7 @@
     position: -webkit-sticky;
     position: sticky;
     z-index: 1;
-    left: 90%;
+    left: 89%;
     bottom:2%;
   }
   .alb-img {
@@ -279,6 +243,68 @@
   }
   .alb-img img {
     border-radius: 15px;
+  }
+  .playlist-add {
+    width: 40px;
+  }
+  .playlist {
+    width: 40px;
+  }
+  .heart {
+    width: 45px;
+  }
+  .play {
+    width: 45px;
+  }
+  .more {
+    width: 40px;
+  }
+  .button-group {
+    position: relative;
+    top: -300px;
+    left: 294px;
+  }
+  .button-group img {
+    margin-left: 43px;
+  }
+  .alb-img div.row {
+    position: relative;
+    bottom: 295px;
+    left: 343px;
+  }
+  .title {
+    font-size: 2.3rem;
+  }
+  .artist {
+    font-size: 1.5rem;
+  }
+  .album {
+    font-size: 1.5rem;
+    color: #6c6c6c;
+  }
+  .date {
+    font-size: 1.5rem;
+    color: #6c6c6c;
+  }
+  .genre {
+    font-size: 1.5rem;
+    color: #6c6c6c;
+  }
+  .lyrics {
+    position: relative;
+    left: 0px;
+  }
+  .row div {
+    margin-bottom: 10px;
+  }
+  .lyricist {
+    margin-bottom: 10px;
+  }
+  .composer {
+    margin-bottom: 10px;
+  }
+  .arranger {
+    margin-bottom: 10px;
   }
 }
 
@@ -308,9 +334,10 @@
     padding: 20px 5px;
   }
   .details {
-    color: #dbdbdb; /* 추천 페이지 글자색 설정 */
+    color: #dbdbdb;
     margin: auto;
-    padding: 12.85% 20%;
+    padding: 10.2% 28.2%;
+    padding-left: 15%;
   }
   .btn.btn-light {
     border-radius: 10px;
@@ -325,8 +352,82 @@
     position: -webkit-sticky;
     position: sticky;
     z-index: 1;
-    left: 87%;
+    left: 86%;
     bottom:3%;
+  }
+  .alb-img {
+    padding: 3% 0%;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color: #212121;
+    height: 338px;
+    position: relative;
+    left: 7%;
+  }
+  .alb-img img {
+    border-radius: 15px;
+  }
+  .playlist-add {
+    width: 40px;
+  }
+  .playlist {
+    width: 40px;
+  }
+  .heart {
+    width: 45px;
+  }
+  .play {
+    width: 45px;
+  }
+  .more {
+    width: 40px;
+  }
+  .button-group {
+    position: relative;
+    top: -300px;
+    left: 294px;
+  }
+  .button-group img {
+    margin-left: 43px;
+  }
+  .alb-img div.row {
+    position: relative;
+    bottom: 290px;
+    left: 343px;
+  }
+  .title {
+    font-size: 2rem;
+  }
+  .artist {
+    font-size: 1.4rem;
+  }
+  .album {
+    font-size: 1.4rem;
+    color: #6c6c6c;
+  }
+  .date {
+    font-size: 1.4rem;
+    color: #6c6c6c;
+  }
+  .genre {
+    font-size: 1.4rem;
+    color: #6c6c6c;
+  }
+  .lyrics {
+    position: relative;
+    left: 64px;
+  }
+  .row div {
+    margin-bottom: 13.5px;
+  }
+  .lyricist {
+    margin-bottom: 10px;
+  }
+  .composer {
+    margin-bottom: 10px;
+  }
+  .arranger {
+    margin-bottom: 10px;
   }
 }
 
@@ -377,34 +478,89 @@
     bottom:3%;
   }
 }
-.navbar.navbar-expand{
+.navbar.navbar-expand {
   display: flex;
+  justify-content: space-between;
   background-color: #121212;
   z-index: 1;
   position: sticky;
   top: 0;
-  padding-right: 0;
-  margin-right: 0;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: solid;
   border-bottom-width: 1px;
 }
-.navbar-nav{
-  position: relative;
+
+.navbar-nav {
   top: 1px;
-  left: -68px;
+  padding-right: -10%;
+  margin-right: 20px;
+  justify-content: space-between;
 }
+
 .navbar-brand {
-  position: relative;
   top: 1px;
-  left: 103px;
+  margin-left: 20px;
+  margin-right: auto;
 }
+
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
   margin-left: 10px;
 }
+
 .font-weight-bold {
   font-weight: bold;
   font-size: 0.9rem;
+}
+
+.emotionrange {
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.erow {
+  margin-bottom: 15px;
+}
+
+input[type='range'] {
+  -webkit-appearance: none;
+	height: 8px;
+  width: 300px;
+	background: grey;
+	background-image: linear-gradient(#FFFFFF, #FFFFFF);
+	background-repeat: no-repeat;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	background: #555;
+	cursor: pointer;
+	box-shadow: 0 0 2px 0 #555;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+	-webkit-appearance: none;
+	box-shadow: none;
+	border: none;
+	background: transparent;
+}
+
+input[type='range']::-webkit-slider-thumb {
+	transition: background 0.3s ease-in-out;
+}
+
+.homebutton {
+  display: flex;
+}
+
+.homebutton button {
+  flex-grow: 1;
+  background-color:#121212;
+  color: #ffffff;
+  border:none;
+  border-radius:10px;
 }
