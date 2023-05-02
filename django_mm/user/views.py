@@ -61,5 +61,9 @@ class InfoView(viewsets.ViewSet):
 
 
     def update(self, request, pk=None):
+        print(pk)
+        return Response()
 
-        pass
+    def destroy(self, request, pk=None):
+        print(pk)
+        return Response()
