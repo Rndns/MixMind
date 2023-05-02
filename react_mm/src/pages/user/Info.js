@@ -69,29 +69,6 @@ export default function Info() {
     }
 
     return(
-<<<<<<< HEAD
-        <div>
-            <input
-                type="email"
-                placeholder="이메일"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="text"
-                placeholder="닉네임"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-            />
-            <input
-                type="number"
-                placeholder="나이"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
-            />
-            <button onClick={editInfo}>수정</button>
-            <button onClick={deleteUser}>탈퇴</button>
-=======
         <div class="modify-form">
             <div class="mform-group1">
                 <label class="mlabel1"><b>Email</b></label>
@@ -106,7 +83,6 @@ export default function Info() {
                 <input type="number" class="form-control" value={age} onChange={(e) => setAge(e.target.value)} id="hexampleInputage" placeholder="나이를 입력해주세요"/>
                 <button onClick={editInfo} class="btn btn-outline-light"><b>수정</b></button>
             </div>
->>>>>>> hjk
         </div>
         // <div>
         //     <input
