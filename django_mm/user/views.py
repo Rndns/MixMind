@@ -51,6 +51,7 @@ class InfoView(viewsets.ViewSet):
         try:
             _, token = authorization_header.split(' ')
             decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            print(decoded_token)
             email = decoded_token['email']
             user = User.objects.get(email=email)
             serializer = UserSerializer(user)
@@ -61,9 +62,37 @@ class InfoView(viewsets.ViewSet):
 
 
     def update(self, request, pk=None):
-        print(pk)
-        return Response()
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return HttpResponseBadRequest('Authorization header not found')
+        
+        try:
+            _, token = authorization_header.split(' ')
+            decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            email = decoded_token['email']
+            # 비밀번호 받아서 authenticate 사용해서 인증
+            user = '위 주석 참조'
+            # 저장 후 리턴
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        
+        except:
+            return HttpResponseBadRequest('Invalid token')
 
     def destroy(self, request, pk=None):
-        print(pk)
-        return Response()
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return HttpResponseBadRequest('Authorization header not found')
+        
+        try:
+            _, token = authorization_header.split(' ')
+            decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            email = decoded_token['email']
+            # 비밀번호 받아서 authenticate 사용해서 인증
+            user = '위 주석 참조'
+            # 삭제 후 리턴
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        
+        except:
+            return HttpResponseBadRequest('Invalid token')
