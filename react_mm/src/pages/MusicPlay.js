@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { musicInfoList } from "../services/appServices";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -49,11 +49,22 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Footer>
     </Modal>
   );
+}function Lyrics({ lyrics }) {
+  return (
+    <div>
+      {lyrics ? (
+        <p>{lyrics}</p>
+      ) : (
+        <p><b>가사정보가 등록되지 않은 곡입니다</b></p>
+      )}
+    </div>
+  );
 }
 export default function MusicPlay() {
   const location = useLocation();
   const navigate = useNavigate();
   const [modalShow, setModalShow] = React.useState(false);
+  const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
   // album "on the street (with J. Cole)"
   // albumImg "https://cdnimg.melon.co.kr/cm2/album/images/111/94/815/11194815_20230303100153_500.jpg?a15be10b9a5357904f33820c8311a0f9/melon/resize/282/quality/80/optimize"
   // arranger ""
@@ -94,8 +105,8 @@ export default function MusicPlay() {
                   <b>{location.state.musicInfo.releasedDate}</b>
                 </div>
                 <div className="genre">
-                  {/* 장르 */}
-                  <b>#{location.state.musicInfo.genre}</b>
+                  {/* 장르 클릭하면 장르 페이지로 갈 수 있도록 제작 요망*/}
+                  <Link to="/electronic"><b>#{location.state.musicInfo.genre}</b></Link>
                 </div>
               </Row>
               <div className="button-group">
@@ -121,7 +132,12 @@ export default function MusicPlay() {
         </Container>
         <div className="lyrics">
           {/* 가사 */}
-          {location.state.musicInfo.lyrics}
+          <Lyrics lyrics={location.state.musicInfo.lyrics}/>
+        </div>
+        <div className="youtube">
+          <b>YouTube로 감상하기</b>
+          <iframe width="480" height="270" src={videoSrc} title={location.state.musicInfo.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class='v-line'></div>
         </div>
       </div>
     </div>
