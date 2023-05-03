@@ -92,3 +92,34 @@ export async function login(email, password) {
 }
 
 // export async function 
+
+export async function titleCollect() {
+	const MixMindApiUrl = `${API_BASE_URL}/entireTitle/`;
+	
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json())
+}
+
+export async function titleSelect(clickedItem) {
+	console.log(3);
+	console.log(clickedItem);
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
+	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`;
+	// const MixMindApiUrl = `${API_BASE_URL}/autoTitleInfo/search/?title=${clickedItem}`;
+	const MixMindApiUrl =`${API_BASE_URL}/titleSelect?title=${clickedItem}`
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+        // body: JSON.stringify({
+		// 	genre,
+		// }),
+		headers:{
+			'Content-Type': "application/json"
+		}
+	}).then(resp => resp.json());
+}

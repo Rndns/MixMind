@@ -19,6 +19,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Info from "./pages/user/Info";
 import AutoComplete from "./pages/AutoComplete";
 import MusicTitle from "./pages/MusicTitle";
+import AutoTitleInfo from "./pages/AutoTitleInfo";
+import AutoTitleSelect from "./pages/AutoTitleSelect";
 
 function App() {
   return (
@@ -42,7 +44,11 @@ function App() {
             <Route path="/info" element={<Info />}></Route>
             <Route path="/autoComplete" element={<AutoComplete />}></Route>
             <Route path="/musicTitle" element={<MusicTitle />}></Route>
+            <Route path="/autoTitleInfo" element={<AutoTitleInfo />}></Route>
+            <Route path="/autoTitleSelect" element={<AutoTitleSelect />}></Route>
 
+
+              
           </Routes>
         </div>
         <Footer/>

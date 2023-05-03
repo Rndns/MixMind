@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { titleCollect } from "../services/appServices";
 
 // import { useRecoilState } from "recoil";
 
@@ -22,18 +23,15 @@ import styled from 'styled-components';
 //     )
 // };
 
-const wholeTextArray = [
-    '아이유',
-    '수지',
-    '복숭아',
-    '밤편지'
-]
+
 
 const AutoComplete = () => {
+    const [wholeTextArray, setWholeTextArray] = useState(['아이유', '수지', '복숭아', '밤편지'])
     const [inputValue, setInputValue] =useState('')
     const [isHaveInputValue, setIsHaveInputValue] = useState(false)
     const [dropDownList, setDropDownList] = useState(wholeTextArray)
     const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
+    const navigate = useNavigate();
 
     const showDropDownList = () => {
         if (inputValue === '') {
@@ -55,7 +53,11 @@ const AutoComplete = () => {
     const clickDropDownItem = clickedItem => {
         setInputValue(clickedItem)
         setIsHaveInputValue(false)
-    }
+        // navigate(`/autoTitleInfo/${clickedItem}`);
+        // navigate(`/autoTitleSelect?title=${clickedItem}`);
+        navigate(`/autoTitleSelect?${clickedItem}`);
+        
+    };
 
     const handleDropDownKey = event => {
         if (isHaveInputValue) {
@@ -74,6 +76,13 @@ const AutoComplete = () => {
             }
             }
     }
+    useEffect(()=> {
+      titleCollect().then(data =>{ 
+        setWholeTextArray(data);
+        console.log(wholeTextArray)
+    },console.log(wholeTextArray))
+    },[])
+
     useEffect(showDropDownList, [inputValue])
 
     return (

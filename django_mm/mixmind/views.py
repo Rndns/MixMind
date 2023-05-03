@@ -5,6 +5,7 @@ from .models import UserEmotion, MusicInfo, MusicEmotion
 import numpy as np
 from .serializers import MusicInfoSerializer
 from .serializers import GenreSerializer
+from .serializers import TitleSerializer
 
 
 class MusicRecommendViewSet(viewsets.ViewSet):
@@ -108,3 +109,20 @@ class GenreSelectInfoViewSet(viewsets.ViewSet):
         serializer = MusicInfoSerializer(genreSelectInfo, many=True)
         return Response(serializer.data)
 
+class CollectTitleViewSet(viewsets.ViewSet):
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
+        title = request.query_params.get('title')
+        print(title)
+        titleInfo = MusicInfo.objects.filter(title = title)
+        serializer = MusicInfoSerializer(titleInfo, many=True)
+        return Response(serializer.data)
+
+    def list(self, request):
+        entireTitle = MusicInfo.objects.values('title').distinct()
+        alltitles = []
+        for titles in entireTitle:
+            alltitles.append(titles['title'])
+        # serializer = TitleSerializer(entireTitle, many=True)
+        return Response(alltitles)

@@ -23,3 +23,10 @@ class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = MusicInfo
         fields = ['genre']
+
+
+class TitleSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(max_length=1024, allow_null=True, required=False)
+    class Meta:
+        model = MusicInfo
+        fields = ['title']
