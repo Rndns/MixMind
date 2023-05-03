@@ -65,6 +65,9 @@ export default function MusicPlay() {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = React.useState(false);
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // album "on the street (with J. Cole)"
   // albumImg "https://cdnimg.melon.co.kr/cm2/album/images/111/94/815/11194815_20230303100153_500.jpg?a15be10b9a5357904f33820c8311a0f9/melon/resize/282/quality/80/optimize"
   // arranger ""

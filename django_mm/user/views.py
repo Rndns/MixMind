@@ -70,11 +70,20 @@ class InfoView(viewsets.ViewSet):
             _, token = authorization_header.split(' ')
             decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
             email = decoded_token['email']
-            # 비밀번호 받아서 authenticate 사용해서 인증
-            user = '위 주석 참조'
-            # 저장 후 리턴
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+            password = request.data.get('password')
+            user = authenticate(email=email, password=password)
+            nickname = request.data.get('nickname')
+            age = request.data.get('age')
+            if user is not None:
+                user = User.objects.get(id=pk)
+                user.email = email
+                user.nickname = nickname
+                user.age = age
+                user.save()
+                serializer = UserSerializer(user)
+                return Response(serializer.data)
+            else:
+                return Response({'error': '비밀번호가 틀렸습니다.'}, status=401)
         
         except:
             return HttpResponseBadRequest('Invalid token')
@@ -85,14 +94,23 @@ class InfoView(viewsets.ViewSet):
             return HttpResponseBadRequest('Authorization header not found')
         
         try:
+            print(1)
             _, token = authorization_header.split(' ')
+            print(2)
             decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            print(3)
             email = decoded_token['email']
-            # 비밀번호 받아서 authenticate 사용해서 인증
-            user = '위 주석 참조'
-            # 삭제 후 리턴
-            serializer = UserSerializer(user)
-            return Response(serializer.data)
+            print(4)
+            password = request.data.get('password')
+            print(5)
+            user = authenticate(email=email, password=password)
+
+            if user is not None:
+                user = User.objects.get(id=pk)
+                user.delete()
+                return Response({'message': '회원탈퇴가 완료되었습니다.'})
+            else:
+                return Response({'error': '비밀번호가 틀렸습니다.'}, status=401)
         
         except:
             return HttpResponseBadRequest('Invalid token')
