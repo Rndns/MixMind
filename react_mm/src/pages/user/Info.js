@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import { API } from "../../config";
+import { loginState } from '../../recoil/atoms';
 
 const API_USER_URL = API.USER;
 
 export default function Info() {
     const navigate = useNavigate();
     const location = useLocation();
+
+    const [loggedIn, setLoggedIn] = useRecoilState(loginState);
     const [email, setEmail] = useState();
     const [nickname, setNickname] = useState();
     const [age, setAge] = useState();
@@ -18,6 +22,8 @@ export default function Info() {
     }, [])
 
     const editInfo = async() => {
+        const password = prompt('비밀번호를 입력해주세요.')
+
         const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
 
         try {
@@ -33,23 +39,31 @@ export default function Info() {
                         email,
                         nickname,
                         age,
+                        password,
                     }),
                 });
                 if (response.ok) {
+                    setLoggedIn(false);
                     alert('수정이 완료되었습니다.');
+                    document.cookie = "";                      
+                    navigate('/')
+
                 } else {
                     const data = await response.json();
+                    navigate('/info')
                     alert(data.message);
                 }
             }
         } catch (error) {
             console.error('수정 중 오류 발생:', error);
+            alert('잘못된 접근입니다.')
+            navigate('/info')
         }
-
-        navigate('/')
     }
 
     const deleteUser = async() => {
+        const password = prompt('비밀번호를 입력해주세요.')
+
         const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
 
         try {
@@ -61,21 +75,28 @@ export default function Info() {
                         'Content-Type': 'application/json',
                         Authorization: `Bearer ${token}`,
                     },
+                    body: JSON.stringify({
+                        password,
+                    }),
                 });
 
                 if (response.ok) {
+                    setLoggedIn(false);
+                    document.cookie = '';
+                    navigate('/')
                     alert('탈퇴가 완료되었습니다.');
                 } else {
                     const data = await response.json();
+                    navigate('/info')
                     alert(data.message);
                 }
             }
 
         } catch (error) {
             console.error('탈퇴 중 오류 발생:', error);
+            alert('잘못된 접근입니다.')
+            navigate('/info')
         }
-
-        navigate('/')
     }
 
     return(
@@ -95,26 +116,5 @@ export default function Info() {
                 <button onClick={deleteUser} class="btn btn-outline-light"><b>탈퇴</b></button>
             </div>
         </div>
-        // <div>
-        //     <input
-        //         type="email"
-        //         placeholder="이메일"
-        //         value={email}
-        //         onChange={(e) => setEmail(e.target.value)}
-        //     />
-        //     <input
-        //         type="text"
-        //         placeholder="닉네임"
-        //         value={nickname}
-        //         onChange={(e) => setNickname(e.target.value)}
-        //     />
-        //     <input
-        //         type="number"
-        //         placeholder="나이"
-        //         value={age}
-        //         onChange={(e) => setAge(e.target.value)}
-        //     />
-        //     <button onClick={editInfo}>수정</button>
-        // </div>
     )
 }
