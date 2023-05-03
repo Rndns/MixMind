@@ -65,10 +65,10 @@ const Header = () => {
       </Navbar.Brand>
       <Nav>
         <Button variant = 'dark' onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>
-          {loggedIn ? <img src={imglogout} width = "30" height = "30" alt="로그아웃" /> : <img src={imglogin} width = "30" height = "30" alt="로그인" />}
+          {loggedIn ? <img src={imglogout} width = "30" height = "30" alt="로그아웃" title="로그아웃"/> : <img src={imglogin} width = "30" height = "30" alt="로그인" title="로그인"/>}
         </Button>
         <Button variant = 'dark' onClick={() => {takeUserInfo()}}>
-          <img src={account} width = "30" height = "30" alt="내정보" />
+          <img src={account} width = "30" height = "30" alt="내정보" title="내정보"/>
         </Button>
       </Nav>
     </Navbar>
