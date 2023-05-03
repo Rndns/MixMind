@@ -644,23 +644,16 @@
   border-bottom: solid;
   border-bottom-width: 1px;
 }
-
-.navbar-nav {
-  top: 1px;
-  padding-right: -10%;
-  margin-right: 20px;
-  justify-content: space-between;
+.navbar-expand .navbar-nav {
+  display: flex;
+  width: 150px;
+  justify-content: space-evenly;
 }
 
 .navbar-brand {
   top: 1px;
   margin-left: 20px;
   margin-right: auto;
-}
-
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-  cursor: pointer;
-  margin-left: 10px;
 }
 
 .font-weight-bold {
@@ -670,19 +663,42 @@
 
 .emotionrange {
   display: flex;
-  width: 400px;
   flex-direction: column;
+  align-items: center;
+  width: 500px;
+  background-color: #121212;
+}
+
+.emotionlist {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  color: #ffffff;
+}
+
+.emotionlist div:first-child {
+  flex: 1;
+  text-align: center;
+}
+
+.emotionlist div:nth-child(2) {
+  flex: 3;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
-.erow {
-  margin-bottom: 15px;
+.emotionlist div:last-child {
+  flex: 1;
+  text-align: center;
 }
 
 input[type='range'] {
   -webkit-appearance: none;
 	height: 8px;
-  width: 300px;
+  width: 100%;
 	background: grey;
 	background-image: linear-gradient(#FFFFFF, #FFFFFF);
 	background-repeat: no-repeat;
@@ -709,14 +725,72 @@ input[type='range']::-webkit-slider-thumb {
 	transition: background 0.3s ease-in-out;
 }
 
-.homebutton {
-  display: flex;
+.button-wrapper {
+  display : flex;
+  justify-content: center;
+  width: 500px;
+  margin-top: 40px;
 }
 
-.homebutton button {
-  flex-grow: 1;
-  background-color:#121212;
+.homebutton.btn.btn-dark {
+  display: block;
+  left : 0% !important;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  width: 200px;
+  height: 50px;
+}
+
+.offcanvas.offcanvas-end.show {
+  width: 300px;
+  background-color: #2B2B2B;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.offcanvas.offcanvas-end:not(.show) {
+  opacity: 0;
+}
+
+.offcanvas-header {
+  margin-top : 10px;
+  color : #CACACA;
+  border-bottom: 1px solid #ccc;
+}
+
+.offcanvas-title.h5:hover {
   color: #ffffff;
-  border:none;
-  border-radius:10px;
+  filter: brightness(150%);
+  cursor: pointer;
+}
+
+.offcanvas-header .btn-close {
+  -webkit-appearance: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.offcanvas-body {
+  color : #CACACA;
+}
+
+.offcanvas-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.offcanvas-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.offcanvas-menu-item:hover {
+  color: #ffffff;
+  filter: brightness(150%);
+  cursor: pointer;
 }

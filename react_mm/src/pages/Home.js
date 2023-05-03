@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import { useNavigate } from "react-router-dom";
+import { ListGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -56,8 +58,8 @@ export default function Home() {
             l: 50,
             r: 50
           },
-          width: 400,
-          height: 400,
+          width: 500,
+          height: 500,
           hovermode: 'closest',
           plot_bgcolor: '#121212',
           paper_bgcolor: '#121212',
@@ -67,23 +69,26 @@ export default function Home() {
         }}
         onClick={onClick}
       />
-      <div className='emotionrange'>
+      <ListGroup className='emotionrange'>
         {emotionValues.map((value, index) => (
-          <div key={index} className='erow'>
-            <span>{emotion[index]} : &emsp;</span>
-            <input
-              min={0}
-              max={100}
-              step={5}
-              type='range'
-              value={value}
-              onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
-            />
+          <div key={index} className='emotionlist'>
+            <div><b>{emotion[index]}</b></div>
+            <div>
+              <input
+                min={0}
+                max={100}
+                step={5}
+                type='range'
+                value={value}
+                onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
+              />
+            </div>
+            <div><b>{value}</b></div>
           </div>
         ))}
-      </div>
-      <div className='homebutton'>
-        <button
+      </ListGroup>
+      <div className='button-wrapper'>
+        <Button className='homebutton' variant='dark'
           onClick={() => {
             navigate(`/musicRecom`, {
               state: {
@@ -92,48 +97,8 @@ export default function Home() {
               replace: false 
             });
           }}>
-          음악 추천 받기
-        </button>
-        <button
-          onClick={() => {
-            navigate(`/musicPlayList`, {
-              replace: false 
-            });
-          }}>
-          음악 리스트
-        </button>
-        <button
-          onClick={() => {
-          navigate(`/genreList`, 
-          );
-        }}>
-            장르리스트
-        </button>
-        <button
-          onClick={() => {
-          navigate(`/genreSelect`, 
-          );
-        }}>
-            장르select리스트
-        </button>
-      </div>
-      <div>
-        <button
-         onClick={() => {
-          navigate(`/autoComplete`, 
-          );
-        }}>
-           자동완성
-        </button>
-      </div>
-      <div>
-        <button
-         onClick={() => {
-          navigate(`/musicTitle`, 
-          );
-        }}>
-           영화제목
-        </button>
+          <b>음악 추천 받기</b>
+        </Button>
       </div>
     </div>
     
