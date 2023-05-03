@@ -18,26 +18,30 @@ export default function Info() {
     }, [])
 
     const editInfo = async() => {
+        const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+
         try {
-            const response = await fetch(`${API_USER_URL}/edit/${location.state.info.id}/`, {
-                method: 'put',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    nickname,
-                    age,
-                }),
-            });
-
-            if (response.ok) {
-                alert('수정이 완료되었습니다.');
-            } else {
-                const data = await response.json();
-                alert(data.message);
+            if (jwtToken) {
+                const token = jwtToken.split('=')[1];
+                const response = await fetch(`${API_USER_URL}/edit/${location.state.info.id}/`, {
+                    method: 'put',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                        email,
+                        nickname,
+                        age,
+                    }),
+                });
+                if (response.ok) {
+                    alert('수정이 완료되었습니다.');
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
             }
-
         } catch (error) {
             console.error('수정 중 오류 발생:', error);
         }
@@ -46,19 +50,25 @@ export default function Info() {
     }
 
     const deleteUser = async() => {
-        try {
-            const response = await fetch(`${API_USER_URL}/delete/${location.state.info.id}/`, {
-                method: 'delete',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+        const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
 
-            if (response.ok) {
-                alert('탈퇴가 완료되었습니다.');
-            } else {
-                const data = await response.json();
-                alert(data.message);
+        try {
+            if (jwtToken) {
+                const token = jwtToken.split('=')[1];
+                const response = await fetch(`${API_USER_URL}/delete/${location.state.info.id}/`, {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+
+                if (response.ok) {
+                    alert('탈퇴가 완료되었습니다.');
+                } else {
+                    const data = await response.json();
+                    alert(data.message);
+                }
             }
 
         } catch (error) {
@@ -82,6 +92,7 @@ export default function Info() {
                 <label class="mlabel3"><b>Age</b></label>
                 <input type="number" class="form-control" value={age} onChange={(e) => setAge(e.target.value)} id="hexampleInputage" placeholder="나이를 입력해주세요"/>
                 <button onClick={editInfo} class="btn btn-outline-light"><b>수정</b></button>
+                <button onClick={deleteUser} class="btn btn-outline-light"><b>탈퇴</b></button>
             </div>
         </div>
         // <div>
