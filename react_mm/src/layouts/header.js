@@ -76,11 +76,11 @@ const Header = () => {
         />
       </Navbar.Brand>
       <Nav>
-        <Button variant = 'dark' onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>
+        <Button variant = 'dark' className="log" onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>
           {loggedIn ? <img src={imglogout} width = "30" height = "30" alt="로그아웃" title="로그아웃"/> : <img src={imglogin} width = "30" height = "30" alt="로그인" title="로그인"/>}
         </Button>
-        <Button variant = 'dark' onClick={handleShow}>
-          <img src={imgsidebar} width = "30" height = "30" alt="사이드바" />
+        <Button variant = 'dark' className="side" onClick={handleShow}>
+          <img src={imgsidebar} width = "30" height = "30" alt="사이드바" title="사이드바" />
         </Button>
         <Offcanvas show={show} onHide={handleClose} placement='end'>
           <Offcanvas.Header closeButton>

@@ -240,6 +240,9 @@
   }
   .navbar-nav button.btn.btn-dark {
     margin-left: 22px;
+    position: fixed;
+    z-index: 9999;
+    border-radius: 10px;
   }
   .navbar-brand {
     position: relative;
@@ -249,7 +252,7 @@
   .home {
     color: white;
     margin: auto;
-    padding: 1.4% 40%;
+    padding: 0% 37%;
   }
   .musicrecompage {
     color: #dbdbdb; /* 추천 페이지 글자색 설정 */
@@ -584,6 +587,20 @@
     left: 87%;
     bottom:3%;
     }
+  .side.btn.btn-dark {
+    border-radius: 10px;
+    position: fixed;
+    z-index: 9999;
+    bottom: 92%;
+    left: 91%;
+  }
+  .log.btn.btn-dark {
+    border-radius: 10px;
+    position: fixed;
+    z-index: 9999;
+    bottom: 92%;
+    left: 86%;
+  }
   .btn.btn-dark {
     border-radius: 10px;
     position: -webkit-sticky;
