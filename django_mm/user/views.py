@@ -94,15 +94,10 @@ class InfoView(viewsets.ViewSet):
             return HttpResponseBadRequest('Authorization header not found')
         
         try:
-            print(1)
             _, token = authorization_header.split(' ')
-            print(2)
             decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
-            print(3)
             email = decoded_token['email']
-            print(4)
             password = request.data.get('password')
-            print(5)
             user = authenticate(email=email, password=password)
 
             if user is not None:
