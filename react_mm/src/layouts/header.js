@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { loginState } from '../recoil/atoms';
+import { loginState } from '../atom/atoms';
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import '../styles.css';

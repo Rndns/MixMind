@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { API } from "../../config";
-import { loginState } from '../../recoil/atoms';
+import { loginState } from '../../atom/atoms';
 
 const API_USER_URL = API.USER;
 
