@@ -839,7 +839,7 @@
   .home {
     color: white;
     margin: auto;
-    padding: 0% 33%;
+    padding: 0% 0% 36% 36%;
   }
   .musicrecompage {
     color: #dbdbdb;
@@ -1324,26 +1324,31 @@
 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
-  margin-left: 10px;
 }
+
 .font-weight-bold {
   font-weight: bold;
   font-size: 0.9rem;
 }
 
+.plot-container {
+  display: flex;
+  position: relative;
+  width: 450px;
+  background-color: #121212;
+}
+
 .emotionrange {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
+  justify-content: center;
+  width: 450px;
   background-color: #121212;
 }
 
 .emotionlist {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
+  width: 450px;
+  padding: 8px;
   box-sizing: border-box;
   color: #ffffff;
 }
@@ -1398,7 +1403,7 @@ input[type='range']::-webkit-slider-thumb {
 .button-wrapper {
   display : flex;
   justify-content: center;
-  width: 500px;
+  width: 450px;
   margin-top: 40px;
 }
 
