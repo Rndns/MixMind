@@ -240,7 +240,6 @@
   }
   .navbar-nav button.btn.btn-dark {
     margin-left: 22px;
-    position: fixed;
     z-index: 9999;
     border-radius: 10px;
   }
