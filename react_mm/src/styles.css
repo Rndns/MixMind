@@ -504,6 +504,13 @@
     top: -264px;
     left: 501px;
   }
+  .sc-bgqQcB.eEQpEk {
+    padding: 20% 20%;
+  }
+  .sc-bgqQcB.iXfLya {
+    position: relative;
+    left: 26%;
+  }
 }
 @media screen and (max-width: 1540px) {
   .navbar.navbar-expand{
@@ -791,6 +798,13 @@
     height: 300px;
     top: -240px;
     left: 373px;
+  }
+  .sc-bgqQcB.eEQpEk {
+    padding: 20% 20%;
+  }
+  .sc-bgqQcB.iXfLya {
+    position: relative;
+    left: 21%;
   }
 }
 @media screen and (max-width: 1470px) {
@@ -1080,6 +1094,13 @@
     top: -240px;
     left: 373px;
   }
+  .sc-bgqQcB.eEQpEk {
+    padding: 20% 20%;
+  }
+  .sc-bgqQcB.iXfLya {
+    position: relative;
+    left: 21%;
+  }
 }
 
 /* 1080px ~1440px까지는 아래 설정을 따름 */
@@ -1273,6 +1294,10 @@
   }
   .sc-bgqQcB.eEQpEk {
     padding: 20% 20%;
+  }
+  .sc-bgqQcB.iXfLya {
+    position: relative;
+    left: 20%;
   }
 }
 .navbar.navbar-expand {
