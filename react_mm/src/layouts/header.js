@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { loginState } from '../recoil/atoms';
@@ -16,6 +16,8 @@ import imggenreselect from '../images/genreselect.png'
 import imgmovie from '../images/movie.png'
 import account from '../images/account.png'
 import { API } from "../config";
+import styled from 'styled-components';
+import { titleCollect } from "../services/appServices";
 
 
 const API_USER_URL = API.USER;
@@ -63,6 +65,70 @@ const Header = () => {
       window.location.href = 'http://127.0.0.1:8000/user/info/';
     }
   }
+  const [wholeTextArray, setWholeTextArray] = useState(['아이유', '수지', '복숭아', '밤편지'])
+  const [inputValue, setInputValue] =useState('')
+  const [isHaveInputValue, setIsHaveInputValue] = useState(false)
+  const [dropDownList, setDropDownList] = useState(wholeTextArray)
+  const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
+
+  const showDropDownList = () => {
+      if (inputValue === '') {
+          setIsHaveInputValue(false)
+          setDropDownList([])
+      } else {
+          const chooseTextList = wholeTextArray.filter(textItem => 
+              textItem.includes(inputValue)
+              )
+              setDropDownList(chooseTextList)
+      }
+  }
+
+  const changeInputValue = event => {
+      setInputValue(event.target.value)
+      setIsHaveInputValue(true)
+  }
+
+  const clickDropDownItem = clickedItem => {
+      setInputValue(clickedItem)
+      setIsHaveInputValue(false)
+      console.log(inputValue)
+      console.log(clickedItem)
+
+      // navigate(`/autoTitleInfo/${clickedItem}`);
+      // navigate(`/autoTitleSelect?title=${clickedItem}`);
+      navigate(`/autoTitleInfo`, {
+        state: {
+          title : clickedItem
+        }
+      });
+      
+  };
+
+  const handleDropDownKey = event => {
+      if (isHaveInputValue) {
+          if (
+              event.key === 'ArrowDown' &&
+              dropDownList.length - 1 > dropDownItemIndex
+          ) {
+              setDropDownItemIndex(dropDownItemIndex + 1)
+          }
+
+          if (event.key === 'ArrowUp' && dropDownItemIndex >= 0)
+              setDropDownItemIndex(dropDownItemIndex - 1)
+          if (event.key === 'Enter' && dropDownItemIndex >= 0) {
+              clickDropDownItem(dropDownList[dropDownItemIndex])
+              setDropDownItemIndex(-1)
+          }
+          }
+  }
+  useEffect(()=> {
+    titleCollect().then(data =>{ 
+      setWholeTextArray(data);
+      console.log(wholeTextArray)
+  },console.log(wholeTextArray))
+  },[])
+
+  useEffect(showDropDownList, [inputValue])
 
   return (
     <Navbar variant="dark">
@@ -75,6 +141,39 @@ const Header = () => {
             alt="MixMind Logo"
         />
       </Navbar.Brand>
+      <WholeBox>
+          {/* <Title text='AutoComplete' /> */}
+          <InputBox isHaveInputValue={isHaveInputValue}>
+            <Input
+              type='text'
+              value={inputValue}
+              onChange={changeInputValue}
+              onKeyUp={handleDropDownKey}
+            />
+            <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
+          </InputBox>
+          {isHaveInputValue && (
+            <DropDownBox>
+              {dropDownList.length === 0 && (
+                <DropDownItem>해당하는 단어가 없습니다</DropDownItem>
+              )}
+              {dropDownList.map((dropDownItem, dropDownIndex) => {
+                return (
+                  <DropDownItem
+                    key={dropDownIndex}
+                    onClick={() => clickDropDownItem(dropDownItem)}
+                    onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
+                    className={
+                      dropDownItemIndex === dropDownIndex ? 'selected' : ''
+                    }
+                  >
+                    {dropDownItem}
+                  </DropDownItem>
+                )
+              })}
+            </DropDownBox>
+          )}
+      </WholeBox>
       <Nav>
         <Button variant = 'dark' className="log" onClick={() => {loggedIn ? handleLogout() : navigate('/login')}}>
           {loggedIn ? <img src={imglogout} width = "30" height = "30" alt="로그아웃" title="로그아웃"/> : <img src={imglogin} width = "30" height = "30" alt="로그인" title="로그인"/>}
@@ -119,4 +218,71 @@ const Header = () => {
   );
 };
 
+const activeBorderRadius = '16px 16px 0 0'
+const inactiveBorderRadius = '16px 16px 16px 16px'
+
+const WholeBox = styled.div`
+  position: relative;
+  left: 20%;
+`
+
+const InputBox = styled.div`
+  background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    z-index: 2;
+    width: 340px;
+    height: 45px;
+    position: relative;
+    top: 3px;
+  &:focus-within {
+    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
+  }
+`
+
+const Input = styled.input`
+  flex: 1 0 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+`
+
+const DeleteButton = styled.div`
+  cursor: pointer;
+  position: relative;
+  top: -4px;
+`
+
+const DropDownBox = styled.ul`
+    width: 466.9%;
+    position: relative;
+    top: -10px;
+    display: table-caption;
+    margin: 0px auto;
+    padding: 18px 0px;
+    background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 0px solid rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    border-image: initial;
+    border-top: none;
+    border-radius: 0px 0px 16px 16px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+    list-style-type: none;
+    z-index: 1;
+`
+
+const DropDownItem = styled.li`
+  padding: 0 16px;
+
+  &.selected {
+    background-color: lightgray;
+  }
+`
 export default Header;
