@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { titleCollect } from "../services/appServices";
 
@@ -22,8 +22,6 @@ import { titleCollect } from "../services/appServices";
 //         </div>
 //     )
 // };
-
-
 
 const AutoComplete = () => {
     const [wholeTextArray, setWholeTextArray] = useState(['아이유', '수지', '복숭아', '밤편지'])

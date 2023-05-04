@@ -20,9 +20,16 @@ export default function Home() {
 
   const markerColors = ['#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9', '#FF4136', '#0074D9','#FF4136'];
   const emotion = ['사랑', '슬픔', '즐거움', '분노', '열정', '외로움', '행복', '그리움', '놀라움', '두려움'];
+
+  const positiveEmotions = ['사랑', '즐거움', '열정', '행복', '놀라움'];
+  const negativeEmotions = ['슬픔', '분노', '외로움', '그리움', '두려움'];
+
+  const positiveValues = emotionValues.filter((value, index) => positiveEmotions.includes(emotion[index]));
+  const negativeValues = emotionValues.filter((value, index) => negativeEmotions.includes(emotion[index]));
   
   return (
     <div className='home'>
+      <div className='plot-container'>
       <Plot
         data={[
           {
@@ -58,8 +65,8 @@ export default function Home() {
             l: 50,
             r: 50
           },
-          width: 500,
-          height: 500,
+          width: 450,
+          height: 450,
           hovermode: 'closest',
           plot_bgcolor: '#121212',
           paper_bgcolor: '#121212',
@@ -69,25 +76,29 @@ export default function Home() {
         }}
         onClick={onClick}
       />
-      <ListGroup className='emotionrange'>
-        {emotionValues.map((value, index) => (
-          <div key={index} className='emotionlist'>
-            <div><b>{emotion[index]}</b></div>
-            <div>
-              <input
-                min={0}
-                max={100}
-                step={5}
-                type='range'
-                value={value}
-                onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
-              />
-            </div>
-            <div><b>{value}</b></div>
-          </div>
-        ))}
-      </ListGroup>
-      <div className='button-wrapper'>
+      </div>
+      <div className='emotionrange'>
+        <div className='listgroup-container'>
+          <ListGroup>
+            {positiveEmotions.map((emotion, index) => (
+              <div key={index} className='emotionlist'>
+                <div><b>{emotion}</b></div>
+                <div>
+                  <input
+                    min={0}
+                    max={100}
+                    step={5}
+                    type='range'
+                    value={positiveValues[index]}
+                    onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
+                  />
+                </div>
+                <div><b>{positiveValues[index]}</b></div>
+              </div>
+            ))}
+          </ListGroup>
+        </div>
+        <div className='button-wrapper'>
         <Button className='homebutton' variant='dark'
           onClick={() => {
             navigate(`/musicRecom`, {
@@ -99,6 +110,27 @@ export default function Home() {
           }}>
           <b>음악 추천 받기</b>
         </Button>
+        </div>
+        <div className='listgroup-container'>
+          <ListGroup>
+            {negativeEmotions.map((emotion, index) => (
+              <div key={index} className='emotionlist'>
+                <div><b>{emotion}</b></div>
+                <div>
+                  <input
+                    min={0}
+                    max={100}
+                    step={5}
+                    type='range'
+                    value={negativeValues[index]}
+                    onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
+                  />
+                </div>
+                <div><b>{negativeValues[index]}</b></div>
+              </div>
+            ))}
+          </ListGroup>
+        </div>
       </div>
     </div>
     
