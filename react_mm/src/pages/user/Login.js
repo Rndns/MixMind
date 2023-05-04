@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { loginState } from '../../recoil/atoms';
+import { loginState } from '../../atom/atoms';
 import { API } from "../../config";
 
 const API_USER_URL = API.USER;
