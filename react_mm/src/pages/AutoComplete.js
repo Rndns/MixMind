@@ -53,9 +53,16 @@ const AutoComplete = () => {
     const clickDropDownItem = clickedItem => {
         setInputValue(clickedItem)
         setIsHaveInputValue(false)
+        console.log(inputValue)
+        console.log(clickedItem)
+
         // navigate(`/autoTitleInfo/${clickedItem}`);
         // navigate(`/autoTitleSelect?title=${clickedItem}`);
-        navigate(`/autoTitleSelect?${clickedItem}`);
+        navigate(`/autoTitleInfo`, {
+          state: {
+            title : clickedItem
+          }
+        });
         
     };
 

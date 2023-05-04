@@ -114,7 +114,6 @@ class CollectTitleViewSet(viewsets.ViewSet):
     def search(self, request):
         # genreSelectInfo = MusicInfo.objects.filter(genre = request.data.get(''))  appservice -> body : genre(value) -> genre: 1 
         title = request.query_params.get('title')
-        print(title)
         titleInfo = MusicInfo.objects.filter(title = title)
         serializer = MusicInfoSerializer(titleInfo, many=True)
         return Response(serializer.data)

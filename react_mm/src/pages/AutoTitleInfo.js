@@ -12,9 +12,9 @@ export default function AutoTitleInfo(){
     console.log(2)
     
     useEffect(() => {
-        console.log(location.state.ttl)
+        console.log(location.state.title)
         console.log(1)
-        titleSelect(location.state.ttl).then((data) => {
+        titleSelect(location.state.title).then((data) => {
             setTitleSelectInfo(data); 
         });
     }, []);

@@ -110,8 +110,8 @@ export async function titleSelect(clickedItem) {
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`;
-	// const MixMindApiUrl = `${API_BASE_URL}/autoTitleInfo/search/?title=${clickedItem}`;
-	const MixMindApiUrl =`${API_BASE_URL}/titleSelect?title=${clickedItem}`
+	const MixMindApiUrl = `${API_BASE_URL}/titleInfo/search/?title=${clickedItem}`;
+	// const MixMindApiUrl =`${API_BASE_URL}/titleInfo/?title=${clickedItem}`
 
 	return fetch(MixMindApiUrl, {
 		method: "get",
