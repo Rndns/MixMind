@@ -234,6 +234,8 @@ mm_bert/main/rock_predict_emotion.csv
 mm_bert/main/trot_predict_emotion.csv
 mm_bert/trot_youtube.csv
 mm_bert/main/Main_BERT_to_DB.ipynb
+mm_bert/folk_youtube.csv
+mm_bert/main/folk_predict_emotion.csv
 
 # react config
 **/src/config.js
