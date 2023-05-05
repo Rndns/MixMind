@@ -18,6 +18,7 @@ import account from '../images/account.png'
 import { API } from "../config";
 import styled from 'styled-components';
 import { titleCollect } from "../services/appServices";
+import ReactDOM from 'react-dom';
 
 
 const API_USER_URL = API.USER;
@@ -70,6 +71,7 @@ const Header = () => {
   const [isHaveInputValue, setIsHaveInputValue] = useState(false)
   const [dropDownList, setDropDownList] = useState(wholeTextArray)
   const [dropDownItemIndex, setDropDownItemIndex] = useState(-1)
+  const [showDropDownBox, setShowDropDownBox] = useState(false);
 
   const showDropDownList = () => {
       if (inputValue === '') {
@@ -124,12 +126,16 @@ const Header = () => {
   useEffect(()=> {
     titleCollect().then(data =>{ 
       setWholeTextArray(data);
+      setShowDropDownBox(true);
       console.log(wholeTextArray)
   },console.log(wholeTextArray))
   },[])
 
   useEffect(showDropDownList, [inputValue])
-
+  
+  const handleDropDownBoxClose = () => {
+    setShowDropDownBox(false);
+  };
   return (
     <Navbar variant="dark">
       <Navbar.Brand href="/">
@@ -141,7 +147,7 @@ const Header = () => {
             alt="MixMind Logo"
         />
       </Navbar.Brand>
-      <WholeBox>
+      <WholeBox className='inputbox'>
           {/* <Title text='AutoComplete' /> */}
           <InputBox isHaveInputValue={isHaveInputValue}>
             <Input
@@ -149,29 +155,33 @@ const Header = () => {
               value={inputValue}
               onChange={changeInputValue}
               onKeyUp={handleDropDownKey}
+              placeholder="검색어를 입력해주세요"
             />
             <DeleteButton onClick={() => setInputValue('')}>&times;</DeleteButton>
           </InputBox>
-          {isHaveInputValue && (
-            <DropDownBox>
-              {dropDownList.length === 0 && (
-                <DropDownItem>해당하는 단어가 없습니다</DropDownItem>
-              )}
-              {dropDownList.map((dropDownItem, dropDownIndex) => {
-                return (
-                  <DropDownItem
-                    key={dropDownIndex}
-                    onClick={() => clickDropDownItem(dropDownItem)}
-                    onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
-                    className={
-                      dropDownItemIndex === dropDownIndex ? 'selected' : ''
-                    }
-                  >
-                    {dropDownItem}
-                  </DropDownItem>
-                )
-              })}
-            </DropDownBox>
+          {ReactDOM.createPortal(
+            isHaveInputValue && (
+              <DropDownBox  className='DropDownBox'>
+                {dropDownList.slice(0, 20).length === 0 && (
+                  <DropDownItem>해당하는 단어가 없습니다</DropDownItem>
+                )}
+                {dropDownList.slice(0, 20).map((dropDownItem, dropDownIndex) => {
+                  return (
+                    <DropDownItem
+                      key={dropDownIndex}
+                      onClick={() => clickDropDownItem(dropDownItem)}
+                      onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
+                      className={
+                        dropDownItemIndex === dropDownIndex ? 'selected' : ''
+                      }
+                    >
+                      {dropDownItem}
+                    </DropDownItem>
+                  )
+                })}
+              </DropDownBox>
+            ),
+            document.body
           )}
       </WholeBox>
       <Nav>
@@ -227,17 +237,18 @@ const WholeBox = styled.div`
 `
 
 const InputBox = styled.div`
-  background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: row;
-    padding: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 9px;
+    border: 5px solid rgb(70 70 70);
     border-radius: 15px;
     z-index: 2;
     width: 340px;
     height: 45px;
     position: relative;
     top: 3px;
+    left: 38%;
   &:focus-within {
     box-shadow: 0 10px 10px rgb(0, 0, 0, 0.3);
   }
@@ -260,26 +271,25 @@ const DeleteButton = styled.div`
 `
 
 const DropDownBox = styled.ul`
-    width: 466.9%;
-    position: relative;
-    top: -10px;
+    width: 17.85%;
+    position: absolute;
+    top: 7%;
+    left: 70.65%;
     display: table-caption;
     margin: 0px auto;
-    padding: 18px 0px;
+    padding: 0px 0px;
     background-color: white;
-    border-right: 1px solid rgba(0, 0, 0, 0.3);
-    border-bottom: 0px solid rgba(0, 0, 0, 0.3);
-    border-left: 1px solid rgba(0, 0, 0, 0.3);
-    border-image: initial;
-    border-top: none;
-    border-radius: 0px 0px 16px 16px;
+    border: 5px solid rgba(70, 70, 70);
+    border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
     list-style-type: none;
     z-index: 1;
 `
 
 const DropDownItem = styled.li`
-  padding: 0 16px;
+    padding: 0px 7px;
+    border-bottom: solid;
+    border-width: 1px;
 
   &.selected {
     background-color: lightgray;

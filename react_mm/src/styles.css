@@ -251,7 +251,7 @@
   .home {
     color: white;
     margin: auto;
-    padding: 0% 37%;
+    padding: 4.45% 37%;
   }
   .musicrecompage {
     color: #dbdbdb; /* 추천 페이지 글자색 설정 */
@@ -281,6 +281,7 @@
     position: relative;
     left: 212px;
     top: 17px;
+    margin-left: 10px;
     }
   .hform-group4 button.btn.btn-outline-light {
     border-radius: 10px;
@@ -291,7 +292,7 @@
   .mform-group3 button.btn.btn-outline-light {
     border-radius: 10px;
     position: relative;
-    left: 330px;
+    left: 259px;
     top: 17px;
     }
   .btn.btn-light {
@@ -507,9 +508,24 @@
   .sc-bgqQcB.eEQpEk {
     padding: 20% 20%;
   }
-  .sc-bgqQcB.iXfLya {
+  .navbar.navbar-expand.navbar-dark div.inputbox {
     position: relative;
-    left: 26%;
+    left: 20%;
+    top: -1px;
+  }
+  ul.DropDownBox {
+    width: 17.85%;
+    position: absolute;
+    top: 7%;
+    left: 70.65%;
+    display: table-caption;
+    margin: 0px auto;
+    background-color: white;
+    border: 5px solid rgb(70, 70, 70);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+    list-style-type: none;
+    z-index: 1;
   }
 }
 @media screen and (max-width: 1540px) {
@@ -802,9 +818,24 @@
   .sc-bgqQcB.eEQpEk {
     padding: 20% 20%;
   }
-  .sc-bgqQcB.iXfLya {
+  ul.DropDownBox {
+    width: 22.25%;
+    position: absolute;
+    top: 9%;
+    left: 63.85%;
+    display: table-caption;
+    margin: 0px auto;
+    background-color: white;
+    border: 5px solid rgb(70, 70, 70);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+    list-style-type: none;
+    z-index: 1;
+  }
+  .navbar.navbar-expand.navbar-dark div.inputbox {
     position: relative;
-    left: 21%;
+    left: 13%;
+    top: -1px;
   }
 }
 @media screen and (max-width: 1470px) {
@@ -1097,9 +1128,24 @@
   .sc-bgqQcB.eEQpEk {
     padding: 20% 20%;
   }
-  .sc-bgqQcB.iXfLya {
+  ul.DropDownBox {
+    width: 23.35%;
+    position: absolute;
+    top: 9%;
+    left: 62.85%;
+    display: table-caption;
+    margin: 0px auto;
+    background-color: white;
+    border: 5px solid rgb(70, 70, 70);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+    list-style-type: none;
+    z-index: 1;
+  }
+  .navbar.navbar-expand.navbar-dark div.inputbox {
     position: relative;
-    left: 21%;
+    left: 12%;
+    top: -1px;
   }
 }
 
@@ -1160,21 +1206,22 @@
   .btn.btn-outline-light {
     border-radius: 10px;
     position: relative;
-    left: 107px;
+    left: 110px;
     top: 15px;
-    }
+    margin-left: 10px;
+  }
   .hform-group4 button.btn.btn-outline-light {
     border-radius: 10px;
     position: relative;
-    left: 190px;
+    left: 194px;
     top: 14px;
-    }
+  }
   .mform-group3 button.btn.btn-outline-light {
     border-radius: 10px;
     position: relative;
-    left: 222px;
+    left: 157px;
     top: 14px;
-    }
+  }
   .btn.btn-light {
     border-radius: 10px;
     position: -webkit-sticky;
@@ -1182,20 +1229,23 @@
     z-index: 1;
     left: 87%;
     bottom:3%;
-    }
+  }
+  .navbar-nav button.btn.btn-dark {
+    margin-left: 0px;
+    z-index: 9999;
+    border-radius: 10px;
+}
   .side.btn.btn-dark {
     border-radius: 10px;
-    position: fixed;
+    position: relative;
     z-index: 9999;
-    bottom: 92%;
-    left: 91%;
+    left: 26%;
   }
   .log.btn.btn-dark {
     border-radius: 10px;
-    position: fixed;
+    position: relative;
     z-index: 9999;
-    bottom: 92%;
-    left: 86%;
+    left: 23%;
   }
   .btn.btn-dark {
     border-radius: 10px;
@@ -1282,22 +1332,47 @@
   .youtube b {
     font-size: 25px;
     position: relative;
-    bottom: 220px;
-    left: 165px;
+    bottom: 201px;
+    left: 66px;
   }
   .youtube iframe {
-    width: 400px;
+    width: 376px;
+    height: 239px;
     position: relative;
-    top: 77px;
-    left: -160px;
+    top: 55px;
+    left: -174px;
     border-radius: 15px;
+  }
+  .v-line {
+    width: 1%;
+    position: relative;
+    border-left: solid #212121;
+    border-width: 1px;
+    height: 290px;
+    top: -230px;
+    left: 449px;
   }
   .sc-bgqQcB.eEQpEk {
     padding: 20% 20%;
   }
-  .sc-bgqQcB.iXfLya {
+  .navbar.navbar-expand.navbar-dark div.inputbox {
     position: relative;
-    left: 20%;
+    left: 12%;
+    top: -1px;
+  }
+  ul.DropDownBox {
+    width: 23.85%;
+    position: absolute;
+    top: 9%;
+    left: 62.85%;
+    display: table-caption;
+    margin: 0px auto;
+    background-color: white;
+    border: 5px solid rgb(70, 70, 70);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+    list-style-type: none;
+    z-index: 1;
   }
 }
 .navbar.navbar-expand {
