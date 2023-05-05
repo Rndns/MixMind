@@ -12,7 +12,8 @@ export default function Home() {
     console.log(evt.points[0].y);
   };
 
-  const onDataChanged = (index, value) => {
+  const onDataChanged = (emotionName, value) => {
+    const index = emotion.indexOf(emotionName);
     const newData = [...emotionValues];
     newData[index] = value;
     setData(newData);
@@ -90,7 +91,7 @@ export default function Home() {
                     step={5}
                     type='range'
                     value={positiveValues[index]}
-                    onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
+                    onChange={(evt) => onDataChanged(emotion, parseFloat(evt.target.value))}
                   />
                 </div>
                 <div><b>{positiveValues[index]}</b></div>
@@ -123,7 +124,7 @@ export default function Home() {
                     step={5}
                     type='range'
                     value={negativeValues[index]}
-                    onChange={(evt) => onDataChanged(index, parseFloat(evt.target.value))}
+                    onChange={(evt) => onDataChanged(emotion, parseFloat(evt.target.value))}
                   />
                 </div>
                 <div><b>{negativeValues[index]}</b></div>
