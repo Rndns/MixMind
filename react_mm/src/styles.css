@@ -1479,7 +1479,13 @@ input[type='range']::-webkit-slider-thumb {
   display : flex;
   justify-content: center;
   width: 450px;
-  margin-top: 40px;
+  margin-top: 60px;
+}
+
+.recombutton:hover {
+  color: #ffffff;
+  filter: brightness(150%);
+  cursor: pointer;
 }
 
 .homebutton.btn.btn-dark {
