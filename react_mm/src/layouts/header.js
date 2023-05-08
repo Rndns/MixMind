@@ -162,10 +162,10 @@ const Header = () => {
           {ReactDOM.createPortal(
             isHaveInputValue && (
               <DropDownBox  className='DropDownBox'>
-                {dropDownList.slice(0, 20).length === 0 && (
+                {dropDownList.slice(0, 10).length === 0 && (
                   <DropDownItem>해당하는 단어가 없습니다</DropDownItem>
                 )}
-                {dropDownList.slice(0, 20).map((dropDownItem, dropDownIndex) => {
+                {dropDownList.slice(0, 10).map((dropDownItem, dropDownIndex) => {
                   return (
                     <DropDownItem
                       key={dropDownIndex}
@@ -287,7 +287,7 @@ const DropDownBox = styled.ul`
 `
 
 const DropDownItem = styled.li`
-    padding: 0px 7px;
+    padding: 5px 7px;
     border-bottom: solid;
     border-width: 1px;
 

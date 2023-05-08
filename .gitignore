@@ -239,3 +239,5 @@ mm_bert/main/folk_predict_emotion.csv
 
 # react config
 **/src/config.js
+mm_bert/ballad_youtube.csv
+mm_bert/main/ballad_predict_emotion.csv
