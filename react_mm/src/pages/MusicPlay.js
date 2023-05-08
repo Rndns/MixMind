@@ -14,6 +14,7 @@ import play from '../images/play.png';
 import more from '../images/more.png';
 import heartadd from '../images/heart-add.png';
 import '../styles.css';
+import { InputComment } from "../services/appServices";
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -65,6 +66,7 @@ export default function MusicPlay() {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = React.useState(false);
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
+  const [comment, setComments] = useState('')
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -133,6 +135,12 @@ export default function MusicPlay() {
               {/* {location.state.musicInfo.likes} */}
           </Row>
         </Container>
+        <div>
+          <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
+          <label for 댓글입력 />
+          <button onClick={() => InputComment(comment)}>댓글입력</button>
+          
+        </div>
         <div className="lyrics">
           {/* 가사 */}
           <Lyrics lyrics={location.state.musicInfo.lyrics}/>

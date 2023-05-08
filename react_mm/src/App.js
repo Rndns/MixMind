@@ -46,9 +46,6 @@ function App() {
             <Route path="/musicTitle" element={<MusicTitle />}></Route>
             <Route path="/autoTitleInfo" element={<AutoTitleInfo />}></Route>
             <Route path="/autoTitleSelect" element={<AutoTitleSelect />}></Route>
-
-
-              
           </Routes>
         </div>
         <Footer/>

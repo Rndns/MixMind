@@ -2,6 +2,7 @@ import { API } from "../config";
 
 const API_BASE_URL = API.MAIN;
 const API_USER_URL = API.USER;
+const API_CMMT_URL = API.COMMUNITY;
 
 export async function musicRecommend(emotions) {
 	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
@@ -121,5 +122,21 @@ export async function titleSelect(clickedItem) {
 		headers:{
 			'Content-Type': "application/json"
 		}
+	}).then(resp => resp.json());
+}
+
+export async function InputComment(comment) {
+	const MixMindApiUrl = `${API_CMMT_URL}/collectComment/`;
+	// const MixMindApiUrl = `${API_CMMT_URL}/collectComment/search/?comment=${comment}`;
+	
+
+	return fetch(MixMindApiUrl, {
+		method: "post",
+		headers:{
+			'Content-Type': "application/json"
+		},
+		body: JSON.stringify({
+			comment,
+		}),
 	}).then(resp => resp.json());
 }

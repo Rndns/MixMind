@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'mixmind.apps.MixmindConfig',
     'user.apps.UserConfig',
     'corsheaders',
+    'community.apps.CommunityConfig'
 ]
 
 MIDDLEWARE = [
