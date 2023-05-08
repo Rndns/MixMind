@@ -6,6 +6,9 @@ from .models import Comment
 import numpy as np
 from .serializers import CommentSerializer
 from mixmind.models import MusicInfo
+from user.models import User
+from rest_framework import status
+from django.contrib.auth import authenticate
 
 
 # Create your views here.
@@ -61,10 +64,12 @@ from django.core.exceptions import ObjectDoesNotExist
 class CollectCommentViewSet(viewsets.ViewSet):
     def create(self, request):
         try:
-            music = MusicInfo.objects.get(id=1)
-            user = request.user
+            musicID = request.data.get('musicId')
+            music = MusicInfo.objects.get(id=musicID)
+            user = authenticate(email = "sale4168000@gmail.com", password = 1234)
+            # user = request.user
             comment = request.data.get('comment')
-            new_comment = Comment.objects.create(music_id=music, user_id=user, comment=comment)
+            new_comment = Comment.objects.create(music_id=music.id, user_id=user.id, comment=comment)
             serializer = CommentSerializer(new_comment)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist as e:
