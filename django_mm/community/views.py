@@ -6,7 +6,11 @@ from .models import Comment
 import numpy as np
 from .serializers import CommentSerializer
 from mixmind.models import MusicInfo
-
+from user.models import User
+from rest_framework import status
+from django.contrib.auth import authenticate
+import jwt
+from django.conf import settings
 
 # Create your views here.
 
@@ -60,14 +64,33 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class CollectCommentViewSet(viewsets.ViewSet):
     def create(self, request):
+        authorization_header = request.headers.get('Authorization')
+        if not authorization_header:
+            return HttpResponseBadRequest('Authorization header not found')
+
+
         try:
-            music = MusicInfo.objects.get(id=1)
-            user = request.user
+            _, token = authorization_header.split(' ')
+            decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            print(decoded_token)
+            email = decoded_token['email']
+            user = User.objects.get(email=email)
+            musicID = request.data.get('musicId')
+            music = MusicInfo.objects.get(id=musicID)
+            # user = authenticate(email = "sale4168000@gmail.com", password = 1234)
+
+            # user = request.user
             comment = request.data.get('comment')
-            new_comment = Comment.objects.create(music_id=music, user_id=user, comment=comment)
+            new_comment = Comment.objects.create(music_id=music.id, user_id=user.id, comment=comment)
             serializer = CommentSerializer(new_comment)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist as e:
             return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+
+    def list(self, request):
+        musicId = request.query_params.get('musicId')
+        commentList = Comment.objects.filter(music_id=musicId)
+        serializer = CommentSerializer(commentList, many=True)
+        return Response(serializer.data)
 #  ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x7fad311051f0>": "Comment.user_id" must be a "User" instance.
 # "Cannot assign "<django.contrib.auth.models.AnonymousUser object" 라고 되어있습니다. 이 말은 해당 사용자가 인증되지 않았다는 것을 나타냅니다. 

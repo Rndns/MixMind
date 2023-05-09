@@ -30,7 +30,7 @@ function PrevArrow(props) {
 }
 
 export default function Slick(props) {
-  const { musicInfos } = props
+  const { musicInfos, commentList } = props
   const navigate = useNavigate();
 
   const settings = {
@@ -52,7 +52,8 @@ export default function Slick(props) {
               onClick={() => {
                 navigate(`/musicPlayer`,{
                   state: {
-                    musicInfo: musicInfo
+                    musicInfo: musicInfo,
+                    commentList: commentList
                   },
                   replace: false
                 })

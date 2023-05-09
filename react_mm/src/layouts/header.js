@@ -272,7 +272,7 @@ const DeleteButton = styled.div`
 
 const DropDownBox = styled.ul`
     width: 17.85%;
-    position: absolute;
+    position: fixed;
     top: 7%;
     left: 70.65%;
     display: table-caption;
