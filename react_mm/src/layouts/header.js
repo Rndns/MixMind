@@ -93,8 +93,6 @@ const Header = () => {
   const clickDropDownItem = clickedItem => {
       setInputValue(clickedItem)
       setIsHaveInputValue(false)
-      console.log(inputValue)
-      console.log(clickedItem)
 
       // navigate(`/autoTitleInfo/${clickedItem}`);
       // navigate(`/autoTitleSelect?title=${clickedItem}`);
@@ -123,6 +121,11 @@ const Header = () => {
           }
           }
   }
+  
+  const handleDropDownBoxClose = () => {
+    setShowDropDownBox(false);
+  };
+
   useEffect(()=> {
     titleCollect().then(data =>{ 
       setWholeTextArray(data);
@@ -132,10 +135,7 @@ const Header = () => {
   },[])
 
   useEffect(showDropDownList, [inputValue])
-  
-  const handleDropDownBoxClose = () => {
-    setShowDropDownBox(false);
-  };
+
   return (
     <Navbar variant="dark">
       <Navbar.Brand href="/">

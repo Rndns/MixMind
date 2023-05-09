@@ -18,8 +18,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('mixmind/', include('mixmind.urls')),
     path('user/', include('user.urls')),
+    path('mixmind/', include('mixmind.urls')),
     path('community/', include('community.urls')),
+    path('palyList/', include('playList.urls')),
 
 ]
