@@ -15,6 +15,7 @@ import more from '../images/more.png';
 import heartadd from '../images/heart-add.png';
 import '../styles.css';
 import { InputComment } from "../services/appServices";
+import { loadComment } from "../services/appServices";
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -67,7 +68,22 @@ export default function MusicPlay() {
   const [modalShow, setModalShow] = React.useState(false);
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
   const [comment, setComments] = useState('')
+  const [commentlist, setCommentList] = useState([])
+  const renewComment = () => {
+    InputComment(comment, location.state.musicInfo.id);
+    loadComment(location.state.musicInfo.id).then(Data => setCommentList(Data));
+    navigate(`/musicPlayer`,{
+      state: {
+        musicInfo: location.state.musicInfo,
+        commentList: location.state.commentList
+      },
+      replace: false
+    })
+  }
+  
+
   useEffect(() => {
+    setCommentList(location.state.commentList)
     window.scrollTo(0, 0);
   }, []);
   // album "on the street (with J. Cole)"
@@ -138,8 +154,7 @@ export default function MusicPlay() {
         <div>
           <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
           <label for 댓글입력 />
-          <button onClick={() => InputComment(comment)}>댓글입력</button>
-          
+          <button onClick={renewComment}>댓글입력</button>
         </div>
         <div className="lyrics">
           {/* 가사 */}
@@ -149,6 +164,16 @@ export default function MusicPlay() {
           <b>YouTube로 감상하기</b>
           <iframe width="480" height="270" src={videoSrc} title={location.state.musicInfo.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div class='v-line'></div>
+        </div>
+        <div>
+        {/* <b>댓글보기</b>
+          {commentlist.map((comment)=>(
+            <div key={comment.id}>{comment.comment}</div>
+          ))} */}
+          <b>댓글보기</b>
+          {commentlist && commentlist.map((comment)=>(
+            <div key={comment.id}>{comment.comment}</div>
+          ))}
         </div>
       </div>
     </div>

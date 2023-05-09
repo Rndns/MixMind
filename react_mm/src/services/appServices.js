@@ -125,18 +125,35 @@ export async function titleSelect(clickedItem) {
 	}).then(resp => resp.json());
 }
 
-export async function InputComment(comment) {
+export async function InputComment(comment, musicId) {
 	const MixMindApiUrl = `${API_CMMT_URL}/collectComment/`;
+	const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+	const token = jwtToken.split('=')[1];
 	// const MixMindApiUrl = `${API_CMMT_URL}/collectComment/search/?comment=${comment}`;
 	
 
 	return fetch(MixMindApiUrl, {
 		method: "post",
 		headers:{
-			'Content-Type': "application/json"
+			'Content-Type': "application/json",
+			'Authorization': `Bearer ${token}`
 		},
 		body: JSON.stringify({
 			comment,
+			musicId
 		}),
 	}).then(resp => resp.json());
 }
+
+export async function loadComment(musicId) {
+	const MixMindApiUrl = `${API_CMMT_URL}/collectComment/?musicId=${musicId}`;
+	
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json",
+		},
+		
+	}).then(resp => resp.json());
+}
+
