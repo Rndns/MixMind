@@ -3,6 +3,7 @@ import Plot from 'react-plotly.js';
 import { useNavigate } from "react-router-dom";
 import { ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import recombutton from '../images/recom_button.png'
 
 export default function Home() {
   const navigate = useNavigate();
@@ -100,17 +101,20 @@ export default function Home() {
           </ListGroup>
         </div>
         <div className='button-wrapper'>
-        <Button className='homebutton' variant='dark'
+        <img className='recombutton'
+          src={recombutton}
+          width="80"
+          height="80"
+          alt="MixMind Logo"
           onClick={() => {
             navigate(`/musicRecom`, {
               state: {
                 emotions: emotionValues
-              }, 
-              replace: false 
+              },
+              replace: false
             });
-          }}>
-          <b>음악 추천 받기</b>
-        </Button>
+          }}
+        />
         </div>
         <div className='listgroup-container'>
           <ListGroup>
