@@ -68,7 +68,7 @@ export default function MusicPlay() {
   const [modalShow, setModalShow] = React.useState(false);
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
   const [comment, setComments] = useState('')
-  const [commentlist, setCommentList] = useState([])
+  const [commentList, setCommentList] = useState([])
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
     loadComment(location.state.musicInfo.id).then(Data => setCommentList(Data));
@@ -171,7 +171,7 @@ export default function MusicPlay() {
             <div key={comment.id}>{comment.comment}</div>
           ))} */}
           <b>댓글보기</b>
-          {commentlist && commentlist.map((comment)=>(
+          {commentList && commentList.map((comment)=>(
             <div key={comment.id}>{comment.comment}</div>
           ))}
         </div>
