@@ -52,8 +52,6 @@ export async function genreSelect() {
 }
 
 export async function genreSelectInfo({genre}) {
-	console.log(3);
-	console.log(genre);
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`;
