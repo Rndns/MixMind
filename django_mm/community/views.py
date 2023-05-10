@@ -11,6 +11,7 @@ from rest_framework import status
 from django.contrib.auth import authenticate
 import jwt
 from django.conf import settings
+from rest_framework.views import APIView
 
 # Create your views here.
 
@@ -93,4 +94,39 @@ class CollectCommentViewSet(viewsets.ViewSet):
         serializer = CommentSerializer(commentList, many=True)
         return Response(serializer.data)
 #  ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x7fad311051f0>": "Comment.user_id" must be a "User" instance.
-# "Cannot assign "<django.contrib.auth.models.AnonymousUser object" 라고 되어있습니다. 이 말은 해당 사용자가 인증되지 않았다는 것을 나타냅니다. 
+# "Cannot assign "<django.contrib.auth.models.AnonymousUser object" 라고 되어있습니다. 이 말은 해당 사용자가 인증되지 않았다는 것을 나타냅니다.
+
+# class CommentViewSet(viewsets.ViewSet):
+#     def update(self, request):
+#         commentId = request.query_params.get('commentId')
+#         commentList = Comment.objects.filter(id=commentId)
+
+    
+
+#     def delete(self, request):    
+#     queryset = Comment.objects.all()
+#     serializer_class = CommentSerializer
+
+
+class CommentViewSet(APIView):
+    def put(self, request, commentId):
+        try:
+            comment = Comment.objects.get(id=commentId)
+        except Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = CommentSerializer(comment, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, commentId):
+        try:
+            comment = Comment.objects.get(id=commentId)
+            comment.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Comment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+            
