@@ -155,3 +155,30 @@ export async function loadComment(musicId) {
 	}).then(resp => resp.json());
 }
 
+export async function updateComment(commentId, newContent) {
+	const MixMindApiUrl = `${API_BASE_URL}/updatecmt/${commentId}`;
+	
+	return fetch(MixMindApiUrl, {
+		method: "put",
+		headers:{
+			'Content-Type': "application/json"
+		},
+		body: JSON.stringify({
+			commentId,
+			newContent
+		})
+	}).then(resp => resp.json({ content: newContent }))
+}
+
+export async function deleteComment(commentId) {
+	const MixMindApiUrl = `${API_BASE_URL}/deletecmt/${commentId}`;
+	
+	return fetch(MixMindApiUrl, {
+		method: "delete",
+		headers:{
+			'Content-Type': "application/json"
+		},
+		body: commentId
+	}).then(resp => resp.json())
+}
+
