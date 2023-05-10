@@ -195,3 +195,4 @@ export async function loadPlayGroup(jwtToken) {
 			Authorization: `Bearer ${token}`,
 		},
 	}).then(resp => resp.json());
+}
