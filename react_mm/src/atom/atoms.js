@@ -44,3 +44,8 @@ export const loginState = atom({
 key: 'loginState',
 default: false
 });
+
+export const playListState = atom({
+  key: 'playListState',
+  default: false
+  });
