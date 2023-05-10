@@ -14,8 +14,7 @@ import play from '../images/play.png';
 import more from '../images/more.png';
 import heartadd from '../images/heart-add.png';
 import '../styles.css';
-import { InputComment } from "../services/appServices";
-import { loadComment } from "../services/appServices";
+import { InputComment, loadComment, updateComment, deleteComment } from "../services/appServices";
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -69,8 +68,14 @@ export default function MusicPlay() {
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
   const [comment, setComments] = useState('')
   const [commentList, setCommentList] = useState([])
+
+  const [newContent, setUpdatedComment] = useState([])
+  const [newCommentList, setNewCommentList] = useState([])
+
+
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
+
     loadComment(location.state.musicInfo.id).then(Data => setCommentList(Data));
     navigate(`/musicPlayer`,{
       state: {
@@ -78,6 +83,18 @@ export default function MusicPlay() {
         commentList: location.state.commentList
       },
       replace: false
+    })
+  }
+
+  
+  const changeComment = () => {
+    updateComment(newContent, state.musicInfo.id).then(Data => setNewCommentList(Data));
+    navigate(`/musicPlayer`, {
+      state: {
+        musicInfo: location.state.musicInfo,
+        commentList: location.state.commentList
+      },
+      repplace: false
     })
   }
   
@@ -159,6 +176,11 @@ export default function MusicPlay() {
         <div className="lyrics">
           {/* 가사 */}
           <Lyrics lyrics={location.state.musicInfo.lyrics}/>
+        </div>
+        <div>
+          <input type="text" value={comment} onChange={(e) => setUpdatedComment(e.target.value)} placeholder="댓글을 입력해주세요" />
+          <label for 댓글입력 />
+          <button onClick={changeComment}>댓글수정</button>
         </div>
         <div className="youtube">
           <b>YouTube로 감상하기</b>
