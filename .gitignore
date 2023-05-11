@@ -241,3 +241,5 @@ mm_bert/main/folk_predict_emotion.csv
 **/src/config.js
 mm_bert/ballad_youtube.csv
 mm_bert/main/ballad_predict_emotion.csv
+mm_bert/inde_youtube.csv
+mm_bert/main/inde_predict_emotion.csv
