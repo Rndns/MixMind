@@ -88,7 +88,7 @@ export default function MusicPlay() {
 
   
   const changeComment = () => {
-    updateComment(newContent, state.musicInfo.id).then(Data => setNewCommentList(Data));
+    updateComment(newContent, location.state.musicInfo.id).then(Data => setNewCommentList(Data));
     navigate(`/musicPlayer`, {
       state: {
         musicInfo: location.state.musicInfo,
