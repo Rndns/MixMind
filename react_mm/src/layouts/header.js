@@ -19,7 +19,8 @@ import { API } from "../config";
 import styled from 'styled-components';
 import { titleCollect } from "../services/appServices";
 import ReactDOM from 'react-dom';
-
+import { titleSelect } from "../services/appServices";
+import { loadComment } from '../services/appServices';
 
 const API_USER_URL = API.USER;
 
@@ -27,6 +28,8 @@ const Header = () => {
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useRecoilState(loginState);
   const [show, setShow] = useState(false);
+  const [musicInfo, setMusicInfo] = useState([]);
+  const [commentList, setCommentList] = useState('')
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -43,7 +46,6 @@ const Header = () => {
     
     if (jwtToken) {
       const token = jwtToken.split('=')[1];
-      console.log(token)
       fetch(`${API_USER_URL}/info/`, {
         method: 'get',
         headers: {
@@ -93,17 +95,22 @@ const Header = () => {
   const clickDropDownItem = clickedItem => {
       setInputValue(clickedItem)
       setIsHaveInputValue(false)
-      console.log(inputValue)
-      console.log(clickedItem)
 
       // navigate(`/autoTitleInfo/${clickedItem}`);
       // navigate(`/autoTitleSelect?title=${clickedItem}`);
-      navigate(`/autoTitleInfo`, {
-        state: {
-          title : clickedItem
-        }
+      titleSelect(clickedItem).then((data) => {
+        setMusicInfo(data); 
+        loadComment(data.id).then(data => {
+            setCommentList(data);
+        })
       });
-      
+      navigate(`/musicPlayer`,{
+        state: {
+          musicInfo: musicInfo[0],
+          commentList: commentList[0],
+        },
+        replace: false
+      });
   };
 
   const handleDropDownKey = event => {
@@ -123,19 +130,20 @@ const Header = () => {
           }
           }
   }
-  useEffect(()=> {
-    titleCollect().then(data =>{ 
-      setWholeTextArray(data);
-      setShowDropDownBox(true);
-      console.log(wholeTextArray)
-  },console.log(wholeTextArray))
-  },[])
-
-  useEffect(showDropDownList, [inputValue])
   
   const handleDropDownBoxClose = () => {
     setShowDropDownBox(false);
   };
+
+  useEffect(()=> {
+    titleCollect().then(data =>{ 
+      setWholeTextArray(data);
+      setShowDropDownBox(true);
+  })
+  },[])
+
+  useEffect(showDropDownList, [inputValue])
+
   return (
     <Navbar variant="dark">
       <Navbar.Brand href="/">

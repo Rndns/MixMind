@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { audioListState, selectedAudioState } from '../atom/atoms';
+import { audioListState, selectedAudioState, playListState } from '../atom/atoms';
 
-const AudioList = () => {
+const MusicPlayList = () => {
     const navigate = useNavigate()
     const [audioList, setAudioList] = useRecoilState(audioListState);
     const [selectedAudio, setSelectedAudio] = useRecoilState(selectedAudioState);
@@ -15,7 +15,6 @@ const AudioList = () => {
     };
 
     useEffect(() => {
-        
         setPlayListState(true)
     }, [])
 
@@ -47,4 +46,4 @@ const AudioList = () => {
     );
 };
 
-export default AudioList;
+export default MusicPlayList;

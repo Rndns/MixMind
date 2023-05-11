@@ -31,7 +31,7 @@ class MusicEmotion(models.Model):
 
 class UserEmotion(models.Model):
     id = models.AutoField(primary_key=True)
-    # user = models.ForeignKey('user.User')
+    user = models.ForeignKey('user.User', on_delete=models.CASCADE)
     love = models.FloatField()
     joy = models.FloatField()
     passion = models.FloatField()
@@ -42,8 +42,4 @@ class UserEmotion(models.Model):
     longing = models.FloatField()
     fear =models.FloatField()
     surprise = models.FloatField()
-
-# class UserPlayList(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     user = models.ForeignKey('user.User', related_name='UserPlayList')
-#     music = models.ForeignKey('MusicInfo', on_delete=models.CASCADE, related_name='MusicPlayList')
+    

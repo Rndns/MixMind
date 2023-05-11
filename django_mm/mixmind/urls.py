@@ -13,12 +13,6 @@ router.register(r'titleCollect', views.CollectTitleViewSet, basename='titleColle
 router.register(r'entireTitle', views.CollectTitleViewSet, basename='entireTitle')
 router.register(r'titleInfo', views.CollectTitleViewSet, basename='titleInfo')
 
-
-
-
-
-
 urlpatterns = [
     path('', include(router.urls)),
 ]
-# urlpatterns = router.urls

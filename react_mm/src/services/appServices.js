@@ -3,6 +3,7 @@ import { API } from "../config";
 const API_BASE_URL = API.MAIN;
 const API_USER_URL = API.USER;
 const API_CMMT_URL = API.COMMUNITY;
+const API_PLLI_URL = API.PLAYLIST;
 
 export async function musicRecommend(emotions) {
 	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
@@ -52,8 +53,6 @@ export async function genreSelect() {
 }
 
 export async function genreSelectInfo({genre}) {
-	console.log(3);
-	console.log(genre);
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`;
@@ -184,3 +183,16 @@ export async function deleteComment(commentId) {
 	}).then(resp => resp.json())
 }
 
+export async function loadPlayGroup(jwtToken) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/load`;
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(resp => resp.json());
+}
