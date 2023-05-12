@@ -78,6 +78,10 @@ export default function MusicPlay() {
 
   const [isExpanded, setIsExpanded] = useState(false);
   const buttonClass = isExpanded ? 'btn-light' : 'btn-dark';
+  const [selectedComment, setSelectedComment] = useState('')
+  const [chooseComment, setChooseComments] = useState('')
+
+
 
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
@@ -112,8 +116,9 @@ export default function MusicPlay() {
   const [modalOpen, setModalOpen] = useState(false);
 
   // 모달창 노출
-  const showModal = () => {
-      setModalOpen(true);
+  const showModal = (comment) => {
+    setChooseComments(comment);
+    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -213,21 +218,29 @@ export default function MusicPlay() {
               <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
               <button onClick={renewComment}>댓글입력</button>
             </div>
-            {commentList && commentList.map((comment)=>(
-              <div key={comment.id}>
-                <div>{comment.user.nickname}</div>
-                <div>{comment.created_at}</div>
-                <div>{comment.comment}</div>
+            {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment}/>}
+          {commentList && commentList.map((theComment)=>(
+              <div key={theComment.id}>
+                <div>{theComment.user.nickname}</div>
+                <div>{theComment.created_at}</div>
+                <div>{theComment.comment}</div>
                 <div id="example"></div>
                 <div className="comment-bg">
-                  <button onClick={showModal}>수정</button>
-                  {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+                  {/* <button onClick={showModal}>수정</button> */}
+                  <button onClick ={() => showModal(theComment.comment)}>수정</button>
                   <button>삭제</button>
                 </div>
               </div>
             ))}
             </Accordion.Body>
           </Accordion.Item>
+          {/* {modalOpen && selectedComment && (
+            <ModalBasic 
+              setModalOpen={setModalOpen}
+              comment={selectedComment}
+          // 추가적인 props가 있다면 여기에 전달할 수 있습니다.
+          />
+          )} */}
         </Accordion>
       </div>
     </div>

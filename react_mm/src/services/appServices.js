@@ -105,7 +105,6 @@ export async function titleCollect() {
 }
 
 export async function titleSelect(clickedItem) {
-	console.log(3);
 	console.log(clickedItem);
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?=${genre}`; 
 	// const MixMindApiUrl = `${API_BASE_URL}/genreSelectInfo/?genre=${genre}`; 
@@ -186,10 +185,58 @@ export async function deleteComment(commentId) {
 export async function loadPlayGroup(jwtToken) {
 	const token = jwtToken.split('=')[1];
 	
-	const MixMindApiUrl = `${API_PLLI_URL}/load`;
+	const MixMindApiUrl = `${API_PLLI_URL}/group`;
 
 	return fetch(MixMindApiUrl, {
 		method: "get",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function editPlayGroup(jwtToken, group, name) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/group/?id=${group.id}`;
+
+	return fetch(MixMindApiUrl, {
+		method: "put",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body:{
+			name,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function createPlayGroup(jwtToken, name) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/group`;
+
+	return fetch(MixMindApiUrl, {
+		method: "post",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body:{
+			name,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function delPlayGroup(jwtToken, group) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/group/?id=${group.id}`;
+
+	return fetch(MixMindApiUrl, {
+		method: "delete",
 		headers:{
 			'Content-Type': "application/json",
 			Authorization: `Bearer ${token}`,
