@@ -15,6 +15,8 @@ import more from '../images/more.png';
 import heartadd from '../images/heart-add.png';
 import '../styles.css';
 import { InputComment, loadComment, updateComment, deleteComment } from "../services/appServices";
+import Modals from "../components/Modal";
+import ReactDOM from 'react-dom';
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -86,7 +88,7 @@ export default function MusicPlay() {
     })
   }
 
-  
+  //수정하기 구현중 -> 미완성
   const changeComment = () => {
     updateComment(newContent, location.state.musicInfo.id).then(Data => setNewCommentList(Data));
     navigate(`/musicPlayer`, {
@@ -94,8 +96,14 @@ export default function MusicPlay() {
         musicInfo: location.state.musicInfo,
         commentList: location.state.commentList
       },
-      repplace: false
+      replace: false
     })
+  }
+
+  //수정할 때 쓸 Modal 컴포넌트 이용하기 위해서 만듦.
+  function handleClick() {
+    // 모달 컴포넌트 렌더링
+    ReactDOM.render(<Modals />, document.getElementById('example'));
   }
   
 
@@ -177,11 +185,11 @@ export default function MusicPlay() {
           {/* 가사 */}
           <Lyrics lyrics={location.state.musicInfo.lyrics}/>
         </div>
-        <div>
+        {/* <div>
           <input type="text" value={comment} onChange={(e) => setUpdatedComment(e.target.value)} placeholder="댓글을 입력해주세요" />
           <label for 댓글입력 />
           <button onClick={changeComment}>댓글수정</button>
-        </div>
+        </div> */}
         <div className="youtube">
           <b>YouTube로 감상하기</b>
           <iframe width="480" height="270" src={videoSrc} title={location.state.musicInfo.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -194,7 +202,16 @@ export default function MusicPlay() {
           ))} */}
           <b>댓글보기</b>
           {commentList && commentList.map((comment)=>(
-            <div key={comment.id}>{comment.comment}</div>
+            <div key={comment.id}>
+              <div>{comment.user.nickname}</div>
+              <div>{comment.created_at}</div>
+              <div>{comment.comment}</div>
+              <div id="example"></div>
+              <div>
+                <button onClick={handleClick}>수정</button>
+                <button>삭제</button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
