@@ -1,6 +1,21 @@
 .modal-container{
     background-color: aqua;
+
+    width: 300px;
+    height: 200px;
+
+    position: absolute;
+    top: 50%;
+     left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 8px;
 }
 .modal-close-btn{
     color: red;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
