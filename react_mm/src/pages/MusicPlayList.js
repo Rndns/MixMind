@@ -32,15 +32,15 @@ const MusicPlayList = () => {
                 </button>
             </div>
             <ul>
-            {audioList.map((audio) => (
-                <li key={audio.id} onClick={() => handleAudioClick(audio)}>
-                {audio.title}
-                </li>
-            ))}
+                {audioList.map((audio) => (
+                    <li key={audio.id} onClick={() => handleAudioClick(audio)}>
+                    {audio.title}
+                    </li>
+                ))}
             </ul>
             <div>
-            <h2>Selected Audio</h2>
-            {selectedAudio ? <div>{selectedAudio.title}</div> : <div>No audio selected</div>}
+                <h2>Selected Audio</h2>
+                {selectedAudio ? <div>{selectedAudio.title}</div> : <div>No audio selected</div>}
             </div>
         </div>
     );
