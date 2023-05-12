@@ -18,6 +18,7 @@ import { InputComment, loadComment, updateComment, deleteComment } from "../serv
 import Modals from "../components/Modal";
 import ReactDOM from 'react-dom';
 import ModalBasic from "../components/ModalBasic";
+import { Accordion } from 'react-bootstrap';
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -75,6 +76,8 @@ export default function MusicPlay() {
   const [newContent, setUpdatedComment] = useState([])
   const [newCommentList, setNewCommentList] = useState([])
 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const buttonClass = isExpanded ? 'btn-light' : 'btn-dark';
 
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
@@ -182,11 +185,6 @@ export default function MusicPlay() {
               {/* {location.state.musicInfo.likes} */}
           </Row>
         </Container>
-        <div>
-          <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
-          <label for 댓글입력 />
-          <button onClick={renewComment}>댓글입력</button>
-        </div>
         <div className="lyrics">
           {/* 가사 */}
           <Lyrics lyrics={location.state.musicInfo.lyrics}/>
@@ -201,26 +199,36 @@ export default function MusicPlay() {
           <iframe width="480" height="270" src={videoSrc} title={location.state.musicInfo.title} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
           <div class='v-line'></div>
         </div>
-        <div>
         {/* <b>댓글보기</b>
           {commentlist.map((comment)=>(
             <div key={comment.id}>{comment.comment}</div>
           ))} */}
-          <b>댓글보기</b>
-          {commentList && commentList.map((comment)=>(
-            <div key={comment.id}>
-              <div>{comment.user.nickname}</div>
-              <div>{comment.created_at}</div>
-              <div>{comment.comment}</div>
-              <div id="example"></div>
-              <div>
-                <button onClick={showModal}>수정</button>
-                {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
-                <button>삭제</button>
-              </div>
+        <Accordion>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header onClick={() => setIsExpanded(!isExpanded)} varient={isExpanded ? "light" : "dark"} className={`btn ${buttonClass}`}>
+              <b>{isExpanded ? `댓글 ${location.state.commentList.length}개 접기` : `댓글 ${location.state.commentList.length}개 펼치기`}</b>
+            </Accordion.Header>
+            <Accordion.Body>
+            <div className="comment-input">
+              <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
+              <button onClick={renewComment}>댓글입력</button>
             </div>
-          ))}
-        </div>
+            {commentList && commentList.map((comment)=>(
+              <div key={comment.id}>
+                <div>{comment.user.nickname}</div>
+                <div>{comment.created_at}</div>
+                <div>{comment.comment}</div>
+                <div id="example"></div>
+                <div className="comment-bg">
+                  <button onClick={showModal}>수정</button>
+                  {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+                  <button>삭제</button>
+                </div>
+              </div>
+            ))}
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
       </div>
     </div>
   );

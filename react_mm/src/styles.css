@@ -217,7 +217,37 @@
   color: #6c6c6c;
   text-decoration: none;
 }
-
+.accordion {
+  position: relative;
+  margin: 2% 1%;
+}
+.accordion-button {
+  color: #1c1c1c;
+  background-color: transparent;
+  box-shadow: none;
+}
+.accordion-button.collapsed {
+  color: #ffffff;
+  background-color: transparent;
+  box-shadow: none;
+}
+.accordion-button:focus {
+  border-color: #00000000 !important;
+  background-color: #00000000 !important;
+  box-shadow: none !important;
+}
+.accordion-button:not(.collapsed) {
+  color: #1c1c1c !important;
+  border-color: #00000000 !important;
+  background-color: #00000000 !important;
+  box-shadow: none !important;
+}
+.accordion-item {
+  position: relative !important;
+  background-color: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+}
 /* 1440px ~1920px까지는 아래 설정을 따름 */
 @media screen and (max-width: 1920px) {
   .navbar.navbar-expand{
@@ -487,6 +517,13 @@
   .form-control {
     height: 40px;
   }
+  .youtube {
+    height: 366px;
+    position: relative;
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color: #212121;
+  }
   .youtube b {
     font-size: 30px;
     position: relative;
@@ -529,6 +566,18 @@
     box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
     list-style-type: none;
     z-index: 1;
+  }
+  .btn.btn-dark.accordion-header {
+    width: 100%;
+    border: 3px solid rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
+  }
+  .btn.btn-light.accordion-header {
+    width: 100%;
+    border: 3px solid rgb(105 105 105);
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 5px;
   }
 }
 @media screen and (max-width: 1540px) {
