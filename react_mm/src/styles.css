@@ -270,6 +270,9 @@
   .slick-slide {
     height: 230px;
     padding: 20px 5px;
+    outline: none;
+    position: relative;
+    overflow-y: clip;
   }
   .details {
     color: #dbdbdb; /* 추천 페이지 글자색 설정 */
