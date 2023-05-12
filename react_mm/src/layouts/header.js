@@ -68,6 +68,7 @@ const Header = () => {
       window.location.href = 'http://127.0.0.1:8000/user/info/';
     }
   }
+
   const [wholeTextArray, setWholeTextArray] = useState(['아이유', '수지', '복숭아', '밤편지'])
   const [inputValue, setInputValue] =useState('')
   const [isHaveInputValue, setIsHaveInputValue] = useState(false)
@@ -93,24 +94,24 @@ const Header = () => {
   }
 
   const clickDropDownItem = clickedItem => {
-      setInputValue(clickedItem)
-      setIsHaveInputValue(false)
+      setInputValue(clickedItem);
+      setIsHaveInputValue(false);
 
-      // navigate(`/autoTitleInfo/${clickedItem}`);
-      // navigate(`/autoTitleSelect?title=${clickedItem}`);
-      titleSelect(clickedItem).then((data) => {
-        setMusicInfo(data); 
-        loadComment(data.id).then(data => {
-            setCommentList(data);
+      titleSelect(clickedItem).then(musicInfo => {
+        // setMusicInfo(musicInfo);
+        loadComment(musicInfo[0].id).then(comment => {
+            // setCommentList(comment);
+            navigate(`/musicPlayer`,{
+              state: {
+                musicInfo: musicInfo[0],
+                commentList: comment[0],
+              },
+              replace: false
+            });
         })
+        
       });
-      navigate(`/musicPlayer`,{
-        state: {
-          musicInfo: musicInfo[0],
-          commentList: commentList[0],
-        },
-        replace: false
-      });
+      
   };
 
   const handleDropDownKey = event => {
