@@ -75,6 +75,10 @@ export default function MusicPlay() {
   const [newContent, setUpdatedComment] = useState([])
   const [newCommentList, setNewCommentList] = useState([])
 
+  const [selectedComment, setSelectedComment] = useState('')
+  const [chooseComment, setChooseComments] = useState('')
+
+
 
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
@@ -109,8 +113,9 @@ export default function MusicPlay() {
   const [modalOpen, setModalOpen] = useState(false);
 
   // 모달창 노출
-  const showModal = () => {
-      setModalOpen(true);
+  const showModal = (comment) => {
+    setChooseComments(comment);
+    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -207,19 +212,27 @@ export default function MusicPlay() {
             <div key={comment.id}>{comment.comment}</div>
           ))} */}
           <b>댓글보기</b>
-          {commentList && commentList.map((comment)=>(
-            <div key={comment.id}>
-              <div>{comment.user.nickname}</div>
-              <div>{comment.created_at}</div>
-              <div>{comment.comment}</div>
+          {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment}/>}
+          {commentList && commentList.map((theComment)=>(
+            <div key={theComment.id}>
+              <div>{theComment.user.nickname}</div>
+              <div>{theComment.created_at}</div>
+              <div>{theComment.comment}</div>
               <div id="example"></div>
               <div>
-                <button onClick={showModal}>수정</button>
-                {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+                {/* <button onClick={showModal}>수정</button> */}
+                <button onClick ={() => showModal(theComment.comment)}>수정</button>
                 <button>삭제</button>
               </div>
             </div>
           ))}
+          {/* {modalOpen && selectedComment && (
+            <ModalBasic 
+              setModalOpen={setModalOpen}
+              comment={selectedComment}
+          // 추가적인 props가 있다면 여기에 전달할 수 있습니다.
+          />
+          )} */}
         </div>
       </div>
     </div>
