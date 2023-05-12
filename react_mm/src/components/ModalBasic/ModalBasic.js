@@ -1,7 +1,7 @@
 import "./ModalBasic.css";
 import React from "react";
 
-function ModalBasic({ setModalOpen, id, content}) {
+function ModalBasic({ setModalOpen, id, comment}) {
     // 모달 끄기 
     const closeModal = () => {
         setModalOpen(false);

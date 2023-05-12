@@ -17,6 +17,7 @@ import '../styles.css';
 import { InputComment, loadComment, updateComment, deleteComment } from "../services/appServices";
 import Modals from "../components/Modal";
 import ReactDOM from 'react-dom';
+import ModalBasic from "../components/ModalBasic";
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -101,11 +102,16 @@ export default function MusicPlay() {
   }
 
   //수정할 때 쓸 Modal 컴포넌트 이용하기 위해서 만듦.
-  function handleClick() {
-    // 모달 컴포넌트 렌더링
-    ReactDOM.render(<Modals />, document.getElementById('example'));
-  }
-  
+  // function handleClick() {
+  //   // 모달 컴포넌트 렌더링
+  //   ReactDOM.render(<Modals />, document.getElementById('example'));
+  // }
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // 모달창 노출
+  const showModal = () => {
+      setModalOpen(true);
+  };
 
   useEffect(() => {
     setCommentList(location.state.commentList)
@@ -208,7 +214,8 @@ export default function MusicPlay() {
               <div>{comment.comment}</div>
               <div id="example"></div>
               <div>
-                <button onClick={handleClick}>수정</button>
+                <button onClick={showModal}>수정</button>
+                {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
                 <button>삭제</button>
               </div>
             </div>
