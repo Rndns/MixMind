@@ -17,7 +17,7 @@ import imgmovie from '../images/movie.png'
 import account from '../images/account.png'
 import { API } from "../config";
 import styled from 'styled-components';
-import { titleCollect } from "../services/appServices";
+import { loadPlayGroup, titleCollect } from "../services/appServices";
 import ReactDOM from 'react-dom';
 import { titleSelect } from "../services/appServices";
 import { loadComment } from '../services/appServices';
@@ -211,6 +211,18 @@ const Header = () => {
               <div className="offcanvas-menu-item" onClick={() => {navigate(`/autoComplete`);}}>
                 <img src={imgsearch} width="30" height="30" alt="자동완성 아이콘" />
                 <span><b>&nbsp;자동완성</b></span>
+              </div>
+              <div className="offcanvas-menu-item" onClick={() => {
+                const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+                loadPlayGroup(jwtToken).then(Data => {
+                  navigate('/playGroup', {
+                    state:{
+                      playGroup: Data,
+                    }
+                  })
+                }); navigate(`/playList`, {replace: false });}}>
+                <img src={imglist} width="30" height="30" alt="음악 리스트 아이콘" />
+                <span><b>&nbsp;음악 리스트-test</b></span>
               </div>
               <div className="offcanvas-menu-item" onClick={() => {navigate(`/musicPlayList`, {replace: false });}}>
                 <img src={imglist} width="30" height="30" alt="음악 리스트 아이콘" />

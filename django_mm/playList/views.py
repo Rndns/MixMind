@@ -35,11 +35,12 @@ class PlayGroupViewSet(viewsets.ViewSet):
             return HttpResponseBadRequest('Authorization header not found')
 
         try:
-            name = request.data.get('name')
+            GroupName = request.data.get('GroupName')
             _, token = authorization_header.split(' ')
             decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
             email = decoded_token['email']
             user = User.objects.get(email=email)
+            UserPlayGroup.objects.create(user_id=user.id, name=GroupName)
             userPlayGroup = UserPlayGroup.objects.filter(user_id=user.id)
             serializer = UserPlayListSerializer(userPlayGroup)
             return Response(serializer.data)
