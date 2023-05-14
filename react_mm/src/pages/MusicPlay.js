@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Container from 'react-bootstrap/Container';
 import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
@@ -82,7 +82,6 @@ export default function MusicPlay() {
   const [chooseComment, setChooseComments] = useState('')
 
 
-
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
 
@@ -138,6 +137,15 @@ export default function MusicPlay() {
   // releasedDate "2023-03-03"
   // title "on the street (with J. Cole)"
   // youtudeId "dummeyID"
+  const buttonRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const handleButtonClick = () => {
+    setIsExpanded(!isExpanded);
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="musicplaypage">
@@ -210,26 +218,29 @@ export default function MusicPlay() {
           ))} */}
         <Accordion>
           <Accordion.Item eventKey="0">
-            <Accordion.Header onClick={() => setIsExpanded(!isExpanded)} varient={isExpanded ? "light" : "dark"} className={`btn ${buttonClass}`}>
+            <Accordion.Header ref={buttonRef} onClick={handleButtonClick} varient={isExpanded ? "light" : "dark"} className={`btn ${buttonClass}`}>
               <b>{isExpanded ? `댓글 ${location.state.commentList.length}개 접기` : `댓글 ${location.state.commentList.length}개 펼치기`}</b>
             </Accordion.Header>
-            <Accordion.Body>
-            <div className="comment-input">
-              <input type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
-              <button onClick={renewComment}>댓글입력</button>
+            <Accordion.Body id="input" ref={inputRef}>
+            <div>
+              <input className="comment-input" type="text" value={comment} onChange={(e) => setComments(e.target.value)} placeholder="댓글을 입력해주세요" />
+              <button onClick={renewComment} className="btn btn-secondary">
+                <b>
+                  댓글등록
+                </b>
+              </button>
             </div>
-            {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment}/>}
           {commentList && commentList.map((theComment)=>(
-              <div key={theComment.id}>
-                <div>{theComment.user.nickname}</div>
-                <div>{theComment.created_at}</div>
-                <div>{theComment.comment}</div>
-                <div id="example"></div>
-                <div className="comment-bg">
-                  {/* <button onClick={showModal}>수정</button> */}
-                  <button onClick ={() => showModal(theComment.comment)}>수정</button>
-                  <button>삭제</button>
+              <div key={theComment.id} className="comment-group">
+                <div className="nickname-day">
+                    <b>{theComment.user.nickname}</b>
                 </div>
+                <div className="comment-bgt">
+                  <b className="time">{theComment.created_at}</b>
+                  <button className="btn btn-outline-light" onClick ={() => showModal(theComment.comment)}><b>수정</b></button>
+                  <button className="btn btn-outline-light"><b>삭제</b></button>
+                </div>
+                <div className="comment-item"><b>{theComment.comment}</b></div>
               </div>
             ))}
             </Accordion.Body>
@@ -242,6 +253,7 @@ export default function MusicPlay() {
           />
           )} */}
         </Accordion>
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment}/>}
       </div>
     </div>
   );

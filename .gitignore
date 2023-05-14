@@ -243,3 +243,5 @@ mm_bert/ballad_youtube.csv
 mm_bert/main/ballad_predict_emotion.csv
 mm_bert/inde_youtube.csv
 mm_bert/main/inde_predict_emotion.csv
+mm_bert/df_lyrics.csv
+mm_bert/main/lyric_predict_emotion.csv

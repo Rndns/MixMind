@@ -10,16 +10,16 @@ function ModalBasic({ setModalOpen, id, comment}) {
 
     return (
         <div className="modal-container">
-            <button className='modal-close-btn' onClick={closeModal}>
-                수정취소
-            </button>
             <div>
-                {console.log(editComment)}
+                <b>{console.log(editComment)}</b>
             </div>
             {/* <input >{comment}</input> */}
             <input type="text" onChange={(e)=>setEditComment(e.target.value)} value={editComment} />
-            <button className='modal-update-complete' onClick={closeModal}>
+            <button className='btn btn-secondary' onClick={closeModal}>
                 수정완료
+            </button>
+            <button className='btn btn-danger' onClick={closeModal}>
+                수정취소
             </button>
         </div>
     );
