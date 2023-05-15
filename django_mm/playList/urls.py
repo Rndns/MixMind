@@ -4,7 +4,7 @@ from rest_framework.routers import DefaultRouter
 from . import views
 
 router = DefaultRouter()
-router.register(r'load', views.PlayGroupViewSet, basename='playListLoad')
+router.register(r'group', views.PlayGroupViewSet, basename='playGroupLoad')
 
 urlpatterns = [
     path('', include(router.urls)),

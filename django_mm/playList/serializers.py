@@ -3,13 +3,13 @@ from .models import UserPlayGroup, UserPlayList
 
 class UserPlayGroupSerializer(serializers.ModelSerializer):
 
-    class Mata:
+    class Meta:
         model = UserPlayGroup
         fields = '__all__'
 
 
 class UserPlayListSerializer(serializers.ModelSerializer):
 
-    class Mata:
+    class Meta:
         model = UserPlayList
         fields = '__all__'

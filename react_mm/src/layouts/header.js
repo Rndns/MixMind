@@ -221,7 +221,8 @@ const Header = () => {
                       playGroup: Data,
                     }
                   })
-                }); navigate(`/playList`, {replace: false });}}>
+                });
+              }}>
                 <img src={imglist} width="30" height="30" alt="음악 리스트 아이콘" />
                 <span><b>&nbsp;음악 리스트-test</b></span>
               </div>

@@ -185,7 +185,7 @@ export async function deleteComment(commentId) {
 export async function loadPlayGroup(jwtToken) {
 	const token = jwtToken.split('=')[1];
 	
-	const MixMindApiUrl = `${API_PLLI_URL}/group`;
+	const MixMindApiUrl = `${API_PLLI_URL}/group/`;
 
 	return fetch(MixMindApiUrl, {
 		method: "get",
@@ -198,7 +198,6 @@ export async function loadPlayGroup(jwtToken) {
 
 export async function editPlayGroup(jwtToken, group, name) {
 	const token = jwtToken.split('=')[1];
-	
 	const MixMindApiUrl = `${API_PLLI_URL}/group/?id=${group.id}`;
 
 	return fetch(MixMindApiUrl, {
