@@ -604,14 +604,14 @@
     height: 120px;
     border: 5px solid #6c757d;
     border-radius: 15px;
-    margin: 0.5% 0%;
+    margin: 1% 0%;
     background-color: #ffffff;
     color: #1c1c1c;
   }
   .nickname-day {
     background-color: #6c757d;
     color: #ffffff;
-    padding: 1% 1.5%;
+    padding: 1.1% 1.5%;
   }
   .comment-bgt b.time {
     position: relative;
@@ -632,41 +632,6 @@
   }
   .comment-item {
     padding: 0.5% 1%;
-  }
-  .modal-container {
-    position: fixed !important;
-    z-index: 1 !important;
-    top: 50% !important;
-    left: 52% !important;
-    width: fit-content !important;
-    height: fit-content !important;
-    background-color: transparent !important;
-    border: 0px solid black !important;
-    border-radius: 0px !important;
-    transform: translate(-50%, -50%) !important;
-  }
-  .modal-container input {
-    position: relative;
-    height: 100px;
-    width: fit-content;
-    border-top: 5px solid #6c757d;
-    border-left: 5px solid #6c757d;
-    border-bottom: 5px solid #6c757d;
-    border-radius: 15px 0px 0px 15px;
-    padding: 5% 5%;
-  }
-  .modal-container button.btn.btn-secondary {
-    position: relative;
-    top: -27px;
-    left: 0px;
-    border-radius: 0px 15px 0px 0px
-  }
-  .modal-container button.btn.btn-danger {
-    position: relative;
-    top: -50px;
-    left: 220px;
-    height: 50px;
-    border-radius: 0px 0px 15px 0px;
   }
 }
 @media screen and (max-width: 1540px) {
@@ -1583,21 +1548,6 @@
     top: -4px;
     left: 27%;
     height: 39px;
-  }
-  .modal-container {
-    position: fixed !important;
-    left: 20px !important;
-    z-index: 1 !important;
-    top: 50% !important;
-    left: 54% !important;
-    width: -moz-fit-content !important;
-    width: fit-content !important;
-    height: -moz-fit-content !important;
-    height: fit-content !important;
-    background-color: transparent !important;
-    border: 0px solid black !important;
-    border-radius: 0px !important;
-    transform: translate(-50%, -50%) !important;
   }
   .btn.btn-secondary {
     border-radius: 0px 15px 15px 0px;
