@@ -216,6 +216,7 @@ const Header = () => {
               <div className="offcanvas-menu-item" onClick={() => {
                 const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
                 loadPlayGroup(jwtToken).then(Data => {
+                  console.log(Data);
                   navigate('/playGroup', {
                     state:{
                       playGroup: Data,

@@ -6,14 +6,16 @@ export default function PlayGroup() {
     const [playGroup, setPlayListState] = useState([])
 
     useEffect(() => {
-        setPlayListState(location.state.PlayGroup)
+        setPlayListState(location.state.playGroup)
     }, [])
 
     return (
         <div>
-            {playGroup && playGroup.map((playList) => (
-                <div key={playList.id}>
-                    {playList.name}
+            {playGroup && playGroup.map((playGroup) => (
+                <div key={playGroup.id}>
+                    {playGroup.name}
+                    <button >수정</button>
+                    <button >삭제</button>
                 </div>
             ))}
         </div>

@@ -18,18 +18,17 @@ class PlayGroupViewSet(viewsets.ViewSet):
         if not authorization_header:
             return HttpResponseBadRequest('Authorization header not found')
 
-        # try:
         _, token = authorization_header.split(' ')
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
         email = decoded_token['email']
         user = User.objects.get(email=email)
         userPlayGroup = UserPlayGroup.objects.filter(user_id=user.id)
         print(userPlayGroup)
-        serializer = UserPlayGroupSerializer(userPlayGroup)
+        if not userPlayGroup:
+            return Response({'message': '저장된 playGroup이 없습니다.'})
+        serializer = UserPlayGroupSerializer(userPlayGroup, many=True)
         return Response(serializer.data)
-        
-        # except:
-        return HttpResponseBadRequest('Invalid token')
+
 
     def creat(self, request):
         authorization_header = request.headers.get('Authorization')
