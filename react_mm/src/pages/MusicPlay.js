@@ -219,11 +219,7 @@ export default function MusicPlay() {
         <Accordion>
           <Accordion.Item eventKey="0">
             <Accordion.Header ref={buttonRef} onClick={handleButtonClick} varient={isExpanded ? "light" : "dark"} className={`btn ${buttonClass}`}>
-<<<<<<< HEAD
-              {/* <b>{isExpanded ? `댓글 ${location.state.commentList.length}개 접기` : `댓글 ${location.state.commentList.length}개 펼치기`}</b> */}
-=======
               <b>{isExpanded ? `댓글 접기` : `댓글 펼치기`}</b>
->>>>>>> e54aa2f1734001e8aab63f87386130eca09251be
             </Accordion.Header>
             <Accordion.Body id="input" ref={inputRef}>
             <div>
