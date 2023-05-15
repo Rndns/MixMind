@@ -119,7 +119,8 @@ class CollectTitleViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def list(self, request):
-        entireTitle = MusicInfo.objects.values('title').distinct()
+        # entireTitle = MusicInfo.objects.values('title').distinct()
+        entireTitle = MusicInfo.objects.values('title')
         alltitles = []
         for titles in entireTitle:
             alltitles.append(titles['title'])

@@ -223,6 +223,8 @@ export default function MusicPlay() {
                 {/* <button onClick={showModal}>수정</button> */}
                 <button onClick ={() => showModal(theComment.comment)}>수정</button>
                 <button>삭제</button>
+
+                {/* <button onClick={deleteComment}>삭제</button> */}
               </div>
             </div>
           ))}
