@@ -3,20 +3,19 @@ import { useLocation } from "react-router-dom";
 
 export default function PlayGroup() {
     const location = useLocation()
-    const [playGroup, setPlayGroupState] = useState([])
+    const [playList, setPlayListState] = useState([])
 
     
 
     useEffect(() => {
-        setPlayGroupState(location.state.playGroup)
+        setPlayListState(location.state.playGroup)
     }, [])
 
     return (
         <div>
-            {playGroup && playGroup.map((playGroup) => (
-                <div key={playGroup.id}>
-                    {playGroup.name}
-                    <button >수정</button>
+            {playList && playList.map((playList) => (
+                <div key={playList.id}>
+                    {playList.name}
                     <button >삭제</button>
                 </div>
             ))}
