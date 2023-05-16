@@ -19,6 +19,7 @@ import Modals from "../components/Modal";
 import ReactDOM from 'react-dom';
 import ModalBasic from "../components/ModalBasic";
 import { Accordion } from 'react-bootstrap';
+import { updateComment } from "../services/appServices";
 
 function MyVerticallyCenteredModal(props) {
   const location = useLocation();
@@ -73,39 +74,45 @@ export default function MusicPlay() {
   const [comment, setComments] = useState('')
   const [commentList, setCommentList] = useState([])
 
-  const [newContent, setUpdatedComment] = useState([])
+  const [commentId, setCommentId] = useState()
   const [newCommentList, setNewCommentList] = useState([])
 
   const [isExpanded, setIsExpanded] = useState(false);
   const buttonClass = isExpanded ? 'btn-light' : 'btn-dark';
-  const [selectedComment, setSelectedComment] = useState('')
   const [chooseComment, setChooseComments] = useState('')
 
 
   const renewComment = () => {
     InputComment(comment, location.state.musicInfo.id);
+    setComments('')
+    loadComment(location.state.musicInfo.id).then(Data => {
+      setCommentList(Data);
+      navigate(`/musicPlayer`,{
+        state: {
+          musicInfo: location.state.musicInfo,
+          commentList: Data
+        },
+        replace: false
+      });
 
-    loadComment(location.state.musicInfo.id).then(Data => setCommentList(Data));
-    navigate(`/musicPlayer`,{
-      state: {
-        musicInfo: location.state.musicInfo,
-        commentList: location.state.commentList
-      },
-      replace: false
     })
   }
 
   //수정하기 구현중 -> 미완성
-  const changeComment = () => {
-    updateComment(newContent, location.state.musicInfo.id).then(Data => setNewCommentList(Data));
-    navigate(`/musicPlayer`, {
-      state: {
-        musicInfo: location.state.musicInfo,
-        commentList: location.state.commentList
-      },
-      replace: false
-    })
-  }
+  // const changeComment = () => {
+  //   updateComment(newContent, location.state.musicInfo.id).then(Data => setNewCommentList(Data));
+  //   navigate(`/musicPlayer`, {
+  //     state: {
+  //       musicInfo: location.state.musicInfo,
+  //       commentList: location.state.commentList
+  //     },
+  //     replace: false
+  //   })
+  // }
+  // const changeComment = (id) => {
+  //   updateComment(id, newContent).then(Data => setNewCommentList(Data));
+  //   navigate(`/musicPlayer`);
+  // }
 
   //수정할 때 쓸 Modal 컴포넌트 이용하기 위해서 만듦.
   // function handleClick() {
@@ -121,7 +128,7 @@ export default function MusicPlay() {
   };
 
   useEffect(() => {
-    setCommentList(location.state.commentList)
+    setCommentList(location.state.commentList);
     window.scrollTo(0, 0);
   }, []);
   // album "on the street (with J. Cole)"
@@ -146,6 +153,16 @@ export default function MusicPlay() {
       inputRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const handleDelete = (id) => {
+    deleteComment(id);
+    navigate('/musicPlayer')
+  };
+
+  // const handleDelete = (event) => {
+  //   deleteComment(event.target.id);
+  //   navigate('/')
+  // };
 
   return (
     <div className="musicplaypage">
@@ -237,8 +254,11 @@ export default function MusicPlay() {
                 </div>
                 <div className="comment-bgt">
                   <b className="time">{theComment.created_at}</b>
-                  <button className="btn btn-outline-light" onClick ={() => showModal(theComment.comment)}><b>수정</b></button>
-                  <button className="btn btn-outline-light"><b>삭제</b></button>
+                  <button className="btn btn-outline-light" onClick ={() => {
+                    showModal(theComment.comment);
+                    setCommentId(theComment.id)
+                    }}><b>수정</b></button>
+                  <button id={theComment.id} className="btn btn-outline-light" onClick ={() => handleDelete(theComment.id)}><b>삭제</b></button>
                 </div>
                 <div className="comment-item"><b>{theComment.comment}</b></div>
               </div>
@@ -253,7 +273,7 @@ export default function MusicPlay() {
           />
           )} */}
         </Accordion>
-        {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment}/>}
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment} id={commentId}/>}
       </div>
     </div>
   );
