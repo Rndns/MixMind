@@ -155,8 +155,8 @@ export async function loadComment(musicId) {
 	}).then(resp => resp.json());
 }
 
-export async function updateComment(commentId, newContent) {
-	const MixMindApiUrl = `${API_BASE_URL}/updatecmt/${commentId}`;
+export async function updateComment(id, newContent) {
+	const MixMindApiUrl = `${API_CMMT_URL}/updatecmt/${id}`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "put",
@@ -164,23 +164,21 @@ export async function updateComment(commentId, newContent) {
 			'Content-Type': "application/json"
 		},
 		body: JSON.stringify({
-			commentId,
 			newContent
 		})
 	}).then(resp => resp.json({ content: newContent }))
 }
 
-export async function deleteComment(commentId) {
-	const MixMindApiUrl = `${API_BASE_URL}/deletecmt/${commentId}`;
+export async function deleteComment(id) {
+	const MixMindApiUrl = `${API_CMMT_URL}/deletecmt/${id}`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "delete",
 		headers:{
 			'Content-Type': "application/json"
 		},
-		body: commentId
-	}).then(resp => resp.json())
-}
+	});
+};
 
 export async function loadPlayGroup(jwtToken) {
 	const token = jwtToken.split('=')[1];
