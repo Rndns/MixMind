@@ -231,8 +231,69 @@ export async function createPlayGroup(jwtToken, name) {
 
 export async function delPlayGroup(jwtToken, group) {
 	const token = jwtToken.split('=')[1];
-	
+
 	const MixMindApiUrl = `${API_PLLI_URL}/group/?id=${group.id}`;
+
+	return fetch(MixMindApiUrl, {
+		method: "delete",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function loadPlayList(jwtToken) {
+	const token = jwtToken.split('=')[1];
+
+	const MixMindApiUrl = `${API_PLLI_URL}/list/`;
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function editPlayList(jwtToken, list, name) {
+	const token = jwtToken.split('=')[1];
+	const MixMindApiUrl = `${API_PLLI_URL}/list/?id=${list.id}`;
+
+	return fetch(MixMindApiUrl, {
+		method: "put",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body:{
+			name,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function createPlayList(jwtToken, name) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/list`;
+
+	return fetch(MixMindApiUrl, {
+		method: "post",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+		body:{
+			name,
+		},
+	}).then(resp => resp.json());
+}
+
+export async function delPlayList(jwtToken, list) {
+	const token = jwtToken.split('=')[1];
+	
+	const MixMindApiUrl = `${API_PLLI_URL}/list/?id=${list.id}`;
 
 	return fetch(MixMindApiUrl, {
 		method: "delete",
