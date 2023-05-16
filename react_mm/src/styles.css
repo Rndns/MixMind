@@ -1731,3 +1731,6 @@ input[type='range']::-webkit-slider-thumb {
   filter: brightness(150%);
   cursor: pointer;
 }
+.emotionlist input {
+  border-radius: 15px;
+}
