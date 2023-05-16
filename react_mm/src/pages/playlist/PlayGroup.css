@@ -1,0 +1,22 @@
+.playlist-header button.btn.btn-light.btn-lg {
+    border-radius: 10px;
+}
+.playlist-header button.btn.btn-light.btn-lg:hover {
+    transform: translateY(0px);
+    transition: 0.5s;
+  }
+@media screen and (max-width: 1920px) {
+    .playgroup {
+        color: white;
+        margin: auto;
+        padding: 10.45% 32%;
+    
+    }
+    .playlist-header {
+        position: relative;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    
+    }
+}

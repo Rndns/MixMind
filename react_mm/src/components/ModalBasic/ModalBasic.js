@@ -31,11 +31,16 @@ function ModalBasic({ setModalOpen, id, comment, commentList, changeList}) {
     return (
         <div className="modal-container">
             <Modal.Title><b>댓글 수정하기</b></Modal.Title>
+<<<<<<< HEAD
             <Button variant="outline-light" onClick={editCommentModal}>
                 수정완료
+=======
+            <Button variant="outline-light" onClick={closeModal}>
+                <b>수정완료</b>
+>>>>>>> hjk
             </Button>
             <Button variant="outline-danger" onClick={closeModal}>
-                수정취소
+                <b>수정취소</b>
             </Button>
             <div>
                 <b>{console.log(editComment)}</b>
