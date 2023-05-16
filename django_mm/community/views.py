@@ -97,26 +97,46 @@ class CollectCommentViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     
-    def update(self, request, commentId):
-        try:
-            comment = Comment.objects.get(id=commentId)
-        except Comment.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    # def update(self, request, commentId):
+    #     try:
+    #         comment = Comment.objects.get(id=commentId)
+    #     except Comment.DoesNotExist:
+    #         return Response(status=status.HTTP_404_NOT_FOUND)
         
-        serializer = CommentSerializer(comment, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    #     serializer = CommentSerializer(comment, data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
 
-    def destroy(self, request, commentId):
-        try:
-            comment = Comment.objects.get(id=commentId)
-            comment.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Comment.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+    
+        # else:
+        #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def update(self, request, pk):
+        newContent=request.data.get("newContent")
+        comment = Comment.objects.get(pk=pk)
+        comment.comment = newContent
+        serializer = CommentSerializer(comment, data=request.data)
+        # if serializer.is_valid():
+        #     serializer.save()
+        #     return Response(serializer.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+
+    # def destroy(self, request, commentId):
+    #     try:
+    #         comment = Comment.objects.get(id=commentId)
+    #         comment.delete()
+    #         return Response(status=status.HTTP_204_NO_CONTENT)
+    #     except Comment.DoesNotExist:
+    #         return Response(status=status.HTTP_404_NOT_FOUND)
+    def destroy(self, request, pk=None):
+        # print(1)
+        comment = Comment.objects.get(pk = pk)
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+       
 #  ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x7fad311051f0>": "Comment.user_id" must be a "User" instance.
 # "Cannot assign "<django.contrib.auth.models.AnonymousUser object" 라고 되어있습니다. 이 말은 해당 사용자가 인증되지 않았다는 것을 나타냅니다.
 

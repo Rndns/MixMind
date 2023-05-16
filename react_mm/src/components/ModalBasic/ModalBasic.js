@@ -1,3 +1,4 @@
+import { updateComment } from "../../services/appServices";
 import "./ModalBasic.css";
 import React, { useState } from "react";
 import Button from 'react-bootstrap/Button';
@@ -9,10 +10,17 @@ function ModalBasic({ setModalOpen, id, comment}) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     // 모달 끄기 
+    const [editComment, setEditComment] = useState(comment)
+
     const closeModal = () => {
         setModalOpen(false);
     };
-    const [editComment, setEditComment] = useState(comment)
+    
+
+    const editCommentModal = () => {
+        setModalOpen(false);
+        updateComment(id, editComment);
+    };
 
     return (
         <div className="modal-container">
@@ -28,6 +36,13 @@ function ModalBasic({ setModalOpen, id, comment}) {
             </div>
             {/* <input >{comment}</input> */}
             <Modal.Body><input type="text" onChange={(e)=>setEditComment(e.target.value)} value={editComment} /></Modal.Body>
+            <input type="text" onChange={(e)=>setEditComment(e.target.value)} value={editComment} />
+            <button className='btn btn-secondary' onClick={editCommentModal}>
+                수정완료
+            </button>
+            <button className='btn btn-danger' onClick={closeModal}>
+                수정취소
+            </button>
         </div>
     );
 }
