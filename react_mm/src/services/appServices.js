@@ -156,7 +156,7 @@ export async function loadComment(musicId) {
 }
 
 export async function updateComment(id, newContent) {
-	const MixMindApiUrl = `${API_CMMT_URL}/updatecmt/${id}`;
+	const MixMindApiUrl = `${API_CMMT_URL}/updatecmt/${id}/`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "put",
@@ -166,11 +166,11 @@ export async function updateComment(id, newContent) {
 		body: JSON.stringify({
 			newContent
 		})
-	}).then(resp => resp.json({ content: newContent }))
+	});
 }
 
 export async function deleteComment(id) {
-	const MixMindApiUrl = `${API_CMMT_URL}/deletecmt/${id}`;
+	const MixMindApiUrl = `${API_CMMT_URL}/deletecmt/${id}/`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "delete",

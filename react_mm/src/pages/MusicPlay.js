@@ -65,6 +65,7 @@ function MyVerticallyCenteredModal(props) {
     </div>
   );
 }
+
 export default function MusicPlay() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -72,10 +73,7 @@ export default function MusicPlay() {
   const videoSrc = `https://www.youtube.com/embed/${location.state.musicInfo.youtubeId}`;
   const [comment, setComments] = useState('')
   const [commentList, setCommentList] = useState([])
-
   const [commentId, setCommentId] = useState()
-  const [newCommentList, setNewCommentList] = useState([])
-
   const [isExpanded, setIsExpanded] = useState(false);
   const buttonClass = isExpanded ? 'btn-light' : 'btn-dark';
   const [chooseComment, setChooseComments] = useState('')
@@ -95,6 +93,10 @@ export default function MusicPlay() {
       });
 
     })
+  }
+
+  const callbackComment = (newCommentList) => {
+    setCommentList(newCommentList);
   }
 
   //수정하기 구현중 -> 미완성
@@ -155,7 +157,17 @@ export default function MusicPlay() {
 
   const handleDelete = (id) => {
     deleteComment(id);
-    navigate('/musicPlayer')
+    const updatedItems = [...commentList];
+    const currentAudioListIndex = commentList.findIndex(music => music.id === id);
+    updatedItems.splice(currentAudioListIndex, 1);
+    setCommentList(updatedItems);
+    navigate(`/musicPlayer`,{
+      state: {
+        musicInfo: location.state.musicInfo,
+        commentList: commentList
+      },
+      replace: false
+    });
   };
 
   // const handleDelete = (event) => {
@@ -272,7 +284,7 @@ export default function MusicPlay() {
           />
           )} */}
         </Accordion>
-        {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment} id={commentId}/>}
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} comment={chooseComment} id={commentId} commentList={commentList} changeList={callbackComment} />}
       </div>
     </div>
   );

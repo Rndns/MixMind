@@ -116,13 +116,14 @@ class CollectCommentViewSet(viewsets.ViewSet):
         newContent=request.data.get("newContent")
         comment = Comment.objects.get(pk=pk)
         comment.comment = newContent
-        serializer = CommentSerializer(comment, data=request.data)
+        comment.save()
+        # serializer = CommentSerializer(comment, data=request.data)
         # if serializer.is_valid():
         #     serializer.save()
         #     return Response(serializer.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+        # serializer.is_valid(raise_exception=False)
+        # serializer.save()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     # def destroy(self, request, commentId):
     #     try:
