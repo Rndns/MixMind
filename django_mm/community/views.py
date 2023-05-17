@@ -118,6 +118,7 @@ class CollectCommentViewSet(viewsets.ViewSet):
         newContent=request.data.get("newContent")
         comment = Comment.objects.get(pk=pk)
         comment.comment = newContent
+        print(newContent)
         comment.save()
         # serializer = CommentSerializer(comment, data=request.data)
         # if serializer.is_valid():

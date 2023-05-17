@@ -10,6 +10,10 @@ class MusicInfoSerializer(serializers.ModelSerializer):
         model = MusicInfo
         fields = '__all__'
 
+class FilteredMusicInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MusicInfo
+        fields = '__all__'
 
 class song2VecSerializer(serializers.ModelSerializer):
     class Meta:

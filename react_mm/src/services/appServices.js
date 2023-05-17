@@ -6,18 +6,26 @@ const API_CMMT_URL = API.COMMUNITY;
 const API_PLLI_URL = API.PLAYLIST;
 
 export async function musicRecommend(emotions) {
-	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
+    const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
 
-	return fetch(MixMindApiUrl, {
-		method: "post",
-		headers:{
-			'Content-Type': "application/json"
-		},
+    const response = await fetch(MixMindApiUrl, {
+        method: "post",
+        headers: {
+            'Content-Type': "application/json"
+        },
         body: JSON.stringify({
-			emotions,
-		}),
-	}).then(resp => resp.json());
+            emotions,
+        }),
+    });
+
+    const data = await response.json();
+
+    return {
+        original_results: data.original_results,
+        filtered_results: data.filtered_results
+    };
 }
+
 
 export async function song2vecRecommend(jwtToken) {
 	const token = jwtToken.split('=')[1];
@@ -169,7 +177,7 @@ export async function loadComment(musicId) {
 }
 
 export async function updateComment(commentId, newContent) {
-	const MixMindApiUrl = `${API_BASE_URL}/updatecmt/${commentId}`;
+	const MixMindApiUrl = `${API_CMMT_URL}/updatecmt/${commentId}/`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "put",
@@ -180,11 +188,11 @@ export async function updateComment(commentId, newContent) {
 			commentId,
 			newContent
 		})
-	}).then(resp => resp.json({ content: newContent }))
+	})
 }
 
 export async function deleteComment(commentId) {
-	const MixMindApiUrl = `${API_BASE_URL}/deletecmt/${commentId}`;
+	const MixMindApiUrl = `${API_CMMT_URL}/deletecmt/${commentId}/`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "delete",
