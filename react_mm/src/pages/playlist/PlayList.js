@@ -27,6 +27,9 @@ export default function PlayGroup() {
         <div className="rep-img">
           <img src={representativeImage} alt="Representative Album" />
           <span>{playList.length}</span>
+          <div>{location.state.playGroupName}</div>
+          <div>{location.state.createTime}</div>
+          <div>{location.state.GroupTag}</div>
         </div>
       )}
       {playList.map((list) => (

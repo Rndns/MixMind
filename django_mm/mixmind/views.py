@@ -127,7 +127,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
 
         if userPlayList:
             vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
-
+        
         else:
             playgroup_id = 6
 
