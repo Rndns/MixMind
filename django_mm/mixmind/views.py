@@ -89,11 +89,11 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         
         if playgroup_response.status_code == 200:
             playgroup_data = playgroup_response.data
-            
-            if playgroup_data:
-                playgroup_id = playgroup_data[0]['id']
-            else:
+            print(playgroup_data)
+            if playgroup_data['message'] == '저장된 playgroup이 없습니다':
                 playgroup_id = 6
+            else:
+                playgroup_id = playgroup_data[0]['id']
         
         else:
             playgroup_id = 6
