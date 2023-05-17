@@ -9,6 +9,8 @@ import SearchBar from "../components/Search";
 import SearchApp from '../components/SearchApp'
 import Spinner from 'react-bootstrap/Spinner';
 import '../styles.css';
+import moment from 'moment';
+
 
 export default function MusicRecom() {
     const location = useLocation();
@@ -99,12 +101,59 @@ export default function MusicRecom() {
         },
     ]);
 
+    const [filteredMusicInfos, setFilteredImagesData] = useState([
+        {
+            id: 0,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 1,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 2,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 3,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 4,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 5,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 6,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 7,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 8,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 9,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
+        },
+
+    ]);
+
+
+    const [season, setSeason] = useState(['']);
+
     useEffect(() => {
         musicRecommend(location.state.emotions).then(data => {
-            setImagesData(data);
+            setImagesData(data.original_results);
+            setFilteredImagesData(data.filtered_results);
         });
     }, []);
-
 
     useEffect(() => {
         const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
@@ -112,11 +161,28 @@ export default function MusicRecom() {
             song2VecImagesData(data);
         })
     })
-
+      
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        const currentMonth = moment().month() + 1;
+        let seasonValue = '';
+    
+        if (currentMonth >= 3 && currentMonth <= 4) {
+          seasonValue = '봄';
+        } else if (currentMonth >= 5 && currentMonth <= 9) {
+          seasonValue = '여름';
+        } else if (currentMonth >= 10 && currentMonth <= 11) {
+          seasonValue = '가을';
+        } else {
+          seasonValue = '겨울';
+        }
+    
+        setSeason(seasonValue);
+      }, []);
+    
     return (
         <div className="musicrecompage">
             {/* <SearchBar /> */}
@@ -124,20 +190,16 @@ export default function MusicRecom() {
             <div>
                 <Container>
                     <div>
-                        <h3 class="slick1"><b>당신에게 이 음악을 추천드립니다</b></h3>
+                        <h3 class="slick1"><b>오늘의 당신을 음악으로 위로해드릴게요</b></h3>
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <h3 class="slick2"><b>당신의 취향에 맞는 음악을 추천드릴게요</b></h3>
+                        <h3 class="slick2"><b>당신의 취향 져격, 이 음악은 어떤가요?</b></h3>
                         <Slick musicInfos={song2vecInfos} />
                     </div>
                     <div>
-                        <h3 class="slick3"><b>87%의 사용자는 행복할 때 이 음악을 듣습니다</b></h3>
-                        <Slick musicInfos={musicInfos} />
-                    </div>
-                    <div>
-                        <h3 class="slick4"><b>사랑스러운 분위기의 음악을 들어보세요</b></h3>
-                        <Slick musicInfos={song2vecInfos} />
+                        <h3 class="slick3"><b>{season}에 맞는 음악을 추천해드릴게요</b></h3>
+                        <Slick musicInfos={filteredMusicInfos} />
                     </div>
                 </Container>
             </div>
@@ -148,7 +210,7 @@ export default function MusicRecom() {
 // function MusicRecom() {
 //     const navigate = useNavigate();
 //     const images = [
-//         "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
+//         "https://cdnimg.melon.co.kr/cm2/album/images/106/46/395/10646395_20210707141710_500.jpg?9e8cfc795c83ac2ab6b4f79f967a2a2e/melon/resize/282/quality/80/optimize",
 //         "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
 //         "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832"
 //     ];

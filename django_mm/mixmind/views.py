@@ -5,8 +5,10 @@ from .models import UserEmotion, MusicInfo, MusicEmotion
 from playList.models import UserPlayGroup, UserPlayList
 import numpy as np
 import pickle
+from datetime import datetime
 from sklearn.metrics.pairwise import cosine_similarity
 from .serializers import MusicInfoSerializer
+from .serializers import FilteredMusicInfoSerializer
 from .serializers import GenreSerializer
 from .serializers import TitleSerializer
 from .serializers import song2VecSerializer
@@ -63,14 +65,34 @@ class MusicRecommendViewSet(viewsets.ViewSet):
                     np.linalg.norm(user_emotion_values) * np.linalg.norm(music_emotion_values))
             music_emotions_similarity.append((music_emotion, cosine_similarity))
         music_emotions_similarity.sort(key=lambda x: x[1], reverse=True)
+
+        current_month = datetime.now().month
+
         music_info_list = []
-        for i in range(min(len(music_emotions_similarity), 10)):
+        filtered_music_info_list = []
+
+        for i in range(min(len(music_emotions_similarity), 100)):
             music_emotion = music_emotions_similarity[i][0]
             music_info = MusicInfo.objects.filter(id=music_emotion.musicId_id).first()
             if music_info:
                 music_info_list.append(music_info)
+            if len(music_info_list) == 10:
+                break
+
+        for i in range(min(len(music_emotions_similarity), 100)):
+            music_emotion = music_emotions_similarity[i][0]
+            music_info = MusicInfo.objects.filter(id=music_emotion.musicId_id).first()
+            if music_info.releasedDate.month == current_month and music_info not in music_info_list:
+                filtered_music_info_list.append(music_info)
+            if len(filtered_music_info_list) == 10:
+                break
+
         serializer = MusicInfoSerializer(music_info_list, many=True)
-        return Response(serializer.data)
+        filtered_serializer = FilteredMusicInfoSerializer(filtered_music_info_list, many=True)
+        return Response({
+            'original_results': serializer.data,
+            'filtered_results': filtered_serializer.data[:10]  # 최대 10곡 추천
+        })
 
     def list(self, request):
         song_vectors = np.load('../django_mm/mixmind/data/song_vectors.npy')
@@ -103,6 +125,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         recommended_songs = []
         
         vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
+        
         if vectors:
             user_vector = sum(vectors) / len(vectors)
         

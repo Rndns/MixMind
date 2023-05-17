@@ -6,18 +6,26 @@ const API_CMMT_URL = API.COMMUNITY;
 const API_PLLI_URL = API.PLAYLIST;
 
 export async function musicRecommend(emotions) {
-	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
+    const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
 
-	return fetch(MixMindApiUrl, {
-		method: "post",
-		headers:{
-			'Content-Type': "application/json"
-		},
+    const response = await fetch(MixMindApiUrl, {
+        method: "post",
+        headers: {
+            'Content-Type': "application/json"
+        },
         body: JSON.stringify({
-			emotions,
-		}),
-	}).then(resp => resp.json());
+            emotions,
+        }),
+    });
+
+    const data = await response.json();
+
+    return {
+        original_results: data.original_results,
+        filtered_results: data.filtered_results
+    };
 }
+
 
 export async function song2vecRecommend(jwtToken) {
 	const token = jwtToken.split('=')[1];
