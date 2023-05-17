@@ -2,10 +2,15 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import UserEmotion, MusicInfo, MusicEmotion
+from playList.models import UserPlayGroup, UserPlayList
 import numpy as np
+import pickle
+from sklearn.metrics.pairwise import cosine_similarity
 from .serializers import MusicInfoSerializer
 from .serializers import GenreSerializer
 from .serializers import TitleSerializer
+from .serializers import song2VecSerializer
+from playList.views import PlayGroupViewSet
 
 
 class MusicRecommendViewSet(viewsets.ViewSet):
@@ -67,6 +72,52 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         serializer = MusicInfoSerializer(music_info_list, many=True)
         return Response(serializer.data)
 
+    def list(self, request):
+        song_vectors = np.load('/home/cshoon036/MixMind/django_mm/mixmind/data/song_vectors.npy')
+        model_path = '/home/cshoon036/MixMind/django_mm/mixmind/data/word2vec_model.pkl'
+        kmeans_model_path = '/home/cshoon036/MixMind/django_mm/mixmind/data/kmeans_model.pkl'
+
+        with open(model_path, 'rb') as f:
+            model = pickle.load(f)
+        
+        with open(kmeans_model_path, 'rb') as f:
+            kmeans_model = pickle.load(f)
+
+        playgroup_viewset = PlayGroupViewSet()
+
+        playgroup_response = playgroup_viewset.list(request)
+        
+        if playgroup_response.status_code == 200:
+            playgroup_data = playgroup_response.data
+            playgroup_id = playgroup_data[0]['id']
+
+        else:
+            playgroup_id = 6
+
+        userPlayList = UserPlayList.objects.filter(group_id=playgroup_id).values_list('music_id', flat=True)
+
+        recommended_songs = []
+        
+        vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
+        if vectors:
+            user_vector = sum(vectors) / len(vectors)
+        
+        cluster_label = kmeans_model.predict([user_vector])[0]
+
+        similarities = cosine_similarity([user_vector], song_vectors)
+        similarities = similarities.flatten()
+
+        k = 10
+        for idx in similarities.argsort()[::-1]:
+            if k <= 0:
+                break
+            if kmeans_model.labels_[idx] == cluster_label:
+                song_info = MusicInfo.objects.filter(id=idx).first()
+                recommended_songs.append(song_info)
+                k -= 1
+
+        serializer = song2VecSerializer(recommended_songs, many=True)
+        return Response(serializer.data)
 
 class MusicPalyViewSet(viewsets.ViewSet):
     # 

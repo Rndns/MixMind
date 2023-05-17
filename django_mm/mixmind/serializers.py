@@ -11,6 +11,12 @@ class MusicInfoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class song2VecSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MusicInfo
+        fields = '__all__'
+
+
 class MusicEmotionSerializer(serializers.ModelSerializer):
     musicId = MusicInfoSerializer(many=True)
     class Meta:
