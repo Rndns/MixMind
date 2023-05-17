@@ -90,7 +90,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         if playgroup_response.status_code == 200:
             playgroup_data = playgroup_response.data
             
-            if playgroup_data:
+            if not playgroup_data:
                 playgroup_id = playgroup_data[0]['id']
             else:
                 playgroup_id = 6
