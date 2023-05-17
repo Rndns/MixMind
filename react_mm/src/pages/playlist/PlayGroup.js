@@ -1,14 +1,30 @@
 import "./PlayGroup.css";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Card, Button } from 'react-bootstrap';
+import { editPlayGroup, delPlayGroup, loadPlayList } from "../../services/appServices";
 
 export default function PlayGroup() {
     const location = useLocation()
+    const navigate = useNavigate()
     const [playGroup, setPlayGroupState] = useState([])
 
-    const editPlayGroup = () => {
+    const editPlayGroup = (e) => {
+      const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+    }
+
+    const delPlayGroup = () => {
         
+    }
+
+    const goToPlayList = (id) => {
+      loadPlayList(id).then(list => {
+        navigate('/playList', {
+          state: {
+            musicList: list,
+          }
+        })
+      })
     }
 
     useEffect(() => {

@@ -241,8 +241,7 @@ export async function delPlayGroup(jwtToken, group) {
 	}).then(resp => resp.json());
 }
 
-export async function loadPlayList(jwtToken) {
-	const token = jwtToken.split('=')[1];
+export async function loadPlayList(GroupId) {
 
 	const MixMindApiUrl = `${API_PLLI_URL}/list/`;
 
@@ -250,8 +249,10 @@ export async function loadPlayList(jwtToken) {
 		method: "get",
 		headers:{
 			'Content-Type': "application/json",
-			Authorization: `Bearer ${token}`,
 		},
+		body: JSON.stringify({
+			GroupId
+		}),
 	}).then(resp => resp.json());
 }
 

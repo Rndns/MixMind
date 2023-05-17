@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import UserPlayGroup, UserPlayList
+from mixmind.serializers import MusicInfoSerializer
 
 class UserPlayGroupSerializer(serializers.ModelSerializer):
 
@@ -10,6 +11,8 @@ class UserPlayGroupSerializer(serializers.ModelSerializer):
 
 class UserPlayListSerializer(serializers.ModelSerializer):
 
+    music = MusicInfoSerializer()
+
     class Meta:
         model = UserPlayList
-        fields = '__all__'
+        fields = ['id', 'music_path', 'created_at', 'music', 'groud_id']

@@ -14,7 +14,6 @@ User = get_user_model()
 class PlayGroupViewSet(viewsets.ViewSet):
     def list(self, request):
         authorization_header = request.headers.get('Authorization')
-        print(authorization_header)
         if not authorization_header:
             return HttpResponseBadRequest('Authorization header not found')
 
@@ -23,7 +22,6 @@ class PlayGroupViewSet(viewsets.ViewSet):
         email = decoded_token['email']
         user = User.objects.get(email=email)
         userPlayGroup = UserPlayGroup.objects.filter(user_id=user.id)
-        print(userPlayGroup)
         if not userPlayGroup:
             return Response({'message': '저장된 playGroup이 없습니다.'})
         serializer = UserPlayGroupSerializer(userPlayGroup, many=True)
@@ -48,3 +46,12 @@ class PlayGroupViewSet(viewsets.ViewSet):
         
         except:
             return HttpResponseBadRequest('Invalid token')
+
+class PlayListViewSet(viewsets.ViewSet):
+    def list(self, request):
+        GroupId = request.data.get('GroupId')
+        PlayList = UserPlayList.objects.filter(group_Id=GroupId)
+        serializer = UserPlayListSerializer(PlayList, many=True)
+        return Response(serializer.data)
+
+    
