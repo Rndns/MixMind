@@ -172,6 +172,10 @@
   transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
   transition: 0.5s;
 }
+#contained-modal-title-vcenter {
+  position: relative;
+  color: #121212;
+}
 .fade.modal.show {
   padding-right: 0px;
   display: block;
@@ -184,7 +188,7 @@
   margin: 0% 7%;
 }
 .modal-content div {
-  padding: 1% 5%;
+  padding: 1% 3%;
 }
 .label1 {
   padding-bottom: 3%;
@@ -633,6 +637,11 @@
   }
   .comment-item {
     padding: 0.5% 1%;
+  }
+  .ModalBody.modal-body {
+    position: relative;
+    top: 4px;
+    flex: 1 1 auto;
   }
 }
 @media screen and (max-width: 1540px) {

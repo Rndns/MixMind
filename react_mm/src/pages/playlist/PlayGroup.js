@@ -63,7 +63,7 @@ export default function PlayGroup() {
                   </div>
                   <div className="header-str">
                     <h1><b>{playGroup.name}</b></h1>
-                    <h4><b>2023 - 05 - 17</b></h4>
+                    <h4><b>2023-05-17</b></h4>
                     <h4><b>#여행 #여름 #청량</b></h4>
                   </div>
                   <Button variant="light" size="lg"  onClick={() => goToPlayList(playGroup.id)}><b>상세보기</b></Button>

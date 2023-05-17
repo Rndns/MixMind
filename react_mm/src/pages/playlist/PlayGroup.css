@@ -24,7 +24,9 @@
         border-bottom-width: 1px;
         border-color: #212121;
         position: relative;
-        width: 100%;
+        left: -12%;
+        width: 124%;
+        padding: 2% 0%;
     }
     .playgroup {
         color: white;
@@ -76,6 +78,142 @@
         position: relative;
         top: -408px;
         left: 66%;
+        height: 29px !important;
+    }
+}
+@media screen and (max-width: 1540px) {
+    .my-playlist {
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+        position: relative;
+        left: -12%;
+        width: 124%;
+        padding: 1% 0%;
+        margin-bottom: 2%;
+    }
+    .my-playlist h1 {
+        font-size: 2.4rem;
+    }
+    .playgroup {
+        color: white;
+        margin-bottom: 8%;
+        padding: 4% 32%;
+    }
+    .playlist-header {
+        position: relative;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+        margin: -2% -12%;
+        padding: 4% 10% 5% 0%;
+        height: 244px;
+    }
+    .playlist-header img {
+        position: relative;
+        height: 215px;
+        border-radius: 15px;
+    }
+    .header-str {
+        position: relative;
+        top: -243px;
+        left: 34%;
+        margin-right: 20%;
+        margin-top: 3%;
+    }
+    .header-str h1 {
+        margin-bottom: 20px;
+        font-size: 2.3rem;
+    }
+    .header-str h4{
+        margin-bottom: 20px;
+        color: #6c6c6c;
+    }
+    .btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .delete {
+        position: relative;
+        top: -400px;
+        left: 59%;
+        height: 29px !important;
+    }
+}
+@media screen and (max-width: 1470px) {
+    .my-playlist {
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+        position: relative;
+        left: -12%;
+        width: 124%;
+        padding: 1% 0%;
+        margin-bottom: 2%;
+    }
+    .my-playlist h1 {
+        font-size: 2.4rem;
+    }
+    .playgroup {
+        color: white;
+        margin-bottom: 8%;
+        padding: 4% 32%;
+    }
+    .playlist-header {
+        position: relative;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+        margin: -2% -12%;
+        padding: 4% 10% 5% 0%;
+        height: 244px;
+    }
+    .playlist-header img {
+        position: relative;
+        height: 215px;
+        border-radius: 15px;
+    }
+    .header-str {
+        position: relative;
+        top: -243px;
+        left: 34%;
+        margin-right: 20%;
+        margin-top: 3%;
+    }
+    .header-str h1 {
+        margin-bottom: 20px;
+        font-size: 2.3rem;
+    }
+    .header-str h4{
+        margin-bottom: 20px;
+        color: #6c6c6c;
+    }
+    .btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .delete {
+        position: relative;
+        top: -400px;
+        left: 57%;
         height: 29px !important;
     }
 }

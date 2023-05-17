@@ -35,7 +35,7 @@ function MyVerticallyCenteredModal(props) {
           <b>곡 상세정보</b>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="ModalBody">
       <div className="lyricist">
         {/* 작사가 */}
         <b>작사</b> {location.state.musicInfo.lyricist}
