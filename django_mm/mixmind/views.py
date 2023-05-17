@@ -127,14 +127,13 @@ class MusicRecommendViewSet(viewsets.ViewSet):
 
         if userPlayList:
             vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
-        
+
         else:
             playgroup_id = 6
 
             userPlayList = UserPlayList.objects.filter(group_id=playgroup_id).values_list('music_id', flat=True)
             vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
             
->>>>>>> 1657edf9f3c2f6f997834f301dd8ca82a06cf69b
         if vectors:
             user_vector = sum(vectors) / len(vectors)
         
