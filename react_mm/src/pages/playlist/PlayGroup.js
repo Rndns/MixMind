@@ -9,6 +9,24 @@ export default function PlayGroup() {
     const location = useLocation()
     const navigate = useNavigate()
     const [playGroup, setPlayGroupState] = useState([])
+    const [imgList, setimgList] = useState([
+      {
+        id: 0,
+        albumImg: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
+    },
+    {
+        id: 1,
+        albumImg: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
+    },
+    {
+        id: 2,
+        albumImg: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
+    },
+    {
+        id: 3,
+        albumImg: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzAzMjBfOTUg%2FMDAxNjc5MzIxNTg2NjAx.2ElhTpg11LChrcHV06EZYyIDVKdgyourCBNKR8Fb2iAg.dhva9hRZ13Uc6dv138hb2h2ppFqMaG6WeSX6T9SVzf0g.JPEG.chomh71888%2F31.jpg&type=sc960_832",
+    }
+    ]);
 
     const editPlayGroup = (e) => {
       const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
@@ -16,7 +34,7 @@ export default function PlayGroup() {
 
     const delPlayGroup = () => {
         
-    }
+    };
 
     const goToPlayList = (id) => {
       loadPlayList(id).then(list => {
@@ -31,17 +49,17 @@ export default function PlayGroup() {
 
     useEffect(() => {
       setPlayGroupState(location.state.playGroup)
-    }, [])
+    }, []);
 
     return (
-      <div className="playgroup">
+      <div className="playgroup" playGroup={playGroup}>
             <div className="my-playlist">
               <h1><b>내 플레이리스트</b></h1>
             </div>
-            {playGroup && playGroup.map((playGroup) => (
-              <div className="playlist-header" key={playGroup.id}>
+            {playGroup.map((playGroup) => (
+              <div key={playGroup.id} className="playlist-header">
                   <div className="playlist-cover">
-                    <img src="https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize" alt='playlistImg'/>
+                    <img src={imgList.albumImg} alt={imgList.id}/>
                   </div>
                   <div className="header-str">
                     <h1><b>{playGroup.name}</b></h1>
