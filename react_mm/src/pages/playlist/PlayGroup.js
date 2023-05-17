@@ -38,8 +38,8 @@ export default function PlayGroup() {
         
     };
 
-    const goToPlayList = (id) => {
-      loadPlayList(id).then(list => {
+    const goToPlayList = (playGroup) => {
+      loadPlayList(playGroup.id).then(list => {
         console.log(list);
         navigate('/playList', {
           state: {
@@ -71,7 +71,7 @@ export default function PlayGroup() {
                     <h4><b>{createTime}</b></h4>
                     <h4><b>{GroupTag}</b></h4>
                   </div>
-                  <Button variant="light" size="lg"  onClick={() => goToPlayList(playGroup.id)}><b>상세보기</b></Button>
+                  <Button variant="light" size="lg"  onClick={() => goToPlayList(playGroup)}><b>상세보기</b></Button>
                   <Button variant="danger" size="lg" onClick={editPlayGroup}><b>수정하기</b></Button>
                   <img src={del} class="delete" alt={"삭제하기"} title={"플레이리스트 삭제하기"}/>
               </div>
