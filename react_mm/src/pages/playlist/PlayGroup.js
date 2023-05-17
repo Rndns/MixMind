@@ -9,6 +9,8 @@ export default function PlayGroup() {
     const location = useLocation()
     const navigate = useNavigate()
     const [playGroup, setPlayGroupState] = useState([])
+    const [createTime, setCreateTime] = useState('2023 - 05 - 17')
+    const [GroupTag, setGroupTag] = useState('#여행 #여름 #청량')
     const [imgList, setimgList] = useState([
       {
         id: 0,
@@ -42,6 +44,9 @@ export default function PlayGroup() {
         navigate('/playList', {
           state: {
             musicList: list,
+            playGroupName: playGroup.name,
+            createTime: createTime,
+            GroupTag: GroupTag,
           }
         })
       })
@@ -63,8 +68,8 @@ export default function PlayGroup() {
                   </div>
                   <div className="header-str">
                     <h1><b>{playGroup.name}</b></h1>
-                    <h4><b>2023 - 05 - 17</b></h4>
-                    <h4><b>#여행 #여름 #청량</b></h4>
+                    <h4><b>{createTime}</b></h4>
+                    <h4><b>{GroupTag}</b></h4>
                   </div>
                   <Button variant="light" size="lg"  onClick={() => goToPlayList(playGroup.id)}><b>상세보기</b></Button>
                   <Button variant="danger" size="lg" onClick={editPlayGroup}><b>수정하기</b></Button>
