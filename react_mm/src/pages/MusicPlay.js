@@ -261,7 +261,7 @@ export default function MusicPlay() {
                 </b>
               </button>
             </div>
-          {commentList && commentList.map((theComment)=>(
+            {commentList && commentList.sort((a, b) => b.created_at.localeCompare(a.created_at)).map((theComment) => (
               <div key={theComment.id} className="comment-group">
                 <div className="nickname-day">
                     <b>{theComment.user.nickname}</b>
