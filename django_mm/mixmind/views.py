@@ -73,9 +73,9 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def list(self, request):
-        song_vectors = np.load('/home/cshoon036/MixMind/django_mm/mixmind/data/song_vectors.npy')
-        model_path = '/home/cshoon036/MixMind/django_mm/mixmind/data/word2vec_model.pkl'
-        kmeans_model_path = '/home/cshoon036/MixMind/django_mm/mixmind/data/kmeans_model.pkl'
+        song_vectors = np.load('../django_mm/mixmind/data/song_vectors.npy')
+        model_path = '../django_mm/mixmind/data/word2vec_model.pkl'
+        kmeans_model_path = '../django_mm/mixmind/data/kmeans_model.pkl'
 
         with open(model_path, 'rb') as f:
             model = pickle.load(f)
