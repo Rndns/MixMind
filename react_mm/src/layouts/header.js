@@ -82,7 +82,7 @@ const Header = () => {
           setDropDownList([])
       } else {
           const chooseTextList = wholeTextArray.filter(textItem => 
-              textItem.includes(inputValue)
+              textItem.toLowerCase().includes(inputValue.toLowerCase())
               )
               setDropDownList(chooseTextList)
       }
