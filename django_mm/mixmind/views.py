@@ -90,6 +90,7 @@ class MusicRecommendViewSet(viewsets.ViewSet):
         if playgroup_response.status_code == 200:
             playgroup_data = playgroup_response.data
             print(playgroup_data)
+
             if not playgroup_data or isinstance(playgroup_data, dict):
                 playgroup_id = 6
             else:
@@ -99,10 +100,18 @@ class MusicRecommendViewSet(viewsets.ViewSet):
             playgroup_id = 6
 
         userPlayList = UserPlayList.objects.filter(group_id=playgroup_id).values_list('music_id', flat=True)
-
-        recommended_songs = []
         
-        vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
+        recommended_songs = []
+
+        if userPlayList:
+            vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
+        
+        else:
+            playgroup_id = 6
+
+            userPlayList = UserPlayList.objects.filter(group_id=playgroup_id).values_list('music_id', flat=True)
+            vectors = [model.wv[song_id] for song_id in userPlayList if song_id in model.wv]
+            
         if vectors:
             user_vector = sum(vectors) / len(vectors)
         
