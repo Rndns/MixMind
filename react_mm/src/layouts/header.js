@@ -82,7 +82,7 @@ const Header = () => {
           setDropDownList([])
       } else {
           const chooseTextList = wholeTextArray.filter(textItem => 
-              textItem.includes(inputValue)
+              textItem.toLowerCase().includes(inputValue.toLowerCase())
               )
               setDropDownList(chooseTextList)
       }
@@ -209,10 +209,6 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <div className="offcanvas-menu">
-              <div className="offcanvas-menu-item" onClick={() => {navigate(`/autoComplete`);}}>
-                <img src={imgsearch} width="30" height="30" alt="자동완성 아이콘" />
-                <span><b>&nbsp;자동완성</b></span>
-              </div>
               <div className="offcanvas-menu-item" onClick={() => {
                 const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
                 loadPlayGroup(jwtToken).then(Data => {
@@ -227,10 +223,6 @@ const Header = () => {
                 <img src={imglist} width="30" height="30" alt="음악 리스트 아이콘" />
                 <span><b>&nbsp;음악 리스트-test</b></span>
               </div>
-              <div className="offcanvas-menu-item" onClick={() => {navigate(`/musicPlayList`, {replace: false });}}>
-                <img src={imglist} width="30" height="30" alt="음악 리스트 아이콘" />
-                <span><b>&nbsp;음악 리스트</b></span>
-              </div>
               <div className="offcanvas-menu-item" onClick={() => {navigate(`/genreList`);}}>
                 <img src={imggenre} width="30" height="30" alt="장르 리스트 아이콘" />
                 <span><b>&nbsp;장르 리스트</b></span>
@@ -238,10 +230,6 @@ const Header = () => {
               <div className="offcanvas-menu-item" onClick={() => {navigate(`/genreSelect`);}}>
                 <img src={imggenreselect} width="30" height="30" alt="장르 select 리스트 아이콘" />
                 <span><b>&nbsp;장르 select 리스트</b></span>
-              </div>
-              <div className="offcanvas-menu-item" onClick={() => {navigate(`/musicTitle`);}}>
-                <img src={imgmovie} width="30" height="30" alt="영화 제목 아이콘" />
-                <span><b>&nbsp;영화 제목</b></span>
               </div>
             </div>
           </Offcanvas.Body>

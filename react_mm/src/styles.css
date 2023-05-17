@@ -314,8 +314,9 @@
   }
   .btn.btn-outline-light {
     border-radius: 10px;
+    border: 2px solid;
     position: relative;
-    left: 212px;
+    left: 207px;
     top: 17px;
     margin-left: 10px;
     }

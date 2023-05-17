@@ -22,6 +22,7 @@ import MusicTitle from "./pages/MusicTitle";
 import AutoTitleInfo from "./pages/AutoTitleInfo";
 import AutoTitleSelect from "./pages/AutoTitleSelect";
 import PlayGroup from "./pages/playlist/PlayGroup"
+import PlayList from "./pages/playlist/PlayList"
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="/autoTitleInfo" element={<AutoTitleInfo />}></Route>
             <Route path="/autoTitleSelect" element={<AutoTitleSelect />}></Route>
             <Route path="/playGroup" element={<PlayGroup />}></Route>
+            <Route path="/playList" element={<PlayList />}></Route>
           </Routes>
         </div>
         <Footer/>

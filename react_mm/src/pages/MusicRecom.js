@@ -160,8 +160,8 @@ export default function MusicRecom() {
         song2vecRecommend(jwtToken).then(data => {
             song2VecImagesData(data);
         })
-    })
-      
+    }, [])
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
