@@ -1,0 +1,12 @@
+@media screen and (max-width: 1920px) {
+    .playList {
+        color: white;
+        margin: 0% 25%;
+        padding: 0% 0%;
+    }
+    .rep-img img{
+        position: relative;
+        height: 215px;
+        border-radius: 15px;
+    }
+}
