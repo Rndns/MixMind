@@ -5,18 +5,77 @@
     transform: translateY(0px);
     transition: 0.5s;
   }
+.playlist-cover {
+    overflow: hidden;
+    max-width: fit-content;
+    border-radius: 15px;
+}
+.playlist-header img:hover {
+    transform:scale(1.02); /* hover 시 버튼확대 애니메이션 */
+    transition: 1s;
+}
+.delete:hover {
+    transform:scale(1.05); /* hover 시 버튼확대 애니메이션 */
+    transition: 0.5s;
+}
 @media screen and (max-width: 1920px) {
+    .my-playlist {
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+        position: relative;
+        width: 100%;
+    }
     .playgroup {
         color: white;
-        margin: auto;
-        padding: 10.45% 32%;
-    
+        margin-bottom: 8%;
+        padding: 1.45% 32%;
     }
     .playlist-header {
         position: relative;
         border-bottom: solid;
         border-bottom-width: 1px;
         border-color: #212121;
-    
+        margin: -2% -12%;
+        padding: 5% 10% 5% 0%;
+        height: 270px;
+    }
+    .playlist-header img {
+        position: relative;
+        height: 215px;
+        border-radius: 15px;
+    }
+    .header-str {
+        position: relative;
+        top: -243px;
+        left: 34%;
+        margin-right: 20%;
+        margin-top: 3%;
+    }
+    .header-str h1 {
+        margin-bottom: 20px;
+    }
+    .header-str h4{
+        margin-bottom: 20px;
+        color: #6c6c6c;
+    }
+    .btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        margin-left: 25px;
+        top: -242px;
+        left: 31.2%;
+    }
+    .delete {
+        position: relative;
+        top: -408px;
+        left: 66%;
+        height: 29px !important;
     }
 }
