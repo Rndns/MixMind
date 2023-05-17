@@ -19,6 +19,19 @@ export async function musicRecommend(emotions) {
 	}).then(resp => resp.json());
 }
 
+export async function song2vecRecommend(jwtToken) {
+	const token = jwtToken.split('=')[1];
+	const MixMindApiUrl = `${API_BASE_URL}/musicRecom/`;
+
+	return fetch(MixMindApiUrl, {
+		method: "get",
+		headers:{
+			'Content-Type': "application/json",
+			Authorization: `Bearer ${token}`,
+		},
+	}).then(resp => resp.json());
+}
+
 export async function musicInfoList() {
 	const MixMindApiUrl = `${API_BASE_URL}/musicList/`;
 	
@@ -155,8 +168,8 @@ export async function loadComment(musicId) {
 	}).then(resp => resp.json());
 }
 
-export async function updateComment(id, newContent) {
-	const MixMindApiUrl = `${API_CMMT_URL}/updatecmt/${id}/`;
+export async function updateComment(commentId, newContent) {
+	const MixMindApiUrl = `${API_BASE_URL}/updatecmt/${commentId}`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "put",
@@ -164,21 +177,23 @@ export async function updateComment(id, newContent) {
 			'Content-Type': "application/json"
 		},
 		body: JSON.stringify({
+			commentId,
 			newContent
 		})
-	});
+	}).then(resp => resp.json({ content: newContent }))
 }
 
-export async function deleteComment(id) {
-	const MixMindApiUrl = `${API_CMMT_URL}/deletecmt/${id}/`;
+export async function deleteComment(commentId) {
+	const MixMindApiUrl = `${API_BASE_URL}/deletecmt/${commentId}`;
 	
 	return fetch(MixMindApiUrl, {
 		method: "delete",
 		headers:{
 			'Content-Type': "application/json"
 		},
-	});
-};
+		body: commentId
+	}).then(resp => resp.json())
+}
 
 export async function loadPlayGroup(jwtToken) {
 	const token = jwtToken.split('=')[1];
@@ -229,7 +244,7 @@ export async function createPlayGroup(jwtToken, name) {
 
 export async function delPlayGroup(jwtToken, group) {
 	const token = jwtToken.split('=')[1];
-
+	
 	const MixMindApiUrl = `${API_PLLI_URL}/group/?id=${group.id}`;
 
 	return fetch(MixMindApiUrl, {
@@ -243,16 +258,13 @@ export async function delPlayGroup(jwtToken, group) {
 
 export async function loadPlayList(GroupId) {
 
-	const MixMindApiUrl = `${API_PLLI_URL}/list/`;
+	const MixMindApiUrl = `${API_PLLI_URL}/list/${GroupId}/`;
 
 	return fetch(MixMindApiUrl, {
 		method: "get",
 		headers:{
 			'Content-Type': "application/json",
 		},
-		body: JSON.stringify({
-			GroupId
-		}),
 	}).then(resp => resp.json());
 }
 

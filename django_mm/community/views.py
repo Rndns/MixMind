@@ -13,6 +13,7 @@ from django.contrib.auth import authenticate
 import jwt
 from django.conf import settings
 from rest_framework.views import APIView
+from django.http import HttpResponseBadRequest
 
 # Create your views here.
 
@@ -83,8 +84,9 @@ class CollectCommentViewSet(viewsets.ViewSet):
 
             # user = request.user
             comment = request.data.get('comment')
-            new_comment = Comment.objects.create(music_id=music.id, user_id=user.id, comment=comment)
-            serializer = CommentSerializer(new_comment)
+            Comment.objects.create(music_id=music.id, user_id=user.id, comment=comment) #create 모델에 들어가도록
+            commentList = Comment.objects.filter(music_id=music.id) #모델에서 찾아오는것
+            serializer = CommentUserSerializer(commentList, many=True)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ObjectDoesNotExist as e:
             return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)

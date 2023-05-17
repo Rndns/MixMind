@@ -80,10 +80,13 @@ export default function MusicPlay() {
 
 
   const renewComment = () => {
-    InputComment(comment, location.state.musicInfo.id);
+    InputComment(comment, location.state.musicInfo.id).then(data => {
+      console.log(data)
+      setCommentList(data);
+    });
     setComments('')
     loadComment(location.state.musicInfo.id).then(Data => {
-      setCommentList(Data);
+      console.log(Data)
       navigate(`/musicPlayer`,{
         state: {
           musicInfo: location.state.musicInfo,

@@ -48,10 +48,9 @@ class PlayGroupViewSet(viewsets.ViewSet):
             return HttpResponseBadRequest('Invalid token')
 
 class PlayListViewSet(viewsets.ViewSet):
-    def list(self, request):
-        GroupId = request.data.get('GroupId')
-        PlayList = UserPlayList.objects.filter(group_Id=GroupId)
+    def retrieve(self, request, pk=None):
+        PlayList = UserPlayList.objects.filter(group_id=pk)
         serializer = UserPlayListSerializer(PlayList, many=True)
         return Response(serializer.data)
 
-    
+

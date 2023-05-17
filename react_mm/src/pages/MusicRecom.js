@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Col from "react-bootstrap/Col"
 import Row from 'react-bootstrap/Row';
 import Slick from "../components/Slick";
-import { musicRecommend } from "../services/appServices";
+import { musicRecommend, song2vecRecommend } from "../services/appServices";
 import SearchBar from "../components/Search";
 import SearchApp from '../components/SearchApp'
 import Spinner from 'react-bootstrap/Spinner';
@@ -56,13 +56,62 @@ export default function MusicRecom() {
         },
     ]);
 
-    
+    const [song2vecInfos, song2VecImagesData] = useState([
+        {
+            id: 0,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 1,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 2,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 3,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 4,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 5,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 6,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 7,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 8,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+        {
+            id: 9,
+            albumImg: "https://cdnimg.melon.co.kr/cm2/album/images/110/11/565/11011565_20220801102637_500.jpg?1d674a44faffa0ebd34d86c182463171/melon/resize/282/quality/80/optimize",
+        },
+    ]);
 
     useEffect(() => {
         musicRecommend(location.state.emotions).then(data => {
             setImagesData(data);
         });
     }, []);
+
+
+    useEffect(() => {
+        const jwtToken = document.cookie.split(';').find(cookie => cookie.trim().startsWith('jwt='));
+        song2vecRecommend(jwtToken).then(data => {
+            song2VecImagesData(data);
+        })
+    }, [])
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -79,8 +128,8 @@ export default function MusicRecom() {
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <h3 class="slick2"><b>90%의 사용자는 슬플 때 이 음악을 듣습니다</b></h3>
-                        <Slick musicInfos={musicInfos} />
+                        <h3 class="slick2"><b>당신의 취향에 맞는 음악을 추천드릴게요</b></h3>
+                        <Slick musicInfos={song2vecInfos} />
                     </div>
                     <div>
                         <h3 class="slick3"><b>87%의 사용자는 행복할 때 이 음악을 듣습니다</b></h3>
@@ -88,7 +137,7 @@ export default function MusicRecom() {
                     </div>
                     <div>
                         <h3 class="slick4"><b>사랑스러운 분위기의 음악을 들어보세요</b></h3>
-                        <Slick musicInfos={musicInfos} />
+                        <Slick musicInfos={song2vecInfos} />
                     </div>
                 </Container>
             </div>

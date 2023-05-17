@@ -15,4 +15,4 @@ class UserPlayListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserPlayList
-        fields = ['id', 'music_path', 'created_at', 'music', 'groud_id']
+        fields = ['id', 'music_path', 'created_at', 'music', 'group_id']
