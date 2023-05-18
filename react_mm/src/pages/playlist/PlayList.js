@@ -14,7 +14,7 @@ export default function PlayGroup() {
   const [playList, setPlayListState] = useState([]);
   const [representativeImage, setRepresentativeImage] = useState(null);
   const [selectAll, setSelectAll] = useState(false);
-  const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const [showDeleteButtons, setShowDeleteButtons] = useState(false);
 
   useEffect(() => {
     console.log(location.state.musicList);
@@ -34,7 +34,8 @@ export default function PlayGroup() {
 
   useEffect(() => {
     const isAllSelected = playList.every((list) => list.selected);
-    setShowDeleteButton(playList.some((list) => list.selected));
+    setSelectAll(isAllSelected);
+    setShowDeleteButtons(playList.some((list) => list.selected));
   }, [playList]);
 
   const toggleSelectAll = () => {
@@ -97,7 +98,7 @@ export default function PlayGroup() {
         <span>
           수록곡 {playList.length}곡
         </span>
-        {showDeleteButton && (
+        {showDeleteButtons && (
           <>
             <Button variant="light" size="lg" onClick={handlePlaySelected} title="선택곡 재생">
               <img src={playbutton} width = "30" height = "30" alt="선택곡 재생" title="선택곡 재생" />
@@ -113,10 +114,11 @@ export default function PlayGroup() {
       </div>
       {playList.map((list, index) => (
         <Row 
-        className={`${
-          list.selected ? "selected-song" : ""
-        } ${list.music.id}`}
-        key={list.music.id}>
+          key={list.music.id}
+          className={`${list.selected ? "selected-song" : ""} ${
+            list.music.id
+          }`}
+        >
           <Col>
             <input
               type="checkbox"
