@@ -161,7 +161,7 @@ img.delete:hover {
         border-color: #212121;
         margin: -2% -12%;
         padding: 4% 10% 5% 0%;
-        height: 244px;
+        height: 255px;
     }
     .playlist-header img {
         position: relative;
@@ -171,9 +171,9 @@ img.delete:hover {
     .header-str {
         position: relative;
         top: -243px;
-        left: 34%;
+        left: 44%;
         margin-right: 20%;
-        margin-top: 3%;
+        margin-top: 5%;
     }
     .header-str h1 {
         margin-bottom: 20px;
@@ -187,7 +187,7 @@ img.delete:hover {
         position: relative;
         margin-left: 25px;
         top: -242px;
-        left: 30.2%;
+        left: 40.2%;
     }
     .delete {
         position: relative;

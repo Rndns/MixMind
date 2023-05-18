@@ -132,12 +132,6 @@ button.btn.btn-light.btn-lg:hover {
     .col {
         height: 65px;
     }
-    .list-album {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: max-content;
-    }
     .songdetails {
         height: 25px !important;
         position: relative;
@@ -264,12 +258,6 @@ button.btn.btn-light.btn-lg:hover {
     .col {
         height: 65px;
     }
-    .list-album {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: max-content;
-    }
     .songdetails {
         height: 25px !important;
         position: relative;
@@ -353,7 +341,7 @@ button.btn.btn-light.btn-lg:hover {
     .playList div.row {
         margin: 0% -4.3%;
         position: relative;
-        left: 4%;
+        left: 3.5%
     }
     .playList div.row div {
         margin-bottom: 0px;
@@ -380,6 +368,7 @@ button.btn.btn-light.btn-lg:hover {
         height: 20px;
         position: relative;
         top: -10px !important;
+        height: 48px;
     }
     .playList input {
         width: 20px;
@@ -395,12 +384,6 @@ button.btn.btn-light.btn-lg:hover {
     }
     .col {
         height: 65px;
-    }
-    .list-album {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: max-content;
     }
     .songdetails {
         height: 25px !important;
