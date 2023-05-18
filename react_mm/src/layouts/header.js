@@ -231,6 +231,10 @@ const Header = () => {
                 <img src={imggenreselect} width="30" height="30" alt="장르 select 리스트 아이콘" />
                 <span><b>&nbsp;장르 select 리스트</b></span>
               </div>
+              <div className="offcanvas-menu-item" onClick={() => {navigate(`/musicPlayList`);}}>
+                <img src={imggenreselect} width="30" height="30" alt="장르 select 리스트 아이콘" />
+                <span><b>&nbsp;playList</b></span>
+              </div>
             </div>
           </Offcanvas.Body>
         </Offcanvas>

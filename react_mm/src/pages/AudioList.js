@@ -8,7 +8,7 @@ const AudioList = () => {
     const navigate = useNavigate()
     const [audioList, setAudioList] = useRecoilState(audioListState);
     const [selectedAudio, setSelectedAudio] = useRecoilState(selectedAudioState);
-    const [playListState, setPlayListState] = useRecoilState(playListState);
+    // const [playListState, setPlayListState] = useRecoilState(playListState);
 
     const handleAudioClick = (audio) => {
         setSelectedAudio(audio);
@@ -16,7 +16,7 @@ const AudioList = () => {
 
     useEffect(() => {
         
-        setPlayListState(true)
+        // setPlayListState(true)
     }, [])
 
     return (

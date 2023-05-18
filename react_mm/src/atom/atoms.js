@@ -1,5 +1,8 @@
 // recoilState.js
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist()
 
 export const audioListState = atom({
   key: 'audioListState',
@@ -42,7 +45,8 @@ default: false,
 
 export const loginState = atom({
 key: 'loginState',
-default: false
+default: false,
+effects_UNSTABLE: [persistAtom],
 });
 
 export const playListState = atom({
