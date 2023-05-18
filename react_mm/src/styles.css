@@ -255,6 +255,12 @@
   border: none !important;
   color: #ffffff !important;
 }
+.musicplayList {
+  color: #ffffff !important;
+}
+.AudioList {
+  color: #ffffff;
+}
 /* 1440px ~1920px까지는 아래 설정을 따름 */
 @media screen and (max-width: 1920px) {
   .navbar.navbar-expand{

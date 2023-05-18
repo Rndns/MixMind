@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { audioListState, selectedAudioState, playListState } from '../atom/atoms';
+import '../styles.css';
 
 const MusicPlayList = () => {
     const navigate = useNavigate()
@@ -19,7 +20,7 @@ const MusicPlayList = () => {
     // }, [])
 
     return (
-        <div>
+        <div className="musicplayList">
             <h2>Audio List</h2>
             <div>
                 <button
