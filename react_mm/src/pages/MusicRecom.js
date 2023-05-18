@@ -194,7 +194,7 @@ export default function MusicRecom() {
                         <Slick musicInfos={musicInfos} />
                     </div>
                     <div>
-                        <h3 class="slick2"><b>당신의 취향 져격, 이 음악은 어떤가요?</b></h3>
+                        <h3 class="slick2"><b>당신의 취향 저격, 이 음악은 어떤가요?</b></h3>
                         <Slick musicInfos={song2vecInfos} />
                     </div>
                     <div>
