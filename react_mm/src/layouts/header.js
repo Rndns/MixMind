@@ -9,11 +9,9 @@ import imgLogo from '../images/logo.png';
 import imglogin from '../images/log-in.png'
 import imglogout from '../images/logout.png'
 import imgsidebar from '../images/sidebar.png'
-import imgsearch from '../images/search.png'
 import imglist from '../images/searchlist.png'
 import imggenre from '../images/genrelist.png'
 import imggenreselect from '../images/genreselect.png'
-import imgmovie from '../images/movie.png'
 import account from '../images/account.png'
 import { API } from "../config";
 import styled from 'styled-components';
