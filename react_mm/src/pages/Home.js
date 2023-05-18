@@ -3,7 +3,7 @@ import Plot from 'react-plotly.js';
 import { useNavigate } from "react-router-dom";
 import { ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import recombutton from '../images/recom_button.png'
+import recombutton from '../images/record.png'
 
 export default function Home() {
   const navigate = useNavigate();
