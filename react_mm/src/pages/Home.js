@@ -106,6 +106,7 @@ export default function Home() {
           width="80"
           height="80"
           alt="MixMind Logo"
+          title='음악 추천받기'
           onClick={() => {
             navigate(`/musicRecom`, {
               state: {

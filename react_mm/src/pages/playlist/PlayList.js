@@ -2,11 +2,11 @@ import "./PlayList.css";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Button } from 'react-bootstrap';
-import playbutton from '../../images/play-black.png';
+import playbutton from '../../images/play.png';
 import edit from '../../images/edit.png';
 import deletewhite from '../../images/delete-white.png';
 import songdetails from '../../images/song-details.png';
-import listadd from '../../images/list-add.png';
+import listadd from '../../images/playlist-add.png';
 import { Row, Col } from "react-bootstrap";
 
 export default function PlayGroup() {
@@ -79,14 +79,10 @@ export default function PlayGroup() {
             <h4><b>{location.state.createTime}</b></h4>
             <h4><b>{location.state.GroupTag}</b></h4>
           </div>
-          <Button variant="light" size="lg">
-            <img src={playbutton} width = "30" height = "30" alt="재생하기 아이콘"/>
-            <b>재생하기</b>
-            </Button>
-          <Button variant="danger" size="lg" onClick={editPlayGroup}>
-            <img src={edit} width = "30" height = "30" alt="수정하기 아이콘"/>
-            <b>수정하기</b>
-          </Button>
+          <div className="playList-info">
+            <img className="playlist-play" src={playbutton} alt="플레이리스트 재생하기" title="플레이리스트 재생하기"/>
+            <img className="playlist-delete" src={edit} alt="플레이리스트 수정하기" title="플레이리스트 수정하기"/>
+          </div>
         </div>
       )}
       <div className="list-check">
@@ -99,17 +95,11 @@ export default function PlayGroup() {
           수록곡 {playList.length}곡
         </span>
         {showDeleteButtons && (
-          <>
-            <Button variant="light" size="lg" onClick={handlePlaySelected} title="선택곡 재생">
-              <img src={playbutton} width = "30" height = "30" alt="선택곡 재생" title="선택곡 재생" />
-            </Button>
-            <Button variant="danger" size="lg" onClick={handleDelete} title="선택곡 삭제">
-              <img src={deletewhite} width = "30" height = "30" alt="선택곡 삭제" title="선택곡 삭제" />
-            </Button>
-            <Button variant="secondary" size="lg" onClick={handleAddToPlaylist} title="플레이리스트에 추가">
-              <img src={listadd} width = "30" height = "30" alt="플레이리스트에 추가" title="플레이리스트에 추가" />
-            </Button>
-          </>          
+          <div className="select-button">
+            <img className="select-play" src={playbutton}  onClick={handlePlaySelected} alt="선택곡 재생하기" title="선택곡 재생하기"/>
+            <img className="select-delete" src={deletewhite} onClick={handleDelete} alt="선택곡 삭제하기" title="선택곡 삭제하기"/>
+            <img className="select-add" src={listadd} onClick={handleAddToPlaylist} alt="플레이리스트에 추가하기" title="플레이리스트에 추가하기"/>
+          </div>          
         )}
       </div>
       {playList.map((list, index) => (
