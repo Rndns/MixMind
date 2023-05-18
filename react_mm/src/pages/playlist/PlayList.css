@@ -1,12 +1,411 @@
+button.btn.btn-light.btn-lg:hover {
+    transform:scale(1); /* hover 시 버튼확대 애니메이션 */
+    transition: 1s;
+}
+.playList div.row {
+    border-radius: 1px;
+  }
+.selected-song {
+    background-color: #303030; /* 원하는 배경색으로 변경하세요 */
+  }
 @media screen and (max-width: 1920px) {
+    .rep {
+        position: relative;
+        height: 290px;
+        width: 108%;    
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
     .playList {
         color: white;
         margin-bottom: 8%;
-        padding: 1.45% 32%;
+        padding: 1.45% 27.5%;
+        margin: 0% 0% 19.5% 0%;
     }
     .rep-img img{
         position: relative;
-        height: 215px;
+        height: 270px;
         border-radius: 15px;
+    }
+    .playList-info {
+        position: relative;
+        top: -259px;
+        left: 34%;
+    }
+    .playList-info h1 {
+        margin-bottom: 26px;
+    }
+    .playList-info h4 {
+        margin-bottom: 28px;
+        color: #6c6c6c;
+    }
+    button.btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 31.2%;
+    }
+    button.btn.btn-light.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -4%;
+    }
+    button.btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 31.2%;
+    }
+    button.btn.btn-danger.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -2%;
+    }
+    button.btn.btn-secondary.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: 8%;
+    }
+    .list-check button.btn.btn-light.btn-lg {
+        position: absolute;
+        top: 44.2%;
+        left: 61.7%;
+        height: 48px;
+    }
+    .list-check button.btn.btn-danger.btn-lg {
+        position: absolute;
+        top: 44.2%;
+        left: 66.6%;
+    }
+    .list-check button.btn.btn-secondary.btn-lg {
+        position: absolute;
+        margin-left: 25px;
+        top: 44.1%;
+        left: 71.5%;
+        border-radius: 10px;
+        height: 48px;
+    }
+    .playList div.row {
+        margin: 0% -4.3%;
+        position: relative;
+        left: 4%;
+    }
+    .playList div.row div {
+        margin-bottom: 0px;
+        padding-right: 0%;
+        position: relative;
+        top: 10px;
+    }
+    .list-check {
+        margin: 2% 1%;
+        padding: 3% 0% 2% 0%;
+        width: 107%;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
+    .list-check span {
+        position: relative;
+        top: -12px;
+        left: 1%;
+        font-size: 1.2rem;
+    }
+    .list-check input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: -10px !important;
+    }
+    .playList input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 11px;
+      }
+    .playList div.col img {
+        height: 50px;
+        border-radius: 5px;
+        position: relative;
+        top: -2px;
+    }
+    .col {
+        height: 65px;
+    }
+    .list-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: max-content;
+    }
+    .songdetails {
+        height: 25px !important;
+        position: relative;
+        top: 8px !important;
+        left: 63px;
+    }
+}
+@media screen and (max-width: 1540px) {
+    .rep {
+        position: relative;
+        height: 268px;
+        width: 108%;    
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
+    .playList {
+        color: white;
+        margin-bottom: 8%;
+        padding: 1.45% 27.5%;
+        margin: 0% 0% 19.5% 0%;
+    }
+    .rep-img img{
+        position: relative;
+        height: 250px;
+        border-radius: 15px;
+    }
+    .playList-info {
+        position: relative;
+        top: -250px;
+        left: 38%;
+    }
+    .playList-info h1 {
+        margin-bottom: 26px;
+    }
+    .playList-info h4 {
+        margin-bottom: 28px;
+        color: #6c6c6c;
+    }
+    button.btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 35%;
+    }
+    button.btn.btn-light.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -7%;
+    }
+    button.btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 35%;
+    }
+    button.btn.btn-danger.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -7%;
+    }
+    .list-check button.btn.btn-light.btn-lg {
+        position: absolute;
+        top: 51.8%;
+        left: 58.5%;
+        height: 48px;
+    }
+    .list-check button.btn.btn-danger.btn-lg {
+        position: absolute;
+        top: 51.8%;
+        left: 64.5%;
+    }
+    .list-check button.btn.btn-secondary.btn-lg {
+        position: absolute;
+        margin-left: 25px;
+        top: 51.8%;
+        left: 70.2%;
+        border-radius: 10px;
+        height: 48px;
+    }
+    .playList div.row {
+        margin: 0% -4.3%;
+        position: relative;
+        left: 4%;
+    }
+    .playList div.row div {
+        margin-bottom: 0px;
+        padding-right: 0%;
+        position: relative;
+        top: 10px;
+    }
+    .list-check {
+        margin: 2% 1%;
+        padding: 3% 0% 2% 0%;
+        width: 107%;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
+    .list-check span {
+        position: relative;
+        top: -12px;
+        left: 1%;
+        font-size: 1.2rem;
+    }
+    .list-check input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: -10px !important;
+    }
+    .playList input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 11px;
+      }
+    .playList div.col img {
+        height: 50px;
+        border-radius: 5px;
+        position: relative;
+        top: -2px;
+    }
+    .col {
+        height: 65px;
+    }
+    .list-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: max-content;
+    }
+    .songdetails {
+        height: 25px !important;
+        position: relative;
+        top: 8px !important;
+        left: 63px;
+    }
+}
+@media screen and (max-width: 1440px) {
+    .rep {
+        position: relative;
+        height: 268px;
+        width: 108%;    
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
+    .playList {
+        color: white;
+        margin-bottom: 8%;
+        padding: 1.45% 27.5%;
+        margin: 0% 0% 19.5% 0%;
+    }
+    .rep-img img{
+        position: relative;
+        height: 250px;
+        border-radius: 15px;
+    }
+    .playList-info {
+        position: relative;
+        top: -250px;
+        left: 42%;
+    }
+    .playList-info h1 {
+        margin-bottom: 26px;
+    }
+    .playList-info h4 {
+        margin-bottom: 28px;
+        color: #6c6c6c;
+    }
+    button.btn.btn-light.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 38.5%;
+    }
+    button.btn.btn-light.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -7%;
+    }
+    button.btn.btn-danger.btn-lg {
+        position: relative;
+        margin-left: 25px;
+        top: -252px;
+        left: 38.5%;
+    }
+    button.btn.btn-danger.btn-lg img {
+        position: relative;
+        top: -2px;
+        left: -7%;
+    }
+    .list-check button.btn.btn-light.btn-lg {
+        position: absolute;
+        top: 50%;
+        left: 58.5%;
+        height: 48px;
+    }
+    .list-check button.btn.btn-danger.btn-lg {
+        position: absolute;
+        top: 50%;
+        left: 64.5%;
+    }
+    .list-check button.btn.btn-secondary.btn-lg {
+        position: absolute;
+        margin-left: 25px;
+        top: 50%;
+        left: 70.2%;
+        border-radius: 10px;
+        height: 48px;
+    }
+    .playList div.row {
+        margin: 0% -4.3%;
+        position: relative;
+        left: 4%;
+    }
+    .playList div.row div {
+        margin-bottom: 0px;
+        padding-right: 0%;
+        position: relative;
+        top: 10px;
+    }
+    .list-check {
+        margin: 2% 1%;
+        padding: 3% 0% 2% 0%;
+        width: 107%;
+        border-bottom: solid;
+        border-bottom-width: 1px;
+        border-color: #212121;
+    }
+    .list-check span {
+        position: relative;
+        top: -12px;
+        left: 1%;
+        font-size: 1.2rem;
+    }
+    .list-check input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: -10px !important;
+    }
+    .playList input {
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: 11px;
+      }
+    .playList div.col img {
+        height: 50px;
+        border-radius: 5px;
+        position: relative;
+        top: -2px;
+    }
+    .col {
+        height: 65px;
+    }
+    .list-album {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: max-content;
+    }
+    .songdetails {
+        height: 25px !important;
+        position: relative;
+        top: 8px !important;
+        left: 63px;
     }
 }

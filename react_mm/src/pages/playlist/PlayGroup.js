@@ -9,8 +9,8 @@ export default function PlayGroup() {
     const location = useLocation()
     const navigate = useNavigate()
     const [playGroup, setPlayGroupState] = useState([])
-    const [createTime, setCreateTime] = useState('2023 - 05 - 17')
-    const [GroupTag, setGroupTag] = useState('#여행 #여름 #청량')
+    const [createTime, setCreateTime] = useState('2023-05-17')
+    const [GroupTag, setGroupTag] = useState('#여름 #청량')
     const [imgList, setimgList] = useState([
       {
         id: 0,
@@ -64,20 +64,15 @@ export default function PlayGroup() {
             {playGroup.map((playGroup) => (
               <div key={playGroup.id} className="playlist-header">
                   <div className="playlist-cover">
-                    <img src={imgList.albumImg} alt={imgList.id}/>
+                    {/* <img src={imgList.albumImg} alt={imgList.id}/> */}
+                    <img src="https://cdnimg.melon.co.kr/cm2/album/images/109/75/276/10975276_20220603165713_500.jpg?690c69f1d7581bed46767533175728ff/melon/resize/282/quality/80/optimize" alt={imgList.id}/>
                   </div>
                   <div className="header-str">
                     <h1><b>{playGroup.name}</b></h1>
-<<<<<<< HEAD
-                    <h4><b>2023-05-17</b></h4>
-                    <h4><b>#여행 #여름 #청량</b></h4>
-=======
                     <h4><b>{createTime}</b></h4>
                     <h4><b>{GroupTag}</b></h4>
->>>>>>> main
                   </div>
                   <Button variant="light" size="lg"  onClick={() => goToPlayList(playGroup)}><b>상세보기</b></Button>
-                  <Button variant="danger" size="lg" onClick={editPlayGroup}><b>수정하기</b></Button>
                   <img src={del} class="delete" alt={"삭제하기"} title={"플레이리스트 삭제하기"}/>
               </div>
             ))}
