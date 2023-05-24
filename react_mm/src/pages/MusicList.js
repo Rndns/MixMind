@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { musicInfoList } from '../services/appServices';
 
+// 체크 후 삭제
 export default function MusicList(){
 
     const [musiclist, setMusicList] = useState()
