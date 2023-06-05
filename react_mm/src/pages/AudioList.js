@@ -1,4 +1,4 @@
-// components/AudioList.js
+// components/AudioList.js 여기부터 코드 정리 필요
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
