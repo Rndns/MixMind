@@ -3,26 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import { titleCollect } from "../services/appServices";
 
-// import { useRecoilState } from "recoil";
-
-// export default function SelectOption(){
-//     const location = useLocation();
-//     const navigate = useNavigate();
-//     const [keyword, setkeyword] = useState('')
-    
-
-//     // const [keyword, setkeyword] = useRecoilState(searchKeyword);
-   
-//     return(
-//         <div className = "searchopt">
-//             <input type="text" className = "input-text"/>
-//             <button type = "button" className = "search">
-//                 <span>검색</span>
-//             </button>
-//         </div>
-//     )
-// };
-
 const AutoComplete = () => {
     const [wholeTextArray, setWholeTextArray] = useState(['아이유', '수지', '복숭아', '밤편지'])
     const [inputValue, setInputValue] =useState('')
